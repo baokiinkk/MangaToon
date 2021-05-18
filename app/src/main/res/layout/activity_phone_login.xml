@@ -4,92 +4,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fff"
+    android:fitsSystemWindows="false"
     tools:context=".ui.activity.PhoneLoginActivity">
-
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/background_phone"
+        />
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_phone"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="visible"
+        android:layout_height="match_parent"
        >
 
-        <LinearLayout
-            android:id="@+id/layout_fristNumberVN"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="@id/edit_phoneNumber"
+            android:layout_marginTop="120dp"
+            android:layout_marginEnd="20dp"
+            android:text="Enter your mobile number"
+            android:textColor="#000"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/edit_phoneNumber">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="7dp"
-                 />
-
-            <TextView
-                style="@style/TextAppearance.AppCompat.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
-        </LinearLayout>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/edit_phoneNumber"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
             android:inputType="phone"
             android:padding="20dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/layout_fristNumberVN"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-        <Button
-            android:id="@+id/buttonGetCode"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Get Code"
-            app:layout_constraintTop_toBottomOf="@id/edit_phoneNumber" />
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:text="Mobile Number"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layout_code"
-        android:layout_width="match_parent"
+    <include
+        android:id="@+id/phone_layout"
+        android:visibility="gone"
+        layout="@layout/phone_digit_code"
+        />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/buttonGetCode"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone">
-
-        <EditText
-            android:id="@+id/edit_code"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="code"
-            android:inputType="number"
-            android:padding="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/buttonOK"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="OK"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edit_code" />
-
-        <Button
-            android:id="@+id/buttonResend"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Resend COde"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/buttonOK" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+        android:src="@drawable/ic_google"
+        android:background="#000"
+        android:layout_gravity="bottom|right"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        />
 </FrameLayout>

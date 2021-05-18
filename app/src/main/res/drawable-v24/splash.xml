@@ -6,9 +6,9 @@
             <solid android:color="#53B175"/>
         </shape>
     </item>
-    <item android:drawable="@drawable/ic_launcher_background"
-        android:width="100dp"
-        android:height="100dp"
+    <item android:drawable="@drawable/logo"
+        android:width="300dp"
+        android:height="300dp"
         android:gravity="center"
         >
 
