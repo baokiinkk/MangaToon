@@ -31,7 +31,7 @@ val retrofitModule = module {
 
     fun provideRetrofit(factory: Gson, client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://gateway.marvel.com/")
+            .baseUrl("https://mangamint.kaedenoki.net/api/")
             .addConverterFactory(GsonConverterFactory.create(factory))
             .client(client)
             .build()
