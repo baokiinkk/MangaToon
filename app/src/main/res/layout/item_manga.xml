@@ -10,10 +10,12 @@
             type="com.baokiin.mangatoon.data.model.Manga" />
     </data>
 
-    <androidx.cardview.widget.CardView
+    <FrameLayout
+        android:background="@drawable/bg_item_manga"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         app:cardCornerRadius="10dp"
+
         android:layout_margin="10dp"
         >
 
@@ -27,7 +29,9 @@
                     android:layout_width="0dp"
                     android:layout_height="150dp"
                     android:scaleType="centerCrop"
+                    android:profileImage="@{data.thumb}"
                     android:src="@drawable/image_title"
+                    android:background="@drawable/bg_item_manga"
                     android:transitionName="imgTransition"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -86,5 +90,5 @@
                 app:layout_constraintBottom_toBottomOf="@+id/txtPrice"
                 app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+    </FrameLayout>
 </layout>

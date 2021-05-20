@@ -6,9 +6,8 @@
 
     <data>
         <variable
-            name="adapterManhua"
-            type="com.baokiin.mangatoon.ui.adapter.ItemMangaAdapter"
-        />
+            name="adapterManhwa"
+            type="com.baokiin.mangatoon.ui.adapter.ItemMangaAdapter"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="30dp"
-            android:text="Manhua"
+            android:text="Manhwa"
             android:textColor="#000"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -49,13 +48,13 @@
             app:layout_constraintTop_toBottomOf="@+id/textView6"
             >
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycleViewManhua"
+                android:id="@+id/recycleViewManhwa"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:adapter="@{adapterManhua}"
+                android:adapter="@{adapterManhwa}"
                 />
             <com.facebook.shimmer.ShimmerFrameLayout
-                android:id="@+id/contentShimmerManhua"
+                android:id="@+id/contentShimmerManhwa"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:shimmer_duration="800"

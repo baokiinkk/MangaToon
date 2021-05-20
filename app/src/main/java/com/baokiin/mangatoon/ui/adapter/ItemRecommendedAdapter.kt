@@ -1,4 +1,4 @@
-package com.baokiin.mangatoon.adapter
+package com.baokiin.mangatoon.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -27,7 +27,6 @@ class ItemRecommendedAdapter(private val onClick: (Manga, Int) -> Unit) :
         }
         fun bind(item: Manga, onClick: ((Manga,Int) -> Unit)? = null) {
             binding.data = item
-            itemView.imgRecommended.load(item.thumb)
             itemView.setOnClickListener {
                 if (onClick != null) {
                     onClick(item,bindingAdapterPosition)

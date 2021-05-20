@@ -1,19 +1,14 @@
-package com.baokiin.mangatoon.adapter
+package com.baokiin.mangatoon.ui.adapter
 
-import android.content.res.ColorStateList
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
 import com.baokiin.mangatoon.data.model.Genre
-import com.baokiin.mangatoon.data.model.Manga
 import com.baokiin.mangatoon.databinding.ItemGenreBinding
-import com.baokiin.mangatoon.databinding.ItemPopularBinding
 import kotlinx.android.synthetic.main.item_genre.view.*
-import kotlinx.android.synthetic.main.item_popular.view.*
 
 
 class ItemGenreAdapter(private val onClick: (Genre, Int) -> Unit) :

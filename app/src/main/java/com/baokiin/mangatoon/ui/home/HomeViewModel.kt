@@ -13,6 +13,7 @@ class HomeViewModel(val re:Repository) :ViewModel(){
     val popular:MutableLiveData<MangaList?> = MutableLiveData(null)
     val genres:MutableLiveData<GenresList?> = MutableLiveData(null)
     val manHua:MutableLiveData<MangaList?> = MutableLiveData(null)
+    val manhwa :MutableLiveData<MangaList?> = MutableLiveData(null)
     fun getRecommended(){
         viewModelScope.launch {
             re.getRecommended()?.let {
@@ -30,8 +31,15 @@ class HomeViewModel(val re:Repository) :ViewModel(){
 
     fun getManhua(page:Int){
         viewModelScope.launch {
-            re.getManhua(page)?.let {
+            re.getComic("manhua",page)?.let {
                 manHua.postValue(it)
+            }
+        }
+    }
+    fun getManhwa(page:Int){
+        viewModelScope.launch {
+            re.getComic("manhwa",page)?.let {
+                manhwa.postValue(it)
             }
         }
     }
