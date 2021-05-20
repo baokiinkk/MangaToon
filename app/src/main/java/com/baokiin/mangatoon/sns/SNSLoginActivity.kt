@@ -2,6 +2,7 @@ package com.baokiin.mangatoon.sns
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.baokiin.mangatoon.R
@@ -58,10 +59,12 @@ abstract class SNSLoginActivity : AppCompatActivity() {
                 }
             }
             SNS_REQUEST_CODE_PHONE -> {
+                Log.d("quocbao","aaaaaaaaaaa")
                 if (resultCode == SNS_RESULT_CODE) {
-                    val user = data?.extras?.get(SNS_RESULT_DATA) as FirebaseUser?
+                    val user = auth.currentUser
+
                     val userSNS = UserSNS(
-                        snsLoginType = SNSLoginType.Google,
+                        snsLoginType = SNSLoginType.PhoneNumber,
                         user = user
                     )
                     handleCallbackLoginActivity(userSNS)
