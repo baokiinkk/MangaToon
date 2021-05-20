@@ -2,7 +2,6 @@ package com.baokiin.mangatoon.sns
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.baokiin.mangatoon.R
@@ -13,8 +12,6 @@ import com.baokiin.mangatoon.utils.Utils.SNS_LOGIN_TYPE
 import com.baokiin.mangatoon.utils.Utils.SNS_REQUEST_CODE_GOOGLE
 import com.baokiin.mangatoon.utils.Utils.SNS_REQUEST_CODE_PHONE
 import com.baokiin.mangatoon.utils.Utils.SNS_RESULT_CODE
-import com.baokiin.mangatoon.utils.Utils.SNS_RESULT_DATA
-
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -59,7 +56,6 @@ abstract class SNSLoginActivity : AppCompatActivity() {
                 }
             }
             SNS_REQUEST_CODE_PHONE -> {
-                Log.d("quocbao","aaaaaaaaaaa")
                 if (resultCode == SNS_RESULT_CODE) {
                     val user = auth.currentUser
 

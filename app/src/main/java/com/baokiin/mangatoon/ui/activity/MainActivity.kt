@@ -19,7 +19,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var googleSignInClient: GoogleSignInClient
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("quocbao","bbbbbbbbbb")
         setContentView(R.layout.activity_main)
         instanceGoogleSignIn()
         val user = intent.extras?.get(USER) as FirebaseUser?
