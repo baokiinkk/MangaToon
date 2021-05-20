@@ -3,6 +3,7 @@ package com.baokiin.mangatoon.ui.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import coil.load
 import com.baokiin.mangatoon.R
 import com.baokiin.mangatoon.utils.Utils.USER
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var googleSignInClient: GoogleSignInClient
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("quocbao","bbbbbbbbbb")
         setContentView(R.layout.activity_main)
         instanceGoogleSignIn()
         val user = intent.extras?.get(USER) as FirebaseUser?
