@@ -3,17 +3,11 @@ package com.baokiin.mangatoon.ui.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-<<<<<<< HEAD
 import com.baokiin.mangatoon.R
-=======
 import androidx.databinding.DataBindingUtil
-import com.baokiin.mangatoon.R
 import com.baokiin.mangatoon.databinding.ActivityMainBinding
 import com.baokiin.mangatoon.ui.adapter.ViewPageAdapter
 import com.baokiin.mangatoon.ui.home.HomeFragment
-import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.android.synthetic.main.activity_main.*
->>>>>>> feature/190521_setup_home_screen
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
