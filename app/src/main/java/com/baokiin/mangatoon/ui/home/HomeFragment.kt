@@ -1,80 +1,101 @@
 package com.baokiin.mangatoon.ui.home
 
+import android.view.View
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.GridLayoutManager
 import com.baokiin.mangatoon.R
-import com.baokiin.mangatoon.adapter.ItemGenreAdapter
-import com.baokiin.mangatoon.adapter.ItemPopularAdapter
-import com.baokiin.mangatoon.adapter.ItemRecommendedAdapter
+import com.baokiin.mangatoon.ui.adapter.ItemGenreAdapter
+import com.baokiin.mangatoon.ui.adapter.ItemMangaAdapter
+import com.baokiin.mangatoon.ui.adapter.ItemRecommendedAdapter
 import com.baokiin.mangatoon.databinding.FragmentHomeBinding
 import com.baokiin.mangatoon.ui.BaseFragment
-import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.android.synthetic.main.layout_genre.view.*
-import kotlinx.android.synthetic.main.layout_manhua_home.view.*
-import kotlinx.android.synthetic.main.layout_popular_home.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeFragment : BaseFragment<FragmentHomeBinding>(){
+class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override fun getLayoutRes(): Int {
         return R.layout.fragment_home
     }
-    val viewModel:HomeViewModel by viewModel()
-    override fun onCreateViews() {
-        val recommendedAdapter = ItemRecommendedAdapter{ manga, i ->
-        }
-        val popularAdapter = ItemPopularAdapter{ manga, i ->
-        }
-        val genreAdapter = ItemGenreAdapter{ genre, i ->
-        }
-        val manhuaAdapter = ItemPopularAdapter{ manga, i ->
 
-        }
+    private lateinit var recommendedAdapter: ItemRecommendedAdapter
+    private lateinit var popularAdapter: ItemMangaAdapter
+    private lateinit var genreAdapter: ItemGenreAdapter
+    private lateinit var manhuaAdapter: ItemMangaAdapter
+    private lateinit var manhwaAdapter: ItemMangaAdapter
+    private val viewModel: HomeViewModel by viewModel()
+    override fun onCreateViews() {
+        onClickItem()
+
         baseBinding.apply {
             viewmodel = viewModel
-            viewPagerTitle.adapter = recommendedAdapter
-            TabLayoutMediator(tabLayoutFragmentHome,viewPagerTitle,TabLayoutMediator.TabConfigurationStrategy{tab,pos->
-            }).attach()
-
-            layoutPopulatio.apply {
-                recycleViewPopulation.adapter = popularAdapter
-                recycleViewPopulation.layoutManager = GridLayoutManager(context,1,GridLayoutManager.HORIZONTAL,false)
-            }
-            layoutGener.apply {
-                recycleViewGenres.adapter = genreAdapter
-                recycleViewGenres.layoutManager = GridLayoutManager(context,1,GridLayoutManager.HORIZONTAL,false)
-            }
-            layoutManhua.apply {
-                recycleViewManhua.adapter = manhuaAdapter
-                recycleViewManhua.layoutManager = GridLayoutManager(context,1,GridLayoutManager.HORIZONTAL,false)
-
-            }
-           }
+            adapterRecommended = recommendedAdapter
+            adapterPopular = popularAdapter
+            adapteManhua = manhuaAdapter
+            adapterManhwa = manhwaAdapter
+            adapterGener = genreAdapter
+        }
         viewModel.apply {
             getRecommended()
             getPopular(1)
             getManhua(1)
+            getManhwa(1)
             getGenres()
             recommended.observe(viewLifecycleOwner, Observer {
                 it?.let {
-                    recommendedAdapter.submitList(it.manga_list.subList(0,5))
+                    recommendedAdapter.submitList(it.manga_list.subList(0, 5))
+                    baseBinding.contentShimmerRecommended.stopShimmer()
+                    baseBinding.contentShimmerRecommended.visibility = View.GONE
                 }
             })
             popular.observe(viewLifecycleOwner, Observer {
                 it?.let {
                     popularAdapter.submitList(it.manga_list)
+                    baseBinding.layoutPopular.contentShimmerPopular.stopShimmer()
+                    baseBinding.layoutPopular.contentShimmerPopular.visibility = View.GONE
                 }
             })
             manHua.observe(viewLifecycleOwner, Observer {
                 it?.let {
                     manhuaAdapter.submitList(it.manga_list)
+                    baseBinding.layoutManhua.contentShimmerManhua.stopShimmer()
+                    baseBinding.layoutManhua.contentShimmerManhua.visibility = View.GONE
+                }
+            })
+            manhwa.observe(viewLifecycleOwner, Observer {
+                it?.let {
+                    manhwaAdapter.submitList(it.manga_list)
+                    baseBinding.layoutManhwa.contentShimmerManhwa.stopShimmer()
+                    baseBinding.layoutManhwa.contentShimmerManhwa.visibility = View.GONE
                 }
             })
             genres.observe(viewLifecycleOwner, Observer {
                 it?.let {
-                    genreAdapter.submitList(it.list_genre.subList(0,10))
+                    genreAdapter.submitList(it.list_genre.subList(0, 10))
+                    baseBinding.layoutGener.contentShimmerGener.stopShimmer()
+                    baseBinding.layoutGener.contentShimmerGener.visibility = View.GONE
                 }
             })
         }
     }
 
+    private fun onClickItem() {
+        recommendedAdapter = ItemRecommendedAdapter { manga, i ->
+        }
+        popularAdapter = ItemMangaAdapter { manga, i ->
+        }
+        genreAdapter = ItemGenreAdapter { genre, i ->
+        }
+        manhuaAdapter = ItemMangaAdapter { manga, i ->
+        }
+        manhwaAdapter = ItemMangaAdapter { manga, i ->
+        }
+    }
+    override fun onResume() {
+        super.onResume()
+        baseBinding.apply {
+            contentShimmerRecommended.startShimmer()
+            layoutPopular.contentShimmerPopular.startShimmer()
+            layoutManhua.contentShimmerManhua.startShimmer()
+            layoutManhwa.contentShimmerManhwa.startShimmer()
+            layoutGener.contentShimmerGener.startShimmer()
+        }
+    }
 }

@@ -24,9 +24,9 @@ class RepositoryImpl(val apiService: ApiService):Repository{
             null
         }
 
-    override suspend fun getManhua(page: Int): MangaList? =
+    override suspend fun getComic(comic:String,page: Int): MangaList? =
         try{
-            apiService.getManhua(page)
+            apiService.getComic(comic,page)
         }
         catch (e:Exception){
             Log.d("quocbao","errorPopular")

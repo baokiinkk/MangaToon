@@ -12,8 +12,8 @@ interface ApiService {
     @GET("manga/popular/{page}")
     suspend fun getPopular(@Path("page")page:Int):MangaList
 
-    @GET("manhua/{page}")
-    suspend fun getManhua(@Path("page")page:Int):MangaList
+    @GET("{comic}/{page}")
+    suspend fun getComic(@Path("comic") comic:String,@Path("page")page:Int):MangaList
 
     @GET("genres")
     suspend fun getGenres():GenresList

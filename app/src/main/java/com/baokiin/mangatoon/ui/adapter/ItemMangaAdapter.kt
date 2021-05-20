@@ -1,25 +1,23 @@
-package com.baokiin.mangatoon.adapter
+package com.baokiin.mangatoon.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
 import com.baokiin.mangatoon.data.model.Manga
-import com.baokiin.mangatoon.databinding.ItemPopularBinding
-import kotlinx.android.synthetic.main.item_popular.view.*
+import com.baokiin.mangatoon.databinding.ItemMangaBinding
 
 
-class ItemPopularAdapter(private val onClick: (Manga, Int) -> Unit) :
-    ListAdapter<Manga, ItemPopularAdapter.ViewHolder>(
+class ItemMangaAdapter(private val onClick: (Manga, Int) -> Unit) :
+    ListAdapter<Manga, ItemMangaAdapter.ViewHolder>(
         MangaDIff()
     ) {
-    class ViewHolder(private val binding: ItemPopularBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: ItemMangaBinding) : RecyclerView.ViewHolder(binding.root) {
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val binding =
-                    ItemPopularBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                    ItemMangaBinding.inflate(LayoutInflater.from(parent.context), parent, false)
                 return ViewHolder(
                     binding
                 )
@@ -27,7 +25,6 @@ class ItemPopularAdapter(private val onClick: (Manga, Int) -> Unit) :
         }
         fun bind(item: Manga, onClick: ((Manga,Int) -> Unit)? = null) {
             binding.data = item
-            itemView.imgPopular.load(item.thumb)
             itemView.setOnClickListener {
                 if (onClick != null) {
                     onClick(item,bindingAdapterPosition)
