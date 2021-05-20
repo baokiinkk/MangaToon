@@ -11,10 +11,6 @@ import com.baokiin.mangatoon.utils.Utils.SNS_RESULT_DATA
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.*
 import kotlinx.android.synthetic.main.activity_phone_login.*
-import kotlinx.android.synthetic.main.phone_digit_code.*
-import kotlinx.android.synthetic.main.phone_digit_code.buttonOK
-import kotlinx.android.synthetic.main.phone_digit_code.buttonResend
-import kotlinx.android.synthetic.main.phone_digit_code.edit_code
 import kotlinx.android.synthetic.main.phone_digit_code.view.*
 import java.util.concurrent.TimeUnit
 

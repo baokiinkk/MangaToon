@@ -3,7 +3,11 @@ package com.baokiin.mangatoon.ui.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+<<<<<<< HEAD
 import android.view.WindowManager
+=======
+import android.util.Log
+>>>>>>> feature/180521_clean_code_login
 import coil.load
 import com.baokiin.mangatoon.R
 import com.baokiin.mangatoon.utils.Utils.USER

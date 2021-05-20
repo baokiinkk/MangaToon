@@ -12,8 +12,6 @@ import com.baokiin.mangatoon.utils.Utils.SNS_LOGIN_TYPE
 import com.baokiin.mangatoon.utils.Utils.SNS_REQUEST_CODE_GOOGLE
 import com.baokiin.mangatoon.utils.Utils.SNS_REQUEST_CODE_PHONE
 import com.baokiin.mangatoon.utils.Utils.SNS_RESULT_CODE
-import com.baokiin.mangatoon.utils.Utils.SNS_RESULT_DATA
-
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -59,9 +57,10 @@ abstract class SNSLoginActivity : AppCompatActivity() {
             }
             SNS_REQUEST_CODE_PHONE -> {
                 if (resultCode == SNS_RESULT_CODE) {
-                    val user = data?.extras?.get(SNS_RESULT_DATA) as FirebaseUser?
+                    val user = auth.currentUser
+
                     val userSNS = UserSNS(
-                        snsLoginType = SNSLoginType.Google,
+                        snsLoginType = SNSLoginType.PhoneNumber,
                         user = user
                     )
                     handleCallbackLoginActivity(userSNS)
