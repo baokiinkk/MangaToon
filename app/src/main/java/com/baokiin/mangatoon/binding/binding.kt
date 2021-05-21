@@ -1,5 +1,7 @@
 package com.baokiin.mangatoon.binding
 
+import android.os.CountDownTimer
+import android.util.Log
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.GridLayoutManager
@@ -13,6 +15,11 @@ import com.baokiin.mangatoon.ui.adapter.ItemRecommendedAdapter
 import com.baokiin.mangatoon.ui.adapter.ViewPageAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import java.util.*
 
 
 class Binding{
@@ -41,6 +48,18 @@ class Binding{
             view.adapter = adapter
             TabLayoutMediator(tabLayout,view, TabLayoutMediator.TabConfigurationStrategy{ tab, pos->
             }).attach()
+            GlobalScope.launch(Dispatchers.Main) {
+                var index = 0
+                while (true){
+                    delay(3000)
+                    if(index < adapter.itemCount-1)
+                        index++
+                    else
+                        index = 0;
+                    view.setCurrentItem(index,true)
+                }
+
+            }
         }
 
         @BindingAdapter("android:adapter")
