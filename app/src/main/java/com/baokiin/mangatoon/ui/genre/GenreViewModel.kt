@@ -9,6 +9,7 @@ import kotlinx.coroutines.launch
 
 class GenreViewModel(val rep:Repository):ViewModel() {
     val genres: MutableLiveData<GenresList?> = MutableLiveData(null)
+    val text :MutableLiveData<String> =MutableLiveData()
     fun getGenres(){
         viewModelScope.launch {
             rep.getGenres()?.let {

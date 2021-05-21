@@ -2,13 +2,18 @@ package com.baokiin.mangatoon.binding
 
 import android.os.CountDownTimer
 import android.util.Log
+import android.widget.EditText
 import android.widget.ImageView
+import android.widget.SearchView
 import androidx.databinding.BindingAdapter
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import coil.load
 import com.baokiin.mangatoon.R
+import com.baokiin.mangatoon.data.model.Genre
+import com.baokiin.mangatoon.data.model.GenresList
 import com.baokiin.mangatoon.ui.adapter.*
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -58,6 +63,25 @@ class Binding{
                 }
 
             }
+        }
+
+        @BindingAdapter("android:adapter","android:list")
+        @JvmStatic
+        fun editChange(view: SearchView,adapter: ItemGenreAdapter,list: MutableLiveData<GenresList?>) {
+            view.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return false
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    list.value?.let {
+                        adapter.filter(newText,it.list_genre)
+                    }
+
+                    return false
+                }
+
+            })
         }
 
         @BindingAdapter("android:adapter")

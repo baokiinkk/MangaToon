@@ -31,20 +31,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <SearchView
             android:id="@+id/btnSearch"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="30dp"
+            android:adapter="@{adapterGener}"
+            android:list="@{viewmodel.genres}"
             android:background="@drawable/background_btn_search"
             android:drawableStart="@drawable/ic_search"
             android:drawablePadding="10dp"
             android:fontFamily="@font/gilroy_bold"
-            android:paddingVertical="15dp"
             android:paddingStart="20dp"
-            android:text="Search"
+            android:hint="Search"
             android:textColor="#7C7C7C"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

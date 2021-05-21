@@ -56,4 +56,14 @@ class ItemGenreAdapter(private val onClick: (Genre, Int) -> Unit) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         getItem(position)?.let { holder.bind(it,onClick) }
     }
+
+    fun filter(newText: CharSequence?,list:MutableList<Genre>) {
+        newText?.let {
+            submitList(list.filter {
+                it.genre_name.contains(newText)
+            })
+            notifyDataSetChanged()
+        }
+    }
+
 }
