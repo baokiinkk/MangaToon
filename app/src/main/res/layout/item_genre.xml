@@ -20,8 +20,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{data.genre_name}"
+            android:fontFamily="@font/gilroy_bold"
             android:textSize="25sp"
-            android:textStyle="bold"
             android:textColor="#000"
             android:layout_gravity="center" />
 

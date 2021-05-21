@@ -8,6 +8,10 @@ import com.baokiin.mangatoon.ui.adapter.ItemMangaAdapter
 import com.baokiin.mangatoon.ui.adapter.ItemRecommendedAdapter
 import com.baokiin.mangatoon.databinding.FragmentHomeBinding
 import com.baokiin.mangatoon.ui.BaseFragment
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
