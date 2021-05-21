@@ -6,7 +6,7 @@
     <data>
         <variable
             name="adapterGener"
-            type="com.baokiin.mangatoon.ui.adapter.ItemGenreAdapter" />
+            type="com.baokiin.mangatoon.ui.adapter.ItemGenreHomeAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

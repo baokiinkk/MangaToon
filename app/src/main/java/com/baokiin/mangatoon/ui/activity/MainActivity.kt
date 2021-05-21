@@ -7,6 +7,7 @@ import com.baokiin.mangatoon.R
 import androidx.databinding.DataBindingUtil
 import com.baokiin.mangatoon.databinding.ActivityMainBinding
 import com.baokiin.mangatoon.ui.adapter.ViewPageAdapter
+import com.baokiin.mangatoon.ui.genre.GenreFragment
 import com.baokiin.mangatoon.ui.home.HomeFragment
 
 class MainActivity : AppCompatActivity() {
@@ -16,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         baseBinding.apply {
             lifecycleOwner = this@MainActivity
             adapter = ViewPageAdapter(
-                mutableListOf(HomeFragment()),this@MainActivity)
+                mutableListOf(HomeFragment(),GenreFragment()),this@MainActivity)
         }
         getWindow().setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,

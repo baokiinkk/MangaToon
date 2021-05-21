@@ -8,10 +8,8 @@ import com.baokiin.mangatoon.ui.adapter.ItemMangaAdapter
 import com.baokiin.mangatoon.ui.adapter.ItemRecommendedAdapter
 import com.baokiin.mangatoon.databinding.FragmentHomeBinding
 import com.baokiin.mangatoon.ui.BaseFragment
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import com.baokiin.mangatoon.ui.adapter.ItemGenreHomeAdapter
+
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
@@ -21,7 +19,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private lateinit var recommendedAdapter: ItemRecommendedAdapter
     private lateinit var popularAdapter: ItemMangaAdapter
-    private lateinit var genreAdapter: ItemGenreAdapter
+    private lateinit var genreAdapter: ItemGenreHomeAdapter
     private lateinit var manhuaAdapter: ItemMangaAdapter
     private lateinit var manhwaAdapter: ItemMangaAdapter
     private val viewModel: HomeViewModel by viewModel()
@@ -85,7 +83,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
         popularAdapter = ItemMangaAdapter { manga, i ->
         }
-        genreAdapter = ItemGenreAdapter { genre, i ->
+        genreAdapter = ItemGenreHomeAdapter() { genre, i ->
         }
         manhuaAdapter = ItemMangaAdapter { manga, i ->
         }

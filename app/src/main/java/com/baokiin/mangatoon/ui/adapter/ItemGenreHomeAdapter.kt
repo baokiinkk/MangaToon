@@ -7,20 +7,19 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.baokiin.mangatoon.data.model.Genre
-import com.baokiin.mangatoon.databinding.ItemGenreBinding
 import com.baokiin.mangatoon.databinding.ItemGenreHomeBinding
 import kotlinx.android.synthetic.main.item_genre_home.view.*
 
 
-class ItemGenreAdapter(private val onClick: (Genre, Int) -> Unit) :
-    ListAdapter<Genre, ItemGenreAdapter.ViewHolder>(
+class ItemGenreHomeAdapter(private val onClick: (Genre, Int) -> Unit) :
+    ListAdapter<Genre, ItemGenreHomeAdapter.ViewHolder>(
         GenreDIff()
     ) {
-    class ViewHolder(private val binding: ItemGenreBinding ) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: ItemGenreHomeBinding ) : RecyclerView.ViewHolder(binding.root) {
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val binding =
-                    ItemGenreBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                    ItemGenreHomeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
                 return ViewHolder(
                     binding
                 )
@@ -56,4 +55,15 @@ class ItemGenreAdapter(private val onClick: (Genre, Int) -> Unit) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         getItem(position)?.let { holder.bind(it,onClick) }
     }
+}
+
+class GenreDIff: DiffUtil.ItemCallback<Genre>() {// cung cấp thông tin về cách xác định phần
+override fun areItemsTheSame(oldItem: Genre, newItem: Genre): Boolean { // cho máy biết 2 item_detail khi nào giống
+    return oldItem == newItem // dung
+}
+
+    override fun areContentsTheSame(oldItem: Genre, newItem: Genre): Boolean { // cho biết item_detail khi nào cùng nội dung
+        return oldItem == newItem
+    }
+
 }

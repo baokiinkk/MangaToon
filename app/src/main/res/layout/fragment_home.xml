@@ -22,7 +22,7 @@
             type="com.baokiin.mangatoon.ui.adapter.ItemMangaAdapter"/>
         <variable
             name="adapterGener"
-            type="com.baokiin.mangatoon.ui.adapter.ItemGenreAdapter" />
+            type="com.baokiin.mangatoon.ui.adapter.ItemGenreHomeAdapter" />
     </data>
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"

@@ -9,10 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import coil.load
 import com.baokiin.mangatoon.R
-import com.baokiin.mangatoon.ui.adapter.ItemGenreAdapter
-import com.baokiin.mangatoon.ui.adapter.ItemMangaAdapter
-import com.baokiin.mangatoon.ui.adapter.ItemRecommendedAdapter
-import com.baokiin.mangatoon.ui.adapter.ViewPageAdapter
+import com.baokiin.mangatoon.ui.adapter.*
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.Dispatchers
@@ -36,7 +33,8 @@ class Binding{
                         tab.setIcon(R.drawable.ic_account)
                     }
                     1->{
-                        tab.text = "search"
+                        tab.text = "Genre"
+                        tab.setIcon(R.drawable.ic_account)
                     }
                 }
             }).attach()
@@ -71,9 +69,15 @@ class Binding{
 
         @BindingAdapter("android:adapter")
         @JvmStatic
-        fun recycleViewGenerAdapter(view: RecyclerView,adapter:ItemGenreAdapter) {
+        fun recycleViewGenerAdapter(view: RecyclerView,adapter: ItemGenreHomeAdapter) {
             view.adapter = adapter
             view.layoutManager = GridLayoutManager(view.context,1,GridLayoutManager.HORIZONTAL,false)
+        }
+        @BindingAdapter("android:adapter_fragment")
+        @JvmStatic
+        fun recycleViewGenerFragment(view: RecyclerView,adapter:ItemGenreAdapter) {
+            view.adapter = adapter
+            view.layoutManager = GridLayoutManager(view.context,2,GridLayoutManager.VERTICAL,false)
         }
 
         @BindingAdapter("android:profileImage")
