@@ -16,7 +16,8 @@ class ItemGenreAdapter(private val onClick: (Genre, Int) -> Unit) :
     ListAdapter<Genre, ItemGenreAdapter.ViewHolder>(
         GenreDIff()
     ) {
-    class ViewHolder(private val binding: ItemGenreBinding ) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: ItemGenreBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val binding =
@@ -26,19 +27,21 @@ class ItemGenreAdapter(private val onClick: (Genre, Int) -> Unit) :
                 )
             }
         }
-        fun bind(item: Genre, onClick: ((Genre,Int) -> Unit)? = null) {
+
+        fun bind(item: Genre, onClick: ((Genre, Int) -> Unit)? = null) {
             binding.data = item
             itemView.cardViewItemGenre.setCardBackgroundColor(
-            when(bindingAdapterPosition % 4){
-                0 -> Color.parseColor("#FEF1E4")
-                1 -> Color.parseColor("#E5F3EA")
-                2 -> Color.parseColor("#F4EBF7")
-                3 -> Color.parseColor("#FFF8E5")
-                else -> Color.parseColor("#EDF7FC")
-            })
+                when (bindingAdapterPosition % 4) {
+                    0 -> Color.parseColor("#FEF1E4")
+                    1 -> Color.parseColor("#E5F3EA")
+                    2 -> Color.parseColor("#F4EBF7")
+                    3 -> Color.parseColor("#FFF8E5")
+                    else -> Color.parseColor("#EDF7FC")
+                }
+            )
             itemView.setOnClickListener {
                 if (onClick != null) {
-                    onClick(item,bindingAdapterPosition)
+                    onClick(item, bindingAdapterPosition)
                 }
             }
             binding.executePendingBindings()
@@ -54,13 +57,18 @@ class ItemGenreAdapter(private val onClick: (Genre, Int) -> Unit) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        getItem(position)?.let { holder.bind(it,onClick) }
+        getItem(position)?.let { holder.bind(it, onClick) }
     }
 
-    fun filter(newText: CharSequence?,list:MutableList<Genre>) {
+    fun filter(newText: CharSequence?, list: MutableList<Genre>) {
         newText?.let {
+            val words = it.split(" ").toMutableList()
+            var output = ""
+            for (word in words) {
+                output += word.capitalize() + " "
+            }
             submitList(list.filter {
-                it.genre_name.contains(newText)
+                it.genre_name.contains(output.trim())
             })
             notifyDataSetChanged()
         }

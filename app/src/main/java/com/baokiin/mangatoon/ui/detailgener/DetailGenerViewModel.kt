@@ -15,6 +15,7 @@ import kotlinx.coroutines.launch
 
 class DetailGenerViewModel(val rep: Repository) : ViewModel() {
     var data: LiveData<PagingData<Manga>> = MutableLiveData()
+    var title:String? = null
     fun getData(endPoint: String) {
         data = Pager(
                  PagingConfig(20, 1, true, 1)

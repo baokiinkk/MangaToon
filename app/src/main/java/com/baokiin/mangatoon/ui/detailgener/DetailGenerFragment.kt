@@ -13,19 +13,25 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class DetailGenerFragment :BaseFragment<FragmentDetailGenerBinding>(){
+class DetailGenerFragment : BaseFragment<FragmentDetailGenerBinding>() {
     override fun getLayoutRes(): Int {
         return R.layout.fragment_detail_gener
     }
 
-    val viewModel:DetailGenerViewModel by viewModel()
+    val viewModel: DetailGenerViewModel by viewModel()
     override fun onCreateViews() {
         baseBinding.viewmodel = viewModel
-        val data:Genre = arguments?.get("data") as Genre
-        Log.d("quocbao",data.toString())
-        data.endpoint?.let { viewModel.getData(it) }
-
-        val adapter = ItemMangaPagingAdapter{ manga, i ->
+        val data: Genre = arguments?.get("data") as Genre
+        data.endpoint?.let {
+            viewModel.apply {
+                getData(it)
+                title = data.genre_name
+            }
+        }
+        baseBinding.btnBack.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
+        val adapter = ItemMangaPagingAdapter { manga, i ->
         }
         baseBinding.adapter = adapter
         viewModel.data.observe(viewLifecycleOwner, Observer {
