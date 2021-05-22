@@ -1,5 +1,6 @@
 package com.baokiin.mangatoon.data.api
 
+import com.baokiin.mangatoon.data.model.DetailManga
 import com.baokiin.mangatoon.data.model.GenresList
 import com.baokiin.mangatoon.data.model.MangaList
 import retrofit2.http.GET
@@ -24,4 +25,6 @@ interface ApiService {
     suspend fun getDetailGenres(@Path("endpoint") endPoint: String,
                                 @Path("pagenumber") pagenumber:Int
                                 ):MangaList
+    @GET("manga/detail/{endpoint}")
+    suspend fun getDetailManga(@Path("endpoint")endPoint: String): DetailManga
 }

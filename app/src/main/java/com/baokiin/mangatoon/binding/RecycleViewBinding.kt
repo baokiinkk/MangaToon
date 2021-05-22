@@ -92,8 +92,7 @@ class RecycleViewBinding {
         fun loadImage(view: ImageView, image: String?) {
             view.setClipToOutline(true);
             image?.let {
-                view.load(it) {
-                    size(700, 600)
+                view.load(it.replace("w=225","w=500")) {
                     placeholder(R.drawable.ic_launcher_background)
                 }
 

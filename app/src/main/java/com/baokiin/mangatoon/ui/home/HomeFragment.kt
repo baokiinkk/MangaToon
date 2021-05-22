@@ -1,14 +1,18 @@
 package com.baokiin.mangatoon.ui.home
 
+import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import com.baokiin.mangatoon.R
+import com.baokiin.mangatoon.data.model.Manga
 import com.baokiin.mangatoon.ui.adapter.ItemGenreAdapter
 import com.baokiin.mangatoon.ui.adapter.ItemMangaAdapter
 import com.baokiin.mangatoon.ui.adapter.ItemRecommendedAdapter
 import com.baokiin.mangatoon.databinding.FragmentHomeBinding
 import com.baokiin.mangatoon.ui.BaseFragment
 import com.baokiin.mangatoon.ui.adapter.ItemGenreHomeAdapter
+import com.baokiin.mangatoon.ui.detail.DetailFragment
+import com.baokiin.mangatoon.ui.detailgener.DetailGenerFragment
 
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -80,15 +84,31 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private fun onClickItem() {
         recommendedAdapter = ItemRecommendedAdapter { manga, i ->
+            goDetailManga(manga)
         }
         popularAdapter = ItemMangaAdapter { manga, i ->
+            goDetailManga(manga)
         }
-        genreAdapter = ItemGenreHomeAdapter() { genre, i ->
+        genreAdapter = ItemGenreHomeAdapter { genre, i ->
+
         }
         manhuaAdapter = ItemMangaAdapter { manga, i ->
+            goDetailManga(manga)
         }
         manhwaAdapter = ItemMangaAdapter { manga, i ->
+            goDetailManga(manga)
         }
+    }
+
+    fun goDetailManga(manga: Manga){
+        val bundle = Bundle()
+        bundle.putString("endPoint",manga.endpoint)
+        val fragment = DetailFragment()
+        fragment.arguments = bundle
+        requireActivity().supportFragmentManager.beginTransaction()
+            .add(R.id.containerFragment,fragment)
+            .addToBackStack(HomeFragment::class.java.simpleName)
+            .commit()
     }
     override fun onResume() {
         super.onResume()

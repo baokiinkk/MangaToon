@@ -2,6 +2,7 @@ package com.baokiin.mangatoon.data.repository
 
 import android.util.Log
 import com.baokiin.mangatoon.data.api.ApiService
+import com.baokiin.mangatoon.data.model.DetailManga
 import com.baokiin.mangatoon.data.model.GenresList
 import com.baokiin.mangatoon.data.model.MangaList
 import com.baokiin.mangatoon.data.paging.DetailGenerPagingSource
@@ -43,6 +44,14 @@ class RepositoryImpl(val apiService: ApiService):Repository{
             null
         }
 
+    override suspend fun getDetailManga(endpoint: String): DetailManga? =
+        try{
+            apiService.getDetailManga(endpoint)
+        }
+        catch (e:Exception){
+            Log.d("quocbao","errorPopular")
+            null
+        }
     override fun getDetailGenres(endpoint: String): DetailGenerPagingSource =
         DetailGenerPagingSource(apiService,endpoint)
 
