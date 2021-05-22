@@ -24,58 +24,68 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 
-class Binding{
+class Binding {
     companion object {
-        @BindingAdapter("android:tabLayoutId","android:adapter")
+        @BindingAdapter("android:tabLayoutId", "android:adapter")
         @JvmStatic
-        fun tabLayout(view: ViewPager2, tabLayout: TabLayout,adapter:ViewPageAdapter) {
+        fun tabLayout(view: ViewPager2, tabLayout: TabLayout, adapter: ViewPageAdapter) {
             view.isUserInputEnabled = false
             view.adapter = adapter
-            TabLayoutMediator(tabLayout,view, TabLayoutMediator.TabConfigurationStrategy{ tab, pos->
-                when(pos){
-                    0->{
-                        tab.text = "Home"
-                        tab.setIcon(R.drawable.ic_account)
+            TabLayoutMediator(
+                tabLayout,
+                view,
+                TabLayoutMediator.TabConfigurationStrategy { tab, pos ->
+                    when (pos) {
+                        0 -> {
+                            tab.text = "Home"
+                            tab.setIcon(R.drawable.ic_account)
+                        }
+                        1 -> {
+                            tab.text = "Genre"
+                            tab.setIcon(R.drawable.ic_account)
+                        }
                     }
-                    1->{
-                        tab.text = "Genre"
-                        tab.setIcon(R.drawable.ic_account)
-                    }
-                }
-            }).attach()
+                }).attach()
         }
 
-        @BindingAdapter("android:tabLayoutId","android:adapter")
+        @BindingAdapter("android:tabLayoutId", "android:adapter")
         @JvmStatic
-        fun tabLayout2(view: ViewPager2, tabLayout: TabLayout,adapter:ItemRecommendedAdapter) {
+        fun tabLayout2(view: ViewPager2, tabLayout: TabLayout, adapter: ItemRecommendedAdapter) {
             view.adapter = adapter
-            TabLayoutMediator(tabLayout,view, TabLayoutMediator.TabConfigurationStrategy{ tab, pos->
-            }).attach()
+            TabLayoutMediator(
+                tabLayout,
+                view,
+                TabLayoutMediator.TabConfigurationStrategy { tab, pos ->
+                }).attach()
             GlobalScope.launch(Dispatchers.Main) {
                 var index = 0
-                while (true){
+                while (true) {
                     delay(3000)
-                    if(index < adapter.itemCount-1)
+                    if (index < adapter.itemCount - 1)
                         index++
                     else
                         index = 0;
-                    view.setCurrentItem(index,true)
+                    view.setCurrentItem(index, true)
                 }
 
             }
         }
 
-        @BindingAdapter("android:adapter","android:list")
+        @BindingAdapter("android:adapter", "android:list")
         @JvmStatic
-        fun editChange(view: SearchView,adapter: ItemGenreAdapter,list: MutableLiveData<GenresList?>) {
-            view.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
+        fun editChange(
+            view: SearchView,
+            adapter: ItemGenreAdapter,
+            list: MutableLiveData<GenresList?>
+        ) {
+            view.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     return false
                 }
 
                 override fun onQueryTextChange(newText: String?): Boolean {
                     list.value?.let {
-                        adapter.filter(newText,it.list_genre)
+                        adapter.filter(newText, it.list_genre)
                     }
 
                     return false
@@ -84,24 +94,42 @@ class Binding{
             })
         }
 
-        @BindingAdapter("android:adapter")
+        @BindingAdapter("android:adapter", "android:spanCountRecycle")
         @JvmStatic
-        fun recycleViewMangaAdapter(view: RecyclerView,adapter:ItemMangaAdapter) {
+        fun recycleViewMangaAdapter(view: RecyclerView, adapter: ItemMangaAdapter, span: Int) {
             view.adapter = adapter
-            view.layoutManager = GridLayoutManager(view.context,1,GridLayoutManager.HORIZONTAL,false)
+            view.layoutManager = GridLayoutManager(
+                view.context, span,
+                if (span == 1) GridLayoutManager.HORIZONTAL
+                else GridLayoutManager.VERTICAL, false
+            )
         }
 
         @BindingAdapter("android:adapter")
         @JvmStatic
-        fun recycleViewGenerAdapter(view: RecyclerView,adapter: ItemGenreHomeAdapter) {
+        fun recycleViewMangaPagingAdapter(view: RecyclerView, adapter: ItemMangaPagingAdapter) {
             view.adapter = adapter
-            view.layoutManager = GridLayoutManager(view.context,1,GridLayoutManager.HORIZONTAL,false)
+            view.layoutManager = GridLayoutManager(
+                view.context,
+                2,
+                GridLayoutManager.VERTICAL, false
+            )
         }
+
+        @BindingAdapter("android:adapter")
+        @JvmStatic
+        fun recycleViewGenerAdapter(view: RecyclerView, adapter: ItemGenreHomeAdapter) {
+            view.adapter = adapter
+            view.layoutManager =
+                GridLayoutManager(view.context, 1, GridLayoutManager.HORIZONTAL, false)
+        }
+
         @BindingAdapter("android:adapter_fragment")
         @JvmStatic
-        fun recycleViewGenerFragment(view: RecyclerView,adapter:ItemGenreAdapter) {
+        fun recycleViewGenerFragment(view: RecyclerView, adapter: ItemGenreAdapter) {
             view.adapter = adapter
-            view.layoutManager = GridLayoutManager(view.context,2,GridLayoutManager.VERTICAL,false)
+            view.layoutManager =
+                GridLayoutManager(view.context, 2, GridLayoutManager.VERTICAL, false)
         }
 
         @BindingAdapter("android:profileImage")

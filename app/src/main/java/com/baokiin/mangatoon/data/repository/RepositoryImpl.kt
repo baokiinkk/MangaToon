@@ -4,6 +4,7 @@ import android.util.Log
 import com.baokiin.mangatoon.data.api.ApiService
 import com.baokiin.mangatoon.data.model.GenresList
 import com.baokiin.mangatoon.data.model.MangaList
+import com.baokiin.mangatoon.data.paging.DetailGenerPagingSource
 
 class RepositoryImpl(val apiService: ApiService):Repository{
    override suspend fun getRecommended():MangaList? =
@@ -41,5 +42,8 @@ class RepositoryImpl(val apiService: ApiService):Repository{
             Log.d("quocbao","errorPopular")
             null
         }
+
+    override fun getDetailGenres(endpoint: String): DetailGenerPagingSource =
+        DetailGenerPagingSource(apiService,endpoint)
 
 }

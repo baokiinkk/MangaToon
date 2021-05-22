@@ -1,5 +1,6 @@
 package com.baokiin.mangatoon.di
 
+import com.baokiin.mangatoon.ui.detailgener.DetailGenerViewModel
 import com.baokiin.mangatoon.ui.genre.GenreViewModel
 import com.baokiin.mangatoon.ui.home.HomeViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -11,4 +12,5 @@ import org.koin.dsl.module
 val blankViewmodelDi: Module = module {
     viewModel { HomeViewModel(get()) }
     viewModel { GenreViewModel(get()) }
+    viewModel { DetailGenerViewModel(get()) }
 }
