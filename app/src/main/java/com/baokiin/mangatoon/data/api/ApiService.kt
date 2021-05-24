@@ -1,5 +1,6 @@
 package com.baokiin.mangatoon.data.api
 
+import com.baokiin.mangatoon.data.model.Chapter
 import com.baokiin.mangatoon.data.model.DetailManga
 import com.baokiin.mangatoon.data.model.GenresList
 import com.baokiin.mangatoon.data.model.MangaList
@@ -27,4 +28,7 @@ interface ApiService {
                                 ):MangaList
     @GET("manga/detail/{endpoint}")
     suspend fun getDetailManga(@Path("endpoint")endPoint: String): DetailManga
+
+    @GET("chapter/{chapterEndpoint}")
+    suspend fun getChapterImage(@Path("chapterEndpoint")endPoint: String): Chapter
 }

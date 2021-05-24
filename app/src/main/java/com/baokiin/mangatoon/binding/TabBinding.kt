@@ -1,5 +1,6 @@
 package com.baokiin.mangatoon.binding
 
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.baokiin.mangatoon.R
@@ -35,7 +36,26 @@ class TabBinding {
                     }
                 }).attach()
         }
-
+        @BindingAdapter("android:tabLayoutId", "android:adapterDetail")
+        @JvmStatic
+        fun tabLayoutDetail(view: ViewPager2, tabLayout: TabLayout, adapter: ViewPageAdapter) {
+            view.adapter = adapter
+            TabLayoutMediator(
+                tabLayout,
+                view,
+                TabLayoutMediator.TabConfigurationStrategy { tab, pos ->
+                    when (pos) {
+                        0 -> {
+                            tab.text = "Description"
+                            tab.setIcon(R.drawable.ic_account)
+                        }
+                        1 -> {
+                            tab.text = "Chapter"
+                            tab.setIcon(R.drawable.ic_account)
+                        }
+                    }
+                }).attach()
+        }
         @BindingAdapter("android:tabLayoutId", "android:adapter")
         @JvmStatic
         fun tabLayout2(view: ViewPager2, tabLayout: TabLayout, adapter: ItemRecommendedAdapter) {
@@ -57,6 +77,13 @@ class TabBinding {
                 }
 
             }
+        }
+        @BindingAdapter("android:text_custom")
+        @JvmStatic
+        fun textView(view: TextView, text:String) {
+           val tmp = text.split(" ")
+            val tmp2 = tmp[tmp.size-2]+" "+tmp[tmp.size-1]
+            view.text = tmp2
         }
     }
 }

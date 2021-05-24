@@ -1,5 +1,6 @@
 package com.baokiin.mangatoon.di
 
+import com.baokiin.mangatoon.ui.chapterdetail.DetailChapterViewModel
 import com.baokiin.mangatoon.ui.detail.DetailViewModel
 import com.baokiin.mangatoon.ui.detailgener.DetailGenerViewModel
 import com.baokiin.mangatoon.ui.genre.GenreViewModel
@@ -15,4 +16,5 @@ val blankViewmodelDi: Module = module {
     viewModel { GenreViewModel(get()) }
     viewModel { DetailGenerViewModel(get()) }
     viewModel { DetailViewModel(get()) }
+    viewModel { DetailChapterViewModel(get()) }
 }

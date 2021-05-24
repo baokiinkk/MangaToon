@@ -1,5 +1,6 @@
 package com.baokiin.mangatoon.data.repository
 
+import com.baokiin.mangatoon.data.model.Chapter
 import com.baokiin.mangatoon.data.model.DetailManga
 import com.baokiin.mangatoon.data.model.GenresList
 import com.baokiin.mangatoon.data.model.MangaList
@@ -12,5 +13,6 @@ interface Repository{
    suspend fun getComic(comic:String,page:Int):MangaList?
    suspend fun getGenres():GenresList?
    suspend fun getDetailManga(endpoint: String):DetailManga?
+   suspend fun getChapter(endpoint: String):Chapter?
    fun getDetailGenres(endpoint: String):DetailGenerPagingSource
 }
