@@ -71,12 +71,18 @@
                     />
 
             </FrameLayout>
-            <androidx.recyclerview.widget.RecyclerView
+            <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="20dp"
-                android:adapter="@{adapter}"
-                />
+                android:layout_height="wrap_content"
+                >
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:adapter="@{adapter}"
+                    />
+            </HorizontalScrollView>
+
         </LinearLayout>
 
         <Button
