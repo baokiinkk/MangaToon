@@ -47,11 +47,9 @@ class TabBinding {
                     when (pos) {
                         0 -> {
                             tab.text = "Description"
-                            tab.setIcon(R.drawable.ic_account)
                         }
                         1 -> {
                             tab.text = "Chapter"
-                            tab.setIcon(R.drawable.ic_account)
                         }
                     }
                 }).attach()
