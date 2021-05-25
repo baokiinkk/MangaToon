@@ -1,7 +1,9 @@
 package com.baokiin.mangatoon.ui.adapter
 
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -35,10 +37,12 @@ class ItemDetailChapterAdapter(private val onClick: (ChapImage, Int) -> Unit) :
         fun bind(item: ChapImage, onClick: ((ChapImage, Int) -> Unit)? = null) {
             binding.data = item
 
-            itemView.setOnClickListener {
+            itemView.setOnClickListener{
+                MotionEvent.ACTION_MOVE
                 if (onClick != null) {
                     onClick(item, bindingAdapterPosition)
                 }
+
             }
             binding.executePendingBindings()
 

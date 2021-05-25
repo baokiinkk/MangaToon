@@ -12,7 +12,7 @@
         android:background="#fff"
         android:layout_width="match_parent"
         android:image="@{data.chapter_image_link}"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
     </ImageView>
 </layout>

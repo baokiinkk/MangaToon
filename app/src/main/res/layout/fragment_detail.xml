@@ -13,107 +13,100 @@
             type="com.baokiin.mangatoon.ui.adapter.ViewPageAdapter" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#fff"
         android:clickable="true"
         android:focusable="true"
-        android:orientation="vertical"
-        android:background="#fff"
-        android:weightSum="9"
-        tools:context=".ui.detail.DetailFragment">
-        <FrameLayout
+        app:layoutDescription="@xml/fragment_detail_xml_constraintlayout3_scene">
+
+        <ImageView
+            android:id="@+id/imageView2"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="4">
+            android:layout_height="400dp"
+            android:background="@drawable/image_title"
+            android:profileImage="@{viewmodel.data.thumb}"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:drawableStart="@drawable/ic_back_white"
+            android:gravity="start"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/btnSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:drawableEnd="@drawable/ic_search"
+            android:gravity="end"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/background_name_manga"
+            android:fontFamily="@font/gilroy_bold"
+            android:maxWidth="300dp"
+            android:paddingHorizontal="10dp"
+            android:text="@{viewmodel.data.title}"
+            android:textColor="#fff"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@+id/tabLayoutDetailFragment"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayoutDetailFragment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tabGravity="fill"
+            app:tabMode="fixed">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Monday" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tuesday" />
 
 
+        </com.google.android.material.tabs.TabLayout>
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPagerDetailFragment"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2"
+                app:layout_constraintVertical_bias="0.0"
+                android:adapterDetail="@{adapter}"
+                android:tabLayoutId="@{tabLayoutDetailFragment}" />
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:profileImage="@{viewmodel.data.thumb}"
-                android:scaleType="fitXY"
-                android:src="@drawable/image_title"
-                />
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
-
-                <TextView
-                    android:id="@+id/btnBack"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="30dp"
-                    android:drawableStart="@drawable/ic_back_white"
-                    android:gravity="start"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/btnSearch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginEnd="20dp"
-                    android:drawableEnd="@drawable/ic_search"
-                    android:gravity="end"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/textView8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:maxWidth="300dp"
-                    android:background="@drawable/background_name_manga"
-                    android:fontFamily="@font/gilroy_bold"
-                    android:paddingHorizontal="10dp"
-                    android:text="@{viewmodel.data.title}"
-                    android:textColor="#fff"
-                    android:textSize="30sp"
-                    app:layout_constraintBottom_toTopOf="@+id/tabLayoutDetailFragment"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tabLayoutDetailFragment"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent">
-
-                    <com.google.android.material.tabs.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Monday" />
-
-                    <com.google.android.material.tabs.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Tuesday" />
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 
 
-                </com.google.android.material.tabs.TabLayout>
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </FrameLayout>
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewPagerDetailFragment"
-            android:layout_width="match_parent"
-            android:layout_weight="5"
-            android:layout_height="0dp"
-            android:tabLayoutId="@{tabLayoutDetailFragment}"
-            android:adapterDetail="@{adapter}"
-            />
-
-    </LinearLayout>
 </layout>

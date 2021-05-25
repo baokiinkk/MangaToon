@@ -1,10 +1,12 @@
 package com.baokiin.mangatoon.binding
 
+import android.graphics.ColorSpace
 import android.os.Handler
 import android.util.DisplayMetrics
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.SearchView
+import android.view.View
+import android.widget.*
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.GridLayoutManager
@@ -69,22 +71,54 @@ class RecycleViewBinding {
             )
         }
 
-        @BindingAdapter("android:adapter","android:recyclView")
+        @BindingAdapter("android:adapter", "android:recyclView")
         @JvmStatic
-        fun recycleViewMangaPagingAdapter(view: FloatingActionButton, adapter: ItemDetailChapterAdapter,recyclerView: RecyclerView) {
+        fun recycleViewMangaPagingAdapter(
+            view: TextView,
+            adapter: ItemDetailChapterAdapter,
+            recyclerView: RecyclerView
+        ) {
+            var status = 0
             view.setOnClickListener {
-                val linearSmoothScroller: LinearSmoothScroller =
-                    object : LinearSmoothScroller(view.context) {
-                        override fun calculateSpeedPerPixel(displayMetrics: DisplayMetrics): Float {
-                            return 500f / displayMetrics.densityDpi
-                        }
-                    }
-                linearSmoothScroller.targetPosition = adapter.itemCount
-                recyclerView.layoutManager?.startSmoothScroll(linearSmoothScroller)
-                
+               when(status){
+                   0->{
+                       smoothScroller(view,adapter,recyclerView,1200f)
+                       view.text = "1X"
+
+                       status++
+                   }
+                   1->{
+                       smoothScroller(view,adapter,recyclerView,900f)
+                       view.text = "2X"
+                       status++
+                   }
+                   2->{
+                       view.text = "3X"
+                       smoothScroller(view,adapter,recyclerView,500f)
+                       status++
+                   }
+                   else->{
+                       view.text = ""
+                       recyclerView.suppressLayout(true)
+                       status = 0
+                       recyclerView.suppressLayout(false)
+                   }
+               }
+
             }
 
         }
+        fun smoothScroller(view: View,adapter: ItemDetailChapterAdapter,recyclerView: RecyclerView,speed:Float){
+            val linearSmoothScroller: LinearSmoothScroller =
+                object : LinearSmoothScroller(view.context) {
+                    override fun calculateSpeedPerPixel(displayMetrics: DisplayMetrics): Float {
+                        return speed / displayMetrics.densityDpi
+                    }
+                }
+            linearSmoothScroller.targetPosition = adapter.itemCount
+            recyclerView.layoutManager?.startSmoothScroll(linearSmoothScroller)
+        }
+
 
         @BindingAdapter("android:adapter_detail_chapter")
         @JvmStatic
@@ -104,13 +138,18 @@ class RecycleViewBinding {
             view.layoutManager =
                 GridLayoutManager(view.context, 1, GridLayoutManager.HORIZONTAL, false)
         }
+
         @BindingAdapter("android:adapter")
         @JvmStatic
-        fun recycleViewGenerDetailAdapter(view: RecyclerView, adapter: ItemGenreDescriptionAdapter) {
+        fun recycleViewGenerDetailAdapter(
+            view: RecyclerView,
+            adapter: ItemGenreDescriptionAdapter
+        ) {
             view.adapter = adapter
             view.layoutManager =
                 GridLayoutManager(view.context, 1, GridLayoutManager.HORIZONTAL, false)
         }
+
         @BindingAdapter("android:adapter_chapter")
         @JvmStatic
         fun recycleViewChapAdapter(view: RecyclerView, adapter: ItemChapterAdapter) {
@@ -118,6 +157,7 @@ class RecycleViewBinding {
             view.layoutManager =
                 GridLayoutManager(view.context, 1, GridLayoutManager.VERTICAL, false)
         }
+
         @BindingAdapter("android:adapter_fragment")
         @JvmStatic
         fun recycleViewGenerFragment(view: RecyclerView, adapter: ItemGenreAdapter) {
@@ -131,7 +171,7 @@ class RecycleViewBinding {
         fun loadImage(view: ImageView, image: String?) {
             view.setClipToOutline(true);
             image?.let {
-                view.load(it.replace("w=225","w=500")) {
+                view.load(it.replace("w=225", "w=500")) {
                     placeholder(R.drawable.ic_launcher_background)
                 }
 
@@ -144,6 +184,7 @@ class RecycleViewBinding {
             view.setClipToOutline(true);
             image?.let {
                 view.load(it) {
+                    size(1000,2600)
                     placeholder(R.drawable.ic_launcher_background)
                 }
 
