@@ -3,8 +3,8 @@ package com.baokiin.mangatoon.ui.chapterdetail
 import androidx.lifecycle.Observer
 import com.baokiin.mangatoon.R
 import com.baokiin.mangatoon.databinding.FragmentDetailChapterBinding
-import com.baokiin.mangatoon.ui.base.BaseFragment
-import com.baokiin.mangatoon.ui.adapter.ItemDetailChapterAdapter
+import com.baokiin.mangatoon.base.BaseFragment
+import com.baokiin.mangatoon.adapter.ItemDetailChapterAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 

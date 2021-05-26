@@ -1,43 +1,32 @@
-package com.baokiin.mangatoon.ui.adapter
+package com.baokiin.mangatoon.adapter
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.baokiin.mangatoon.data.model.Genre
-import com.baokiin.mangatoon.databinding.ItemGenreHomeBinding
-import kotlinx.android.synthetic.main.item_genre_home.view.*
+import com.baokiin.mangatoon.data.model.Manga
+import com.baokiin.mangatoon.databinding.ItemMangaBinding
 
 
-class ItemGenreHomeAdapter(private val onClick: (Genre, Int) -> Unit) :
-    ListAdapter<Genre, ItemGenreHomeAdapter.ViewHolder>(
-        GenreDIff()
+class ItemMangaAdapter(private val onClick: (Manga, Int) -> Unit) :
+    ListAdapter<Manga, ItemMangaAdapter.ViewHolder>(
+        MangaDIff()
     ) {
-    class ViewHolder(private val binding: ItemGenreHomeBinding) :
+    class ViewHolder(private val binding: ItemMangaBinding) :
         RecyclerView.ViewHolder(binding.root) {
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val binding =
-                    ItemGenreHomeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                    ItemMangaBinding.inflate(LayoutInflater.from(parent.context), parent, false)
                 return ViewHolder(
                     binding
                 )
             }
         }
 
-        fun bind(item: Genre, onClick: ((Genre, Int) -> Unit)? = null) {
+        fun bind(item: Manga, onClick: ((Manga, Int) -> Unit)? = null) {
             binding.data = item
-            itemView.cardViewItemGenre.setCardBackgroundColor(
-                when (bindingAdapterPosition % 4) {
-                    0 -> Color.parseColor("#FEF1E4")
-                    1 -> Color.parseColor("#E5F3EA")
-                    2 -> Color.parseColor("#F4EBF7")
-                    3 -> Color.parseColor("#FFF8E5")
-                    else -> Color.parseColor("#EDF7FC")
-                }
-            )
             itemView.setOnClickListener {
                 if (onClick != null) {
                     onClick(item, bindingAdapterPosition)
@@ -60,18 +49,18 @@ class ItemGenreHomeAdapter(private val onClick: (Genre, Int) -> Unit) :
     }
 }
 
-class GenreDIff : DiffUtil.ItemCallback<Genre>() {
+class MangaDIff : DiffUtil.ItemCallback<Manga>() {
     // cung cấp thông tin về cách xác định phần
     override fun areItemsTheSame(
-        oldItem: Genre,
-        newItem: Genre
+        oldItem: Manga,
+        newItem: Manga
     ): Boolean { // cho máy biết 2 item_detail khi nào giống
         return oldItem == newItem // dung
     }
 
     override fun areContentsTheSame(
-        oldItem: Genre,
-        newItem: Genre
+        oldItem: Manga,
+        newItem: Manga
     ): Boolean { // cho biết item_detail khi nào cùng nội dung
         return oldItem == newItem
     }

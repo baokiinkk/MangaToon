@@ -1,4 +1,4 @@
-package com.baokiin.mangatoon.ui.adapter
+package com.baokiin.mangatoon.adapter
 
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -6,24 +6,20 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.baokiin.mangatoon.data.model.Genre
-import com.baokiin.mangatoon.databinding.ItemGenreDescriptionBinding
+import com.baokiin.mangatoon.databinding.ItemGenreBinding
 import kotlinx.android.synthetic.main.item_genre_home.view.*
 
 
-class ItemGenreDescriptionAdapter(private val onClick: (Genre, Int) -> Unit) :
-    ListAdapter<Genre, ItemGenreDescriptionAdapter.ViewHolder>(
+class ItemGenreAdapter(private val onClick: (Genre, Int) -> Unit) :
+    ListAdapter<Genre, ItemGenreAdapter.ViewHolder>(
         GenreDIff()
     ) {
-    class ViewHolder(private val binding: ItemGenreDescriptionBinding) :
+    class ViewHolder(private val binding: ItemGenreBinding) :
         RecyclerView.ViewHolder(binding.root) {
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val binding =
-                    ItemGenreDescriptionBinding.inflate(
-                        LayoutInflater.from(parent.context),
-                        parent,
-                        false
-                    )
+                    ItemGenreBinding.inflate(LayoutInflater.from(parent.context), parent, false)
                 return ViewHolder(
                     binding
                 )
@@ -61,4 +57,19 @@ class ItemGenreDescriptionAdapter(private val onClick: (Genre, Int) -> Unit) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         getItem(position)?.let { holder.bind(it, onClick) }
     }
+
+    fun filter(newText: CharSequence?, list: MutableList<Genre>) {
+        newText?.let {
+            val words = it.split(" ").toMutableList()
+            var output = ""
+            for (word in words) {
+                output += word.capitalize() + " "
+            }
+            submitList(list.filter {
+                it.genre_name.contains(output.trim())
+            })
+            notifyDataSetChanged()
+        }
+    }
+
 }

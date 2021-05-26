@@ -10,7 +10,7 @@
             type="com.baokiin.mangatoon.ui.detail.DetailViewModel" />
         <variable
             name="adapter"
-            type="com.baokiin.mangatoon.ui.adapter.ItemChapterAdapter" />
+            type="com.baokiin.mangatoon.adapter.ItemChapterAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

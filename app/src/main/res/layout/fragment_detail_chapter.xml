@@ -10,7 +10,7 @@
             type="com.baokiin.mangatoon.ui.chapterdetail.DetailChapterViewModel" />
         <variable
             name="adapter"
-            type="com.baokiin.mangatoon.ui.adapter.ItemDetailChapterAdapter" />
+            type="com.baokiin.mangatoon.adapter.ItemDetailChapterAdapter" />
     </data>
 
     <androidx.constraintlayout.motion.widget.MotionLayout

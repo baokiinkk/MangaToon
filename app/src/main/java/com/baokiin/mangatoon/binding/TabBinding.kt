@@ -4,8 +4,8 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.baokiin.mangatoon.R
-import com.baokiin.mangatoon.ui.adapter.ItemRecommendedAdapter
-import com.baokiin.mangatoon.ui.adapter.ViewPageAdapter
+import com.baokiin.mangatoon.adapter.ItemRecommendedAdapter
+import com.baokiin.mangatoon.adapter.ViewPageAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.Dispatchers

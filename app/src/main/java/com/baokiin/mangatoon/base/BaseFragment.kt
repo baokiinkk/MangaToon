@@ -1,4 +1,4 @@
-package com.baokiin.mangatoon.ui.base
+package com.baokiin.mangatoon.base
 
 import android.os.Bundle
 import android.view.LayoutInflater

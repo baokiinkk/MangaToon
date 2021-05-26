@@ -18,14 +18,28 @@
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            motion:layout_constraintBottom_toTopOf="@+id/tabLayoutDetailFragment"
             android:layout_marginStart="20dp"
-            motion:layout_constraintStart_toStartOf="parent">
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_editor_absoluteY="255dp"
+            motion:layout_constraintBottom_toTopOf="@+id/tabLayoutDetailFragment"
+            android:layout_marginBottom="20dp">
             <CustomAttribute
                 motion:attributeName="maxLines"
                 motion:customIntegerValue="5" />
         </Constraint>
+        <Constraint
+            android:id="@+id/tabLayoutDetailFragment"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            motion:layout_constraintStart_toStartOf="parent" >
+            <CustomAttribute
+                motion:attributeName="backgroundColor"
+                motion:customColorValue="@color/text_color_white" />
+        </Constraint>
+
+
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
@@ -60,6 +74,14 @@
                 motion:attributeName="maxLines"
                 motion:customIntegerValue="1" />
         </Constraint>
+        <Constraint
+            android:id="@+id/recyclerViewGener"
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"
+            motion:layout_constraintBottom_toTopOf="@+id/tabLayoutDetailFragment"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:visibility="gone" />
 
     </ConstraintSet>
 </MotionScene>

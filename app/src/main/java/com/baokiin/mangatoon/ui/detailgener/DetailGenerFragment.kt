@@ -5,8 +5,8 @@ import androidx.lifecycle.Observer
 import com.baokiin.mangatoon.R
 import com.baokiin.mangatoon.data.model.Genre
 import com.baokiin.mangatoon.databinding.FragmentDetailGenerBinding
-import com.baokiin.mangatoon.ui.base.BaseFragment
-import com.baokiin.mangatoon.ui.adapter.ItemMangaPagingAdapter
+import com.baokiin.mangatoon.base.BaseFragment
+import com.baokiin.mangatoon.adapter.ItemMangaPagingAdapter
 import com.baokiin.mangatoon.ui.detail.DetailFragment
 import com.baokiin.mangatoon.ui.home.HomeFragment
 import kotlinx.coroutines.GlobalScope

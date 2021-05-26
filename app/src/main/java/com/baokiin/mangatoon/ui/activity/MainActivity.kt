@@ -6,7 +6,7 @@ import android.view.WindowManager
 import com.baokiin.mangatoon.R
 import androidx.databinding.DataBindingUtil
 import com.baokiin.mangatoon.databinding.ActivityMainBinding
-import com.baokiin.mangatoon.ui.adapter.ViewPageAdapter
+import com.baokiin.mangatoon.adapter.ViewPageAdapter
 import com.baokiin.mangatoon.ui.genre.GenreFragment
 import com.baokiin.mangatoon.ui.home.HomeFragment
 

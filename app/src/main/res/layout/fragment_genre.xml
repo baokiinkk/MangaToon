@@ -10,7 +10,7 @@
             type="com.baokiin.mangatoon.ui.genre.GenreViewModel" />
         <variable
             name="adapterGener"
-            type="com.baokiin.mangatoon.ui.adapter.ItemGenreAdapter" />
+            type="com.baokiin.mangatoon.adapter.ItemGenreAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

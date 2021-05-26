@@ -1,4 +1,4 @@
-package com.baokiin.mangatoon.ui.adapter
+package com.baokiin.mangatoon.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

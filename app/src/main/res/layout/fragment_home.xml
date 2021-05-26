@@ -10,19 +10,19 @@
             type="com.baokiin.mangatoon.ui.home.HomeViewModel" />
         <variable
             name="adapterRecommended"
-            type="com.baokiin.mangatoon.ui.adapter.ItemRecommendedAdapter" />
+            type="com.baokiin.mangatoon.adapter.ItemRecommendedAdapter" />
         <variable
             name="adapterPopular"
-            type="com.baokiin.mangatoon.ui.adapter.ItemMangaAdapter"/>
+            type="com.baokiin.mangatoon.adapter.ItemMangaAdapter"/>
         <variable
             name="adapteManhua"
-            type="com.baokiin.mangatoon.ui.adapter.ItemMangaAdapter"/>
+            type="com.baokiin.mangatoon.adapter.ItemMangaAdapter"/>
         <variable
             name="adapterManhwa"
-            type="com.baokiin.mangatoon.ui.adapter.ItemMangaAdapter"/>
+            type="com.baokiin.mangatoon.adapter.ItemMangaAdapter"/>
         <variable
             name="adapterGener"
-            type="com.baokiin.mangatoon.ui.adapter.ItemGenreHomeAdapter" />
+            type="com.baokiin.mangatoon.adapter.ItemGenreHomeAdapter" />
     </data>
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"

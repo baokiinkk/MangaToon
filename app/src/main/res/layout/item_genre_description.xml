@@ -9,22 +9,25 @@
             type="com.baokiin.mangatoon.data.model.Genre" />
     </data>
 
-    <androidx.cardview.widget.CardView
+    <FrameLayout
         android:id="@+id/cardViewItemGenre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        app:cardBackgroundColor="#EDE5E5"
-        app:cardCornerRadius="20dp">
+        android:background="@drawable/background_name_manga"
+        >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{data.genre_name}"
+            android:paddingBottom="3dp"
             android:fontFamily="@font/gilroy_medium"
             android:textSize="15sp"
-            android:padding="10dp"
-            android:layout_gravity="center" />
+            android:textStyle="bold"
+            android:paddingHorizontal="10dp"
+            android:textColor="@color/text_color_white"
+             />
 
-    </androidx.cardview.widget.CardView>
+    </FrameLayout>
 </layout>

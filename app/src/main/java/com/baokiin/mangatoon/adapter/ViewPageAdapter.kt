@@ -1,4 +1,4 @@
-package com.baokiin.mangatoon.ui.adapter
+package com.baokiin.mangatoon.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

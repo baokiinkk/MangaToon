@@ -4,8 +4,8 @@ package com.baokiin.mangatoon.ui.description
 import androidx.lifecycle.Observer
 import com.baokiin.mangatoon.R
 import com.baokiin.mangatoon.databinding.FragmentDescriptionBinding
-import com.baokiin.mangatoon.ui.base.BaseFragment
-import com.baokiin.mangatoon.ui.adapter.ItemGenreDescriptionAdapter
+import com.baokiin.mangatoon.base.BaseFragment
+import com.baokiin.mangatoon.adapter.ItemGenreDescriptionAdapter
 import com.baokiin.mangatoon.ui.detail.DetailViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 

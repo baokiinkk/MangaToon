@@ -1,12 +1,8 @@
 package com.baokiin.mangatoon.binding
 
-import android.graphics.ColorSpace
-import android.os.Handler
 import android.util.DisplayMetrics
 import android.view.View
 import android.widget.*
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.GridLayoutManager
@@ -14,14 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import coil.transform.BlurTransformation
 import com.baokiin.mangatoon.R
 import com.baokiin.mangatoon.data.model.GenresList
-import com.baokiin.mangatoon.ui.adapter.*
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import com.baokiin.mangatoon.adapter.*
 
 
 class RecycleViewBinding {
@@ -173,6 +165,7 @@ class RecycleViewBinding {
             image?.let {
                 view.load(it.replace("w=225", "w=500")) {
                     placeholder(R.drawable.ic_launcher_background)
+
                 }
 
             }

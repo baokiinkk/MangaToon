@@ -5,11 +5,11 @@ import android.view.View
 import androidx.lifecycle.Observer
 import com.baokiin.mangatoon.R
 import com.baokiin.mangatoon.data.model.Manga
-import com.baokiin.mangatoon.ui.adapter.ItemMangaAdapter
-import com.baokiin.mangatoon.ui.adapter.ItemRecommendedAdapter
+import com.baokiin.mangatoon.adapter.ItemMangaAdapter
+import com.baokiin.mangatoon.adapter.ItemRecommendedAdapter
 import com.baokiin.mangatoon.databinding.FragmentHomeBinding
-import com.baokiin.mangatoon.ui.base.BaseFragment
-import com.baokiin.mangatoon.ui.adapter.ItemGenreHomeAdapter
+import com.baokiin.mangatoon.base.BaseFragment
+import com.baokiin.mangatoon.adapter.ItemGenreHomeAdapter
 import com.baokiin.mangatoon.ui.detail.DetailFragment
 
 import org.koin.androidx.viewmodel.ext.android.viewModel

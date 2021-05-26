@@ -7,7 +7,7 @@
     <data>
         <variable
             name="adapter"
-            type="com.baokiin.mangatoon.ui.adapter.ViewPageAdapter" />
+            type="com.baokiin.mangatoon.adapter.ViewPageAdapter" />
     </data>
 
     <FrameLayout
