@@ -13,7 +13,8 @@ class ItemMangaAdapter(private val onClick: (Manga, Int) -> Unit) :
     ListAdapter<Manga, ItemMangaAdapter.ViewHolder>(
         MangaDIff()
     ) {
-    class ViewHolder(private val binding: ItemMangaBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: ItemMangaBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val binding =
@@ -23,11 +24,12 @@ class ItemMangaAdapter(private val onClick: (Manga, Int) -> Unit) :
                 )
             }
         }
-        fun bind(item: Manga, onClick: ((Manga,Int) -> Unit)? = null) {
+
+        fun bind(item: Manga, onClick: ((Manga, Int) -> Unit)? = null) {
             binding.data = item
             itemView.setOnClickListener {
                 if (onClick != null) {
-                    onClick(item,bindingAdapterPosition)
+                    onClick(item, bindingAdapterPosition)
                 }
             }
             binding.executePendingBindings()
@@ -43,16 +45,23 @@ class ItemMangaAdapter(private val onClick: (Manga, Int) -> Unit) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        getItem(position)?.let { holder.bind(it,onClick) }
+        getItem(position)?.let { holder.bind(it, onClick) }
     }
 }
 
-class MangaDIff: DiffUtil.ItemCallback<Manga>() {// cung cấp thông tin về cách xác định phần
-override fun areItemsTheSame(oldItem: Manga, newItem: Manga): Boolean { // cho máy biết 2 item_detail khi nào giống
-    return oldItem == newItem // dung
-}
+class MangaDIff : DiffUtil.ItemCallback<Manga>() {
+    // cung cấp thông tin về cách xác định phần
+    override fun areItemsTheSame(
+        oldItem: Manga,
+        newItem: Manga
+    ): Boolean { // cho máy biết 2 item_detail khi nào giống
+        return oldItem == newItem // dung
+    }
 
-    override fun areContentsTheSame(oldItem: Manga, newItem: Manga): Boolean { // cho biết item_detail khi nào cùng nội dung
+    override fun areContentsTheSame(
+        oldItem: Manga,
+        newItem: Manga
+    ): Boolean { // cho biết item_detail khi nào cùng nội dung
         return oldItem == newItem
     }
 

@@ -1,11 +1,9 @@
 package com.baokiin.mangatoon.ui.chapterdetail
 
-import android.hardware.usb.UsbEndpoint
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.baokiin.mangatoon.data.model.ChapImage
-import com.baokiin.mangatoon.data.model.Chapter
 import com.baokiin.mangatoon.data.repository.Repository
 import kotlinx.coroutines.launch
 

@@ -3,12 +3,10 @@ package com.baokiin.mangatoon.ui.adapter
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.baokiin.mangatoon.data.model.Genre
 import com.baokiin.mangatoon.databinding.ItemGenreBinding
-import com.baokiin.mangatoon.databinding.ItemGenreHomeBinding
 import kotlinx.android.synthetic.main.item_genre_home.view.*
 
 

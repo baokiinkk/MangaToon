@@ -3,9 +3,8 @@ package com.baokiin.mangatoon.ui.genre
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.baokiin.mangatoon.R
-import com.baokiin.mangatoon.data.model.Genre
 import com.baokiin.mangatoon.databinding.FragmentGenreBinding
-import com.baokiin.mangatoon.ui.BaseFragment
+import com.baokiin.mangatoon.ui.base.BaseFragment
 import com.baokiin.mangatoon.ui.adapter.ItemGenreAdapter
 import com.baokiin.mangatoon.ui.detailgener.DetailGenerFragment
 import com.baokiin.mangatoon.ui.home.HomeFragment
