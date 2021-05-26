@@ -25,75 +25,64 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:orientation="vertical"
-           >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:text="@{viewmodel.data.status}"
-                android:textColor="@color/green_color"
-                android:textSize="25sp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{viewmodel.data.author}"
-                android:textSize="20dp"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:drawablePadding="10dp"
-                android:drawableStart="@drawable/ic_account"
-                android:layout_marginStart="20dp"
-                />
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal"
-                android:layout_marginHorizontal="20dp"
-                >
-                <TextView
-                    android:id="@+id/text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="25sp"
-                    android:maxLines="4"
-                    android:text="@{viewmodel.data.synopsis}"
-                    />
-                <TextView
-                    android:id="@+id/btnMore"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="...more"
-                    android:textColor="@color/green_color"
-                    android:textSize="25sp"
-                    />
-
-<<<<<<< HEAD
-            </FrameLayout>
-            <HorizontalScrollView
-=======
-            </LinearLayout>
-            <androidx.recyclerview.widget.RecyclerView
->>>>>>> feature/240521_chapter
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical"
                 >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@{viewmodel.data.status}"
+                    android:textColor="@color/green_color"
+                    android:textSize="25sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewmodel.data.author}"
+                    android:textSize="20dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:drawablePadding="10dp"
+                    android:drawableStart="@drawable/ic_account"
+                    android:layout_marginStart="20dp"
+                    />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal"
+                    android:layout_marginHorizontal="20dp"
+                    >
+                    <TextView
+                        android:id="@+id/text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="25sp"
+                        android:maxLines="4"
+                        android:text="@{viewmodel.data.synopsis}"
+                        />
+                    <TextView
+                        android:id="@+id/btnMore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="...more"
+                        android:textColor="@color/green_color"
+                        android:textSize="25sp"
+                        />
+
+                </LinearLayout>
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_margin="20dp"
                     android:adapter="@{adapter}"
                     />
-            </HorizontalScrollView>
-
-        </LinearLayout>
+            </LinearLayout>
         </androidx.core.widget.NestedScrollView>
         <Button
             android:id="@+id/button2"
