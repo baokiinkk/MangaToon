@@ -5,13 +5,16 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewmodel"
             type="com.baokiin.mangatoon.ui.detail.DetailViewModel" />
+
         <variable
             name="adapter"
             type="com.baokiin.mangatoon.adapter.ViewPageAdapter" />
-       />
+
+
     </data>
 
     <androidx.constraintlayout.motion.widget.MotionLayout
@@ -22,27 +25,28 @@
         android:clickable="true"
         android:focusable="true"
         app:layoutDescription="@xml/fragment_detail_xml_constraintlayout3_scene">
+
         <FrameLayout
             android:id="@+id/imageView2"
             android:layout_width="match_parent"
             android:layout_height="400dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            >
+            app:layout_constraintTop_toTopOf="parent">
+
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/manhua"
                 android:profileImage="@{viewmodel.data.thumb}"
                 android:scaleType="fitXY"
-                />
+                android:src="@drawable/manhua" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/background_image" />
+
         </FrameLayout>
 
 
@@ -69,31 +73,74 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/background_name_manga"
+            android:fontFamily="@font/gilroy_medium"
+            android:paddingHorizontal="10dp"
+            android:paddingBottom="4dp"
+            android:text="@{viewmodel.data.type}"
+            android:textColor="#E8E6E6"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/tabLayoutDetailFragment"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/background_name_manga"
+            android:fontFamily="@font/gilroy_medium"
+            android:paddingHorizontal="10dp"
+            android:paddingBottom="4dp"
+            android:text="@{viewmodel.data.genre_list.get(0).genre_name}"
+            android:textColor="#E8E6E6"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/tabLayoutDetailFragment"
+            app:layout_constraintStart_toEndOf="@id/textView" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/btnHeart"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginEnd="20dp"
+            app:lottie_loop="false"
+            app:lottie_speed="1.5"
+            android:onClick="@{(v)->viewmodel.onClickLottie(v)}"
+            app:layout_constraintBottom_toTopOf="@+id/tabLayoutDetailFragment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:lottie_rawRes="@raw/heart" />
+
+        <TextView
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/gilroy_bold"
-            android:maxWidth="300dp"
-            android:paddingHorizontal="10dp"
+            android:maxWidth="350dp"
             android:text="@{viewmodel.data.title}"
-
             android:textColor="#fff"
             android:textSize="30sp"
-            app:layout_constraintBottom_toTopOf="@+id/tabLayoutDetailFragment"
+            app:layout_constraintBottom_toTopOf="@+id/textView"
             app:layout_constraintStart_toStartOf="parent" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayoutDetailFragment"
             android:layout_width="0dp"
             android:layout_height="?attr/actionBarSize"
-            android:layout_gravity="end"
             app:layout_constraintBottom_toBottomOf="@+id/imageView2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:tabGravity="fill"
-            app:tabMode="fixed">
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/green_color"
+            app:tabTextAppearance="@style/TextTabLayoutAppearance">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
@@ -107,17 +154,18 @@
 
 
         </com.google.android.material.tabs.TabLayout>
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/viewPagerDetailFragment"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2"
-                app:layout_constraintVertical_bias="0.0"
-                android:adapterDetail="@{adapter}"
-                android:tabLayoutId="@{tabLayoutDetailFragment}" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPagerDetailFragment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:adapterDetail="@{adapter}"
+            android:tabLayoutId="@{tabLayoutDetailFragment}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.motion.widget.MotionLayout>
 

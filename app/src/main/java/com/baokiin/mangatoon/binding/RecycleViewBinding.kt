@@ -158,31 +158,7 @@ class RecycleViewBinding {
                 GridLayoutManager(view.context, 2, GridLayoutManager.VERTICAL, false)
         }
 
-        @BindingAdapter("android:profileImage")
-        @JvmStatic
-        fun loadImage(view: ImageView, image: String?) {
-            view.setClipToOutline(true);
-            image?.let {
-                view.load(it.replace("w=225", "w=500")) {
-                    placeholder(R.drawable.ic_launcher_background)
 
-                }
-
-            }
-        }
-
-        @BindingAdapter("android:image")
-        @JvmStatic
-        fun loadImageChap(view: ImageView, image: String?) {
-            view.setClipToOutline(true);
-            image?.let {
-                view.load(it) {
-                    size(1000,2600)
-                    placeholder(R.drawable.ic_launcher_background)
-                }
-
-            }
-        }
 
     }
 }

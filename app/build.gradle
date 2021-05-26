@@ -106,4 +106,7 @@ dependencies {
     // Jetpack Compose Integration
     implementation "androidx.paging:paging-compose:1.0.0-alpha08"
 
+    //lottie
+    implementation "com.airbnb.android:lottie:3.6.1"
+
 }

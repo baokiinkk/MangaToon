@@ -49,7 +49,7 @@ class TabBinding {
                             tab.text = "Description"
                         }
                         1 -> {
-                            tab.text = "Chapter"
+                            tab.text = "Chapters"
                         }
                     }
                 }).attach()

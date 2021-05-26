@@ -24,9 +24,8 @@
             android:paddingBottom="3dp"
             android:fontFamily="@font/gilroy_medium"
             android:textSize="15sp"
-            android:textStyle="bold"
             android:paddingHorizontal="10dp"
-            android:textColor="@color/text_color_white"
+            android:textColor="#CAC7C7"
              />
 
     </FrameLayout>
