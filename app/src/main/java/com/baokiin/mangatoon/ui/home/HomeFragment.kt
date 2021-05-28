@@ -10,7 +10,9 @@ import com.baokiin.mangatoon.adapter.ItemRecommendedAdapter
 import com.baokiin.mangatoon.databinding.FragmentHomeBinding
 import com.baokiin.mangatoon.base.BaseFragment
 import com.baokiin.mangatoon.adapter.ItemGenreHomeAdapter
+import com.baokiin.mangatoon.data.model.Genre
 import com.baokiin.mangatoon.ui.detail.DetailFragment
+import com.baokiin.mangatoon.ui.detailgener.DetailGenerFragment
 
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -35,6 +37,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             adapteManhua = manhuaAdapter
             adapterManhwa = manhwaAdapter
             adapterGener = genreAdapter
+
         }
         viewModel.apply {
             getRecommended()
@@ -88,7 +91,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             goDetailManga(manga)
         }
         genreAdapter = ItemGenreHomeAdapter { genre, i ->
-
+            val bundle = Bundle()
+            bundle.putSerializable("data",genre)
+            val fragment = DetailGenerFragment()
+            fragment.arguments = bundle
+            requireActivity().supportFragmentManager.beginTransaction()
+                .add(R.id.containerFragment,fragment)
+                .addToBackStack(HomeFragment::class.java.simpleName)
+                .commit()
         }
         manhuaAdapter = ItemMangaAdapter { manga, i ->
             goDetailManga(manga)
@@ -96,8 +106,29 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         manhwaAdapter = ItemMangaAdapter { manga, i ->
             goDetailManga(manga)
         }
-    }
 
+        baseBinding.apply {
+            layoutPopular.btnPopular.setOnClickListener {
+                goDetailGener(Genre("Popular","popular"))
+            }
+            layoutManhua.btnManhua.setOnClickListener {
+                goDetailGener(Genre("Manhua","manhua"))
+            }
+            layoutManhwa.btnManhwa.setOnClickListener {
+                goDetailGener(Genre("Manhwa","manhwa"))
+            }
+        }
+    }
+    fun goDetailGener(gen:Genre){
+        val bundle = Bundle()
+        bundle.putSerializable("data",gen)
+        val fragment = DetailGenerFragment()
+        fragment.arguments = bundle
+        requireActivity().supportFragmentManager.beginTransaction()
+            .add(R.id.containerFragment,fragment)
+            .addToBackStack(HomeFragment::class.java.simpleName)
+            .commit()
+    }
     fun goDetailManga(manga: Manga){
         val bundle = Bundle()
         bundle.putString("endPoint",manga.endpoint)

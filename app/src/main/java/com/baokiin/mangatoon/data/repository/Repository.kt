@@ -4,7 +4,9 @@ import com.baokiin.mangatoon.data.model.Chapter
 import com.baokiin.mangatoon.data.model.DetailManga
 import com.baokiin.mangatoon.data.model.GenresList
 import com.baokiin.mangatoon.data.model.MangaList
+import com.baokiin.mangatoon.data.paging.ComicPagingSource
 import com.baokiin.mangatoon.data.paging.DetailGenerPagingSource
+import com.baokiin.mangatoon.data.paging.PopularPagingSource
 
 
 interface Repository{
@@ -15,4 +17,6 @@ interface Repository{
    suspend fun getDetailManga(endpoint: String):DetailManga?
    suspend fun getChapter(endpoint: String):Chapter?
    fun getDetailGenres(endpoint: String):DetailGenerPagingSource
+   fun getPopularPaging():PopularPagingSource
+   fun getComicPaging(comic: String):ComicPagingSource
 }

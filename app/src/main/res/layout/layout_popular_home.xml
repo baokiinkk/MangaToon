@@ -27,7 +27,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/btnPopular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="30dp"
@@ -59,7 +59,7 @@
                 android:id="@+id/contentShimmerPopular"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:shimmer_duration="800"
+                app:shimmer_duration="1000"
 
                 >
                 <androidx.core.widget.NestedScrollView

@@ -17,14 +17,14 @@
 
     </data>
 
-    <androidx.constraintlayout.motion.widget.MotionLayout
-        android:id="@+id/constraintLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#fff"
-        android:clickable="true"
-        android:focusable="true"
-        app:layoutDescription="@xml/fragment_detail_xml_constraintlayout3_scene">
+        <androidx.constraintlayout.motion.widget.MotionLayout
+            android:id="@+id/constraintLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fff"
+            android:clickable="true"
+            android:focusable="true"
+            app:layoutDescription="@xml/fragment_detail_xml_constraintlayout3_scene">
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -51,124 +51,125 @@
 
 
 
-        <TextView
-            android:id="@+id/btnBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:drawableStart="@drawable/ic_back_white"
-            android:gravity="start"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/btnSearch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:drawableEnd="@drawable/ic_search"
-            android:gravity="end"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/background_name_manga"
-            android:fontFamily="@font/gilroy_medium"
-            android:paddingHorizontal="10dp"
-            android:paddingBottom="4dp"
-            android:text="@{viewmodel.data.type}"
-            android:textColor="#E8E6E6"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/tabLayoutDetailFragment"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/textV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/background_name_manga"
-            android:fontFamily="@font/gilroy_medium"
-            android:paddingHorizontal="10dp"
-            android:paddingBottom="4dp"
-            android:text="@{viewmodel.data.genre_list.get(0).genre_name}"
-            android:textColor="#E8E6E6"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/tabLayoutDetailFragment"
-            app:layout_constraintStart_toEndOf="@id/textView" />
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/btnHeart"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginEnd="20dp"
-            app:lottie_loop="false"
-            app:lottie_speed="1.5"
-            android:onClick="@{(v)->viewmodel.onClickLottie(v)}"
-            app:layout_constraintBottom_toTopOf="@+id/tabLayoutDetailFragment"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:lottie_rawRes="@raw/heart" />
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginBottom="20dp"
-            android:fontFamily="@font/gilroy_bold"
-            android:maxWidth="350dp"
-            android:text="@{viewmodel.data.title}"
-            android:textColor="#fff"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toTopOf="@+id/textView"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayoutDetailFragment"
-            android:layout_width="0dp"
-            android:layout_height="?attr/actionBarSize"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:tabGravity="fill"
-            app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/green_color"
-            app:tabTextAppearance="@style/TextTabLayoutAppearance">
-
-            <com.google.android.material.tabs.TabItem
+            <TextView
+                android:id="@+id/btnBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Monday" />
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@drawable/ic_back_white"
+                android:gravity="start"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.tabs.TabItem
+            <TextView
+                android:id="@+id/btnSearch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tuesday" />
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:drawableEnd="@drawable/ic_search"
+                android:gravity="end"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/background_name_manga"
+                android:fontFamily="@font/gilroy_medium"
+                android:paddingHorizontal="10dp"
+                android:paddingBottom="4dp"
+                android:text="@{viewmodel.data.type}"
+                android:textColor="#E8E6E6"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/tabLayoutDetailFragment"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/textV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/background_name_manga"
+                android:fontFamily="@font/gilroy_medium"
+                android:paddingHorizontal="10dp"
+                android:paddingBottom="4dp"
+                android:text="@{viewmodel.data.genre_list.get(0).genre_name}"
+                android:textColor="#E8E6E6"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/tabLayoutDetailFragment"
+                app:layout_constraintStart_toEndOf="@id/textView" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/btnHeart"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginEnd="20dp"
+                app:lottie_loop="false"
+                app:lottie_speed="1.5"
+                android:onClick="@{(v)->viewmodel.onClickLottie(v)}"
+                app:layout_constraintBottom_toTopOf="@+id/tabLayoutDetailFragment"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:lottie_rawRes="@raw/heart" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/gilroy_bold"
+                android:maxWidth="350dp"
+                android:text="@{viewmodel.data.title}"
+                android:textColor="#fff"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toTopOf="@+id/textView"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayoutDetailFragment"
+                android:layout_width="0dp"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:tabGravity="fill"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/green_color"
+                app:tabTextAppearance="@style/TextTabLayoutAppearance">
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Monday" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tuesday" />
 
 
-        </com.google.android.material.tabs.TabLayout>
+            </com.google.android.material.tabs.TabLayout>
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewPagerDetailFragment"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:adapterDetail="@{adapter}"
-            android:tabLayoutId="@{tabLayoutDetailFragment}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2"
-            app:layout_constraintVertical_bias="0.0" />
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPagerDetailFragment"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:adapterDetail="@{adapter}"
+                android:tabLayoutId="@{tabLayoutDetailFragment}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2"
+                app:layout_constraintVertical_bias="0.0" />
 
-    </androidx.constraintlayout.motion.widget.MotionLayout>
+        </androidx.constraintlayout.motion.widget.MotionLayout>
+
 
 
 </layout>

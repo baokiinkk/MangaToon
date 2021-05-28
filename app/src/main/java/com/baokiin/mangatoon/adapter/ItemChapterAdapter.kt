@@ -55,12 +55,23 @@ class ItemChapterAdapter(private val onClick: (Chapter, Int) -> Unit) :
         submitList(if (boolean)
             tmp.sortedBy {
                 val a = it.chapter_title?.split(" ")
-                a?.get(a.size - 1)?.toDouble()
+                try {
+                    a?.get(a.size - 1)?.toDouble()
+                }
+                catch (e:Exception){
+                    a?.get(a.size - 2)?.toDouble()
+                }
+
             }
         else
             tmp.sortedByDescending {
                 val a = it.chapter_title?.split(" ")
-                a?.get(a.size - 1)?.toDouble()
+                try {
+                    a?.get(a.size - 1)?.toDouble()
+                }
+                catch (e:Exception){
+                    a?.get(a.size - 2)?.toDouble()
+                }
             })
         notifyDataSetChanged()
         rv.smoothScrollToPosition(0)

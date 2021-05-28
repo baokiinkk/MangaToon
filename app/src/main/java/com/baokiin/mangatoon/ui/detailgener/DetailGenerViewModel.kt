@@ -12,7 +12,7 @@ import com.baokiin.mangatoon.data.repository.Repository
 
 class DetailGenerViewModel(val rep: Repository) : ViewModel() {
     var data: LiveData<PagingData<Manga>> = MutableLiveData()
-    var title:String? = null
+    var title:String? = ""
     fun getData(endPoint: String) {
         data = Pager(
                  PagingConfig(20, 1, true, 1)
@@ -20,4 +20,19 @@ class DetailGenerViewModel(val rep: Repository) : ViewModel() {
                 rep.getDetailGenres(endPoint)
             }.liveData
     }
+    fun getDataPopular(){
+        data = Pager(
+            PagingConfig(20, 1, true, 1)
+        ){
+            rep.getPopularPaging()
+        }.liveData
+    }
+    fun getDataComic(comic:String){
+        data = Pager(
+            PagingConfig(20, 1, true, 1)
+        ){
+            rep.getComicPaging(comic)
+        }.liveData
+    }
+
 }

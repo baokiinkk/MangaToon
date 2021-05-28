@@ -24,7 +24,6 @@ class UtilsBinding{
             image?.let {
                 view.load(it.replace("w=225", "w=500")) {
                     placeholder(R.drawable.templace_backround)
-
                 }
 
             }

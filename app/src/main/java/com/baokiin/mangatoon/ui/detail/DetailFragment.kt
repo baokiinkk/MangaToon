@@ -1,5 +1,6 @@
 package com.baokiin.mangatoon.ui.detail
 
+import android.view.View
 import androidx.lifecycle.Observer
 import com.baokiin.mangatoon.R
 import com.baokiin.mangatoon.adapter.ItemGenreDescriptionAdapter
@@ -15,6 +16,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(){
     override fun getLayoutRes(): Int {
         return R.layout.fragment_detail
     }
+
     private val viewModel:DetailViewModel by sharedViewModel()
     override fun onCreateViews() {
 
@@ -22,6 +24,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(){
         val adapterViewPager = ViewPageAdapter(mutableListOf(DescriptionFragment(),ChapterFragment()), requireActivity())
 
         viewModel.getData(endPoint)
+
         baseBinding.apply {
             viewmodel = viewModel
             adapter = adapterViewPager

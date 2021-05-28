@@ -1,6 +1,8 @@
 package com.baokiin.mangatoon.ui.detailgener
 
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import androidx.lifecycle.Observer
 import com.baokiin.mangatoon.R
 import com.baokiin.mangatoon.data.model.Genre
@@ -19,26 +21,37 @@ class DetailGenerFragment : BaseFragment<FragmentDetailGenerBinding>() {
         return R.layout.fragment_detail_gener
     }
 
+    override fun onResume() {
+        super.onResume()
+        baseBinding.contentShimmerDetailGener.startShimmer()
+    }
     val viewModel: DetailGenerViewModel by viewModel()
     override fun onCreateViews() {
         baseBinding.viewmodel = viewModel
         val data: Genre = arguments?.get("data") as Genre
         data.endpoint?.let {
+
             viewModel.apply {
-                getData(it)
+                if (it == "popular")
+                    getDataPopular()
+                else if (it == "manhua" || it == "manhwa")
+                    getDataComic(it)
+                else
+                    getData(it)
                 title = data.genre_name
             }
         }
+
         baseBinding.btnBack.setOnClickListener {
             requireActivity().onBackPressed()
         }
         val adapter = ItemMangaPagingAdapter { manga, i ->
             val bundle = Bundle()
-            bundle.putString("endPoint",manga.endpoint)
+            bundle.putString("endPoint", manga.endpoint)
             val fragment = DetailFragment()
             fragment.arguments = bundle
             requireActivity().supportFragmentManager.beginTransaction()
-                .add(R.id.containerFragment,fragment)
+                .add(R.id.containerFragment, fragment)
                 .addToBackStack(HomeFragment::class.java.simpleName)
                 .commit()
         }
@@ -48,6 +61,8 @@ class DetailGenerFragment : BaseFragment<FragmentDetailGenerBinding>() {
                 GlobalScope.launch {
                     adapter.submitData(it)
                 }
+                baseBinding.contentShimmerDetailGener.stopShimmer()
+                baseBinding.contentShimmerDetailGener.visibility = View.GONE
             }
         })
     }
