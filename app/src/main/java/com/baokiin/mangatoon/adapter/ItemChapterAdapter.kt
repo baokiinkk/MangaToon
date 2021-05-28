@@ -50,29 +50,37 @@ class ItemChapterAdapter(private val onClick: (Chapter, Int) -> Unit) :
         getItem(position)?.let { holder.bind(it, onClick) }
     }
 
-    fun sort(boolean: Boolean, list: MutableList<Genre>) {
-        if (boolean)
-            currentList.sortBy { it.chapter_title }
+    fun sort(boolean: Boolean,rv:RecyclerView) {
+        val tmp = currentList
+        submitList(if (boolean)
+            tmp.sortedBy {
+                val a = it.chapter_title?.split(" ")
+                a?.get(a.size - 1)?.toDouble()
+            }
         else
-            currentList.sortByDescending { it.chapter_title }
+            tmp.sortedByDescending {
+                val a = it.chapter_title?.split(" ")
+                a?.get(a.size - 1)?.toDouble()
+            })
+        notifyDataSetChanged()
+        rv.smoothScrollToPosition(0)
+    }
     }
 
-}
+    class ChapDIff : DiffUtil.ItemCallback<Chapter>() {
+        // cung cấp thông tin về cách xác định phần
+        override fun areItemsTheSame(
+            oldItem: Chapter,
+            newItem: Chapter
+        ): Boolean { // cho máy biết 2 item_detail khi nào giống
+            return oldItem.chapter_endpoint == newItem.chapter_endpoint // dung
+        }
 
-class ChapDIff : DiffUtil.ItemCallback<Chapter>() {
-    // cung cấp thông tin về cách xác định phần
-    override fun areItemsTheSame(
-        oldItem: Chapter,
-        newItem: Chapter
-    ): Boolean { // cho máy biết 2 item_detail khi nào giống
-        return oldItem.chapter_endpoint == newItem.chapter_endpoint // dung
+        override fun areContentsTheSame(
+            oldItem: Chapter,
+            newItem: Chapter
+        ): Boolean { // cho biết item_detail khi nào cùng nội dung
+            return oldItem == newItem
+        }
+
     }
-
-    override fun areContentsTheSame(
-        oldItem: Chapter,
-        newItem: Chapter
-    ): Boolean { // cho biết item_detail khi nào cùng nội dung
-        return oldItem == newItem
-    }
-
-}

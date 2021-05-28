@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:motion="http://schemas.android.com/apk/res-auto"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    >
 
     <Transition
         motion:constraintSetEnd="@+id/end"
@@ -11,6 +11,7 @@
        </KeyFrameSet>
         <OnSwipe motion:dragDirection="dragUp" motion:touchAnchorSide="top" motion:touchAnchorId="@id/viewPagerDetailFragment"/>
     </Transition>
+
 
     <ConstraintSet android:id="@+id/start">
 
@@ -63,6 +64,17 @@
             motion:layout_constraintBottom_toTopOf="@+id/tabLayoutDetailFragment"
             android:layout_marginEnd="20dp"
             android:visibility="visible" />
+        <Constraint
+            android:id="@+id/view"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent">
+            <CustomAttribute
+                motion:attributeName="crossfade"
+                motion:customFloatValue="0" />
+        </Constraint>
 
 
     </ConstraintSet>
@@ -75,7 +87,12 @@
             android:layout_width="match_parent"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
-            android:layout_height="120dp" />
+            android:layout_height="120dp" >
+            <CustomAttribute
+                motion:attributeName="crossfade"
+                motion:customFloatValue="1" />
+        </Constraint>
+
         <Constraint
             android:id="@+id/tabLayoutDetailFragment"
             motion:layout_constraintEnd_toEndOf="parent"
@@ -133,6 +150,18 @@
             motion:layout_constraintBottom_toTopOf="@+id/tabLayoutDetailFragment"
             android:layout_marginEnd="20dp"
             android:visibility="gone" />
+        <Constraint
+            android:id="@+id/view"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent" >
+            <CustomAttribute
+                motion:attributeName="crossfade"
+                motion:customFloatValue="1" />
+        </Constraint>
 
     </ConstraintSet>
+
 </MotionScene>

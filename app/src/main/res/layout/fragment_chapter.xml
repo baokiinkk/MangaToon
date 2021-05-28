@@ -16,34 +16,90 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#F3F2F2"
         tools:context=".ui.chap.ChapterFragment">
 
-
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayoutFragmentChapter"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:text="342 Chapter"
-            android:textSize="20sp"
-            android:fontFamily="@font/gilroy_bold"
+            android:orientation="horizontal"
+            android:background="@color/text_color_white"
+            android:layout_marginVertical="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/gilroy_medium"
+                android:text="@{viewmodel.data.chapter.size()+` chapters`}"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtGiam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity=""
+                android:layout_marginVertical="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/gilroy_medium"
+                android:text="Reverse"
+                android:onClick="@{(v)->viewmodel.select(v,txtTang,adapter,recycleViewChap)}"
+                android:textColor="@color/green_color"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtTang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Positive"
+                android:onClick="@{(v)->viewmodel.select(v,txtGiam,adapter,recycleViewChap)}"
+                android:fontFamily="@font/gilroy_medium"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/view3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="1dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="10dp"
+                android:background="#959393"
+                app:layout_constraintBottom_toBottomOf="@+id/txtGiam"
+                app:layout_constraintEnd_toStartOf="@+id/txtGiam"
+                app:layout_constraintTop_toTopOf="@+id/txtGiam" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleViewChap"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginTop="1dp"
             android:layout_marginBottom="10dp"
             android:adapter_chapter="@{adapter}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutFragmentChapter" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

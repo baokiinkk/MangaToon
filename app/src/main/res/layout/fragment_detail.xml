@@ -26,28 +26,29 @@
         android:focusable="true"
         app:layoutDescription="@xml/fragment_detail_xml_constraintlayout3_scene">
 
-        <FrameLayout
-            android:id="@+id/imageView2"
-            android:layout_width="match_parent"
-            android:layout_height="400dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/imageView2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="400dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 android:profileImage="@{viewmodel.data.thumb}"
                 android:scaleType="fitXY"
-                android:src="@drawable/manhua" />
+                android:src="@drawable/manhua"
+                />
 
-            <View
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/background_image" />
+                android:layout_height="400dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/background_image"
+                app:altSrc="@drawable/background_image_while"
+                />
 
-        </FrameLayout>
 
 
         <TextView
