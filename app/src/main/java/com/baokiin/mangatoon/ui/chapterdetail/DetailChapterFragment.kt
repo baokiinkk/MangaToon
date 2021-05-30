@@ -34,6 +34,9 @@ class DetailChapterFragment :
             }
         }
         baseBinding.adapter = adapter
+        baseBinding.btnBack.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
         viewModel.getData(endpoint)
         viewModel.data.observe(viewLifecycleOwner, Observer {
             it?.let {
