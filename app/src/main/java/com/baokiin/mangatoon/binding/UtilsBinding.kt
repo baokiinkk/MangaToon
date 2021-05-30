@@ -16,7 +16,7 @@ import com.baokiin.mangatoon.adapter.ItemChapterAdapter
 import org.w3c.dom.Text
 
 class UtilsBinding{
-    companion object{
+    companion object {
         @BindingAdapter("android:profileImage")
         @JvmStatic
         fun loadImage(view: ImageView, image: String?) {
@@ -35,19 +35,19 @@ class UtilsBinding{
             view.setClipToOutline(true);
             image?.let {
                 view.load(it) {
-                    size(1000,2600)
+                    size(1000, 2600)
                     placeholder(R.drawable.ic_launcher_background)
                 }
 
             }
         }
+
         @BindingAdapter("android:text_custom")
         @JvmStatic
-        fun textView(view: TextView, text:String) {
+        fun textView(view: TextView, text: String) {
             val tmp = text.split(" ")
-            val tmp2 = tmp[tmp.size-2]+" "+tmp[tmp.size-1]
+            val tmp2 = tmp[tmp.size - 2] + " " + tmp[tmp.size - 1]
             view.text = tmp2
         }
-
     }
 }

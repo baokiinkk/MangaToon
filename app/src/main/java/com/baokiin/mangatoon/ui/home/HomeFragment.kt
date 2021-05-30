@@ -13,6 +13,7 @@ import com.baokiin.mangatoon.adapter.ItemGenreHomeAdapter
 import com.baokiin.mangatoon.data.model.Genre
 import com.baokiin.mangatoon.ui.detail.DetailFragment
 import com.baokiin.mangatoon.ui.detailgener.DetailGenerFragment
+import com.baokiin.mangatoon.ui.search.SearchFragment
 
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -116,6 +117,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             }
             layoutManhwa.btnManhwa.setOnClickListener {
                 goDetailGener(Genre("Manhwa","manhwa"))
+            }
+            btnSearch.setOnClickListener {
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .add(R.id.containerFragment,SearchFragment())
+                    .addToBackStack(HomeFragment::class.java.simpleName)
+                    .commit()
             }
         }
     }

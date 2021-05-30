@@ -31,4 +31,7 @@ interface ApiService {
 
     @GET("chapter/{chapterEndpoint}")
     suspend fun getChapterImage(@Path("chapterEndpoint")endPoint: String): Chapter
+
+    @GET("search/{query}")
+    suspend fun search(@Path("query") query:String):MangaList
 }
