@@ -28,6 +28,7 @@ class LoginActivity : SNSLoginActivity() {
             startActivity(intent)
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -61,17 +62,11 @@ class LoginActivity : SNSLoginActivity() {
 
     private fun updateUI(user: UserSNS?) {
         user?.let {
-            if(it.snsLoginType == SNSLoginType.PhoneNumber){
-                val intent = Intent(this, MainActivity::class.java)
-                    .apply {
-                        putExtra(USER, user.user)
-                    }
-                startActivity(intent)
-            }
-            else{
-                singInPhone()
-            }
-
+            val intent = Intent(this, MainActivity::class.java)
+                .apply {
+                    putExtra(USER, user.user)
+                }
+            startActivity(intent)
         }
     }
 }
