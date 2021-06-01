@@ -5,6 +5,7 @@ import com.baokiin.mangatoon.ui.detail.DetailViewModel
 import com.baokiin.mangatoon.ui.detailgener.DetailGenerViewModel
 import com.baokiin.mangatoon.ui.genre.GenreViewModel
 import com.baokiin.mangatoon.ui.home.HomeViewModel
+import com.baokiin.mangatoon.ui.library.LibraryViewModel
 import com.baokiin.mangatoon.ui.search.SearchViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
@@ -16,7 +17,8 @@ val blankViewmodelDi: Module = module {
     viewModel { HomeViewModel(get()) }
     viewModel { GenreViewModel(get()) }
     viewModel { DetailGenerViewModel(get()) }
-    viewModel { DetailViewModel(get()) }
+    viewModel { DetailViewModel(get(),get()) }
     viewModel { SearchViewModel(get()) }
+    viewModel { LibraryViewModel(get()) }
     viewModel { DetailChapterViewModel(get()) }
 }

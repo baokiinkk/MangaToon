@@ -58,15 +58,6 @@
             android:textSize="20sp"
             android:gravity="center"
             />
-
-        <Button
-            android:id="@+id/button_loginPhone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="100dp"
-            android:text="LOGIN PHONE"
-            android:textColor="@color/text_color_white"
-            />
     </LinearLayout>
 
 

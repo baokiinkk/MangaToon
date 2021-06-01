@@ -1,36 +1,50 @@
 package com.baokiin.mangatoon.ui.detail
 
-import android.view.View
 import androidx.lifecycle.Observer
 import com.baokiin.mangatoon.R
-import com.baokiin.mangatoon.adapter.ItemGenreDescriptionAdapter
 import com.baokiin.mangatoon.databinding.FragmentDetailBinding
 import com.baokiin.mangatoon.base.BaseFragment
 import com.baokiin.mangatoon.adapter.ViewPageAdapter
+import com.baokiin.mangatoon.data.model.Manga
 import com.baokiin.mangatoon.ui.chap.ChapterFragment
 import com.baokiin.mangatoon.ui.description.DescriptionFragment
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
-class DetailFragment : BaseFragment<FragmentDetailBinding>(){
+class DetailFragment : BaseFragment<FragmentDetailBinding>() {
     override fun getLayoutRes(): Int {
         return R.layout.fragment_detail
     }
 
-    private val viewModel:DetailViewModel by sharedViewModel()
+    private val viewModel: DetailViewModel by sharedViewModel()
     override fun onCreateViews() {
 
-        val endPoint:String = arguments?.get("endPoint").toString()
-        val adapterViewPager = ViewPageAdapter(mutableListOf(DescriptionFragment(),ChapterFragment()), requireActivity())
+        val manga: Manga? = arguments?.getSerializable("endPoint") as Manga
+        val adapterViewPager = ViewPageAdapter(
+            mutableListOf(DescriptionFragment(), ChapterFragment()),
+            requireActivity()
+        )
 
-        viewModel.getData(endPoint)
+        manga?.let {
+            it.endpoint?.let { it1 -> viewModel.getData(it1) }
+            viewModel.isMangas(it.title)
+        }
+        viewModel.mangaLocal = manga
 
         baseBinding.apply {
             viewmodel = viewModel
             adapter = adapterViewPager
-            btnBack.setOnClickListener { requireActivity().onBackPressed()
+            btnBack.setOnClickListener {
+                requireActivity().onBackPressed()
             }
         }
+        viewModel.isManga.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                viewModel.isLiked = it
+                baseBinding.btnHeart.progress = if(it) 0.5f else 0.0f
+            }
+        })
+
     }
 
 }

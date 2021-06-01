@@ -138,7 +138,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
     fun goDetailManga(manga: Manga){
         val bundle = Bundle()
-        bundle.putString("endPoint",manga.endpoint)
+        bundle.putSerializable("endPoint",manga)
         val fragment = DetailFragment()
         fragment.arguments = bundle
         requireActivity().supportFragmentManager.beginTransaction()

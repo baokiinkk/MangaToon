@@ -1,4 +1,4 @@
-package com.baokiin.mangatoon.data.api
+package com.baokiin.mangatoon.data.remote.api
 
 import com.baokiin.mangatoon.data.model.Chapter
 import com.baokiin.mangatoon.data.model.DetailManga

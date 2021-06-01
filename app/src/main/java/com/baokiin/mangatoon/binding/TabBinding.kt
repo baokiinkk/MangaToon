@@ -33,6 +33,10 @@ class TabBinding {
                             tab.text = "Genre"
                             tab.setIcon(R.drawable.ic_account)
                         }
+                        2->{
+                            tab.text = "Library"
+                            tab.setIcon(R.drawable.ic_account)
+                        }
                     }
                 }).attach()
         }

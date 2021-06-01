@@ -4,9 +4,9 @@ import com.baokiin.mangatoon.data.model.Chapter
 import com.baokiin.mangatoon.data.model.DetailManga
 import com.baokiin.mangatoon.data.model.GenresList
 import com.baokiin.mangatoon.data.model.MangaList
-import com.baokiin.mangatoon.data.paging.ComicPagingSource
-import com.baokiin.mangatoon.data.paging.DetailGenerPagingSource
-import com.baokiin.mangatoon.data.paging.PopularPagingSource
+import com.baokiin.mangatoon.data.remote.paging.ComicPagingSource
+import com.baokiin.mangatoon.data.remote.paging.DetailGenerPagingSource
+import com.baokiin.mangatoon.data.remote.paging.PopularPagingSource
 
 
 interface Repository{
