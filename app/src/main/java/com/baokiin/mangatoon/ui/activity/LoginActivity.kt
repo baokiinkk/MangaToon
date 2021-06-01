@@ -55,18 +55,15 @@ class LoginActivity : SNSLoginActivity() {
         button_loginFb.setOnClickListener {
             signInFb()
         }
+        btnClose.setOnClickListener {
+            finish()
+        }
 
     }
 
 //
 
     private fun updateUI(user: UserSNS?) {
-        user?.let {
-            val intent = Intent(this, MainActivity::class.java)
-                .apply {
-                    putExtra(USER, user.user)
-                }
-            startActivity(intent)
-        }
+        finish()
     }
 }
