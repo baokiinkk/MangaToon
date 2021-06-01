@@ -121,7 +121,7 @@ abstract class SNSLoginActivity : AppCompatActivity() {
     protected fun signInFb() {
         instanceFacebookSignIn()
         LoginManager.getInstance()
-            .logInWithReadPermissions(this, arrayListOf("public_profile", "user_friends"))
+            .logInWithReadPermissions(this, arrayListOf("public_profile"))
     }
 
     protected fun singInPhone() {
