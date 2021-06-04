@@ -80,7 +80,7 @@ class TabBinding {
         @JvmStatic
         fun textView(view: TextView, text:String) {
            val tmp = text.split(" ")
-            val tmp2 = tmp[tmp.size-2]+" "+tmp[tmp.size-1]
+            val tmp2 = tmp[0]+" " +tmp[tmp.size-2]+" "+tmp[tmp.size-1]
             view.text = tmp2
         }
     }

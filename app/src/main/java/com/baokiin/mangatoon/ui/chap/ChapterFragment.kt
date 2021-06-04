@@ -20,7 +20,8 @@ class ChapterFragment :BaseFragment<FragmentChapterBinding>(){
         baseBinding.viewmodel =viewmodel
         val adapter = ItemChapterAdapter{ chap, i ->
             val bundle = Bundle()
-            bundle.putString("endpoint",chap.chapter_endpoint)
+            bundle.putInt("endpoint",i)
+            bundle.putSerializable("detailManga",viewmodel.data.value)
             val fragment = DetailChapterFragment()
             fragment.arguments = bundle
             requireActivity().supportFragmentManager.beginTransaction()

@@ -31,6 +31,7 @@ class ItemChapterAdapter(private val onClick: (Chapter, Int) -> Unit) :
         }
 
         fun bind(item: Chapter, onClick: ((Chapter, Int) -> Unit)? = null) {
+            item.chapter_title = (bindingAdapterPosition+1).toString()+". "+item.chapter_title
             binding.data = item
 
             itemView.setOnClickListener {
