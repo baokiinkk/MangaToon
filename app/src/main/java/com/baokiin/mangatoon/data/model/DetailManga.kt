@@ -10,7 +10,8 @@ data class DetailManga(
     val chapter:MutableList<Chapter>,
     val genre_list: MutableList<Genre>
 )
-data class Chapter(val chapter_endpoint:String?,val chapter_title:String?,val chapter_image:MutableList<ChapImage>?)
+data class Chapter(val chapter_endpoint:String?, val chapter_title:String?, val chapter_image:MutableList<ChapImage>?,
+                   var lock:Boolean = true)
 data class ChapImage(val chapter_image_link:String?)
 
 

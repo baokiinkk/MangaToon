@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.baokiin.mangatoon.R
 import com.baokiin.mangatoon.data.model.Chapter
 import com.baokiin.mangatoon.data.model.Genre
 import com.baokiin.mangatoon.databinding.ItemChapterBinding
@@ -28,7 +29,7 @@ class ItemChapterAdapter(private val onClick: (Chapter, Int) -> Unit) :
 
         fun bind(item: Chapter, onClick: ((Chapter, Int) -> Unit)? = null) {
             binding.data = item
-
+            binding.txtLock.setBackgroundResource(if(item.lock) R.drawable.ic_ok else R.drawable.ic_lock)
             itemView.setOnClickListener {
                 if (onClick != null) {
                     onClick(item, bindingAdapterPosition)
