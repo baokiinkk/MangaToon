@@ -1,5 +1,6 @@
 package com.baokiin.mangatoon.ui.detail
 
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.lifecycle.MutableLiveData
@@ -62,6 +63,7 @@ class DetailViewModel(val rep: Repository, val local: RepositoryLocal) : ViewMod
                                         if (it.chapter_title == chap.chapter_title)
                                             it.lock = chap.lock
                                     }
+
                                 }
                                 dataChapter.postValue(dataChap.chapter)
                             }

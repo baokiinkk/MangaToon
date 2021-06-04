@@ -49,5 +49,12 @@ class UtilsBinding{
             val tmp2 =tmp[0]+". "+ tmp[tmp.size - 2] + " " + tmp[tmp.size - 1]
             view.text = tmp2
         }
+        @BindingAdapter("android:text_custom_endpoint")
+        @JvmStatic
+        fun text(view: TextView, text: String) {
+            val tmp = text.split("-")
+            val tmp2 =tmp[tmp.size - 2] + " " + tmp[tmp.size - 1]
+            view.text = tmp2
+        }
     }
 }

@@ -38,7 +38,7 @@ class DetailChapterFragment :
             }
         }
         if (endpointIndex != null) {
-
+            endpointIndex = detailManga.chapter.size -1 - endpointIndex
             detailManga.chapter.get(endpointIndex).chapter_endpoint?.let { viewModel.getData(it) }
             indexManga = endpointIndex
             if(indexManga == 0)

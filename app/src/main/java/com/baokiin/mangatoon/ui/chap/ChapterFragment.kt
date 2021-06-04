@@ -24,7 +24,10 @@ class ChapterFragment :
         val adapter = ItemChapterAdapter{ chap, i ->
             viewmodel.unlock(chap)
             val bundle = Bundle()
-            bundle.putInt("endpoint",i)
+            val index = chap.chapter_title?.split(" ")?.get(0)?.toInt()
+            if (index != null) {
+                bundle.putInt("endpoint",index)
+            }
             bundle.putSerializable("detailManga",viewmodel.data.value)
             val fragment = DetailChapterFragment()
             fragment.arguments = bundle
@@ -36,12 +39,14 @@ class ChapterFragment :
         baseBinding.adapter = adapter
         viewmodel.data.observe(viewLifecycleOwner, Observer {
             it?.let {
+                Log.d("quocbao","aaaaaaaaaaaaaaaaaaaa")
                 viewmodel.getChapFromFirestore(it)
                 detailManga = it
             }
         })
         viewmodel.dataChapter.observe(viewLifecycleOwner, Observer {
             it?.let {
+                Log.d("quocbao","bbbbbbbbbbbbbbbbbbbb")
                 for(i in 0..it.size-1){
                     it[i].chapter_title = "${it.size-i-1} "+it[i].chapter_title
                 }
@@ -53,12 +58,9 @@ class ChapterFragment :
 
     override fun onResume() {
         super.onResume()
-        Log.d("quocbao","aaaaaa")
-    }
-
-    override fun onStop() {
-        super.onStop()
         viewmodel.getChapFromFirestore(detailManga)
     }
+
+
 
 }

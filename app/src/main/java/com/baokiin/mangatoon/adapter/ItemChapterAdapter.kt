@@ -57,7 +57,6 @@ class ItemChapterAdapter(private val onClick: (Chapter, Int) -> Unit) :
         submitList(if (boolean)
             tmp.sortedBy {
                 val a = it.chapter_title?.split(" ")
-                Log.d("quocbao",it.chapter_title.toString())
                 try {
                     a?.get(0)?.toInt()
                 }
