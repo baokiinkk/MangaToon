@@ -19,7 +19,7 @@ class DetailChapterFragment :
     val viewModel:DetailChapterViewModel by viewModel()
     override fun onCreateViews() {
 
-        val endpointIndex = arguments?.getInt("endpoint")
+        var endpointIndex = arguments?.getInt("endpoint")
 
         val detailManga = arguments?.getSerializable("detailManga") as DetailManga
         var clickItem = false
@@ -38,12 +38,13 @@ class DetailChapterFragment :
             }
         }
         if (endpointIndex != null) {
+
             detailManga.chapter.get(endpointIndex).chapter_endpoint?.let { viewModel.getData(it) }
             indexManga = endpointIndex
             if(indexManga == 0)
-                baseBinding.btnBackChap.visibility = View.GONE
-            if(indexManga == detailManga.chapter.size-1)
                 baseBinding.btnNextChap.visibility = View.GONE
+            if(indexManga == detailManga.chapter.size-1)
+                baseBinding.btnBackChap.visibility = View.GONE
         }
         baseBinding.apply {
             viewmodel = viewModel
@@ -53,9 +54,11 @@ class DetailChapterFragment :
             }
             btnBackChap.setOnClickListener {
                 changeChap(detailManga,false,it)
+                btnNextChap.visibility = View.VISIBLE
             }
             btnNextChap.setOnClickListener {
                 changeChap(detailManga,true,it)
+                btnBackChap.visibility = View.VISIBLE
             }
         }
         viewModel.data.observe(viewLifecycleOwner, Observer {
@@ -66,15 +69,15 @@ class DetailChapterFragment :
     }
 
     fun changeChap(detailManga:DetailManga,boolean: Boolean,view: View){
-        if(!boolean){
+        if(boolean){
             indexManga--
             if(indexManga == 0)
                 view.visibility = View.GONE
         }
         else {
+            indexManga++
             if(indexManga == detailManga.chapter.size-1)
                 view.visibility = View.GONE
-            indexManga++
         }
         detailManga.chapter.get(indexManga).chapter_endpoint?.let { viewModel.getData(it) }
     }
