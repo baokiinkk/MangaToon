@@ -28,6 +28,7 @@ class ItemChapterAdapter(private val onClick: (Chapter, Int) -> Unit) :
         }
 
         fun bind(item: Chapter, onClick: ((Chapter, Int) -> Unit)? = null) {
+            item.chapter_title = (bindingAdapterPosition+1).toString()+". "+item.chapter_title
             binding.data = item
             binding.txtLock.setBackgroundResource(if(item.lock) R.drawable.ic_ok else R.drawable.ic_lock)
             itemView.setOnClickListener {
