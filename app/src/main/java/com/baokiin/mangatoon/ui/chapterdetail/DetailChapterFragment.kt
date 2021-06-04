@@ -1,5 +1,6 @@
 package com.baokiin.mangatoon.ui.chapterdetail
 
+import android.view.View
 import androidx.lifecycle.Observer
 import com.baokiin.mangatoon.R
 import com.baokiin.mangatoon.data.model.DetailManga

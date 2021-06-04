@@ -1,5 +1,6 @@
 package com.baokiin.mangatoon.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -28,7 +29,6 @@ class ItemChapterAdapter(private val onClick: (Chapter, Int) -> Unit) :
         }
 
         fun bind(item: Chapter, onClick: ((Chapter, Int) -> Unit)? = null) {
-            item.chapter_title = (bindingAdapterPosition+1).toString()+". "+item.chapter_title
             binding.data = item
             binding.txtLock.setBackgroundResource(if(item.lock) R.drawable.ic_ok else R.drawable.ic_lock)
             itemView.setOnClickListener {
@@ -57,11 +57,12 @@ class ItemChapterAdapter(private val onClick: (Chapter, Int) -> Unit) :
         submitList(if (boolean)
             tmp.sortedBy {
                 val a = it.chapter_title?.split(" ")
+                Log.d("quocbao",it.chapter_title.toString())
                 try {
-                    a?.get(a.size - 1)?.toDouble()
+                    a?.get(0)?.toInt()
                 }
                 catch (e:Exception){
-                    a?.get(a.size - 2)?.toDouble()
+                    1
                 }
 
             }
@@ -69,14 +70,14 @@ class ItemChapterAdapter(private val onClick: (Chapter, Int) -> Unit) :
             tmp.sortedByDescending {
                 val a = it.chapter_title?.split(" ")
                 try {
-                    a?.get(a.size - 1)?.toDouble()
+                    a?.get(0)?.toInt()
                 }
                 catch (e:Exception){
-                    a?.get(a.size - 2)?.toDouble()
+                    1
                 }
             })
         notifyDataSetChanged()
-        rv.smoothScrollToPosition(0)
+        rv.scrollToPosition(0)
     }
     }
 

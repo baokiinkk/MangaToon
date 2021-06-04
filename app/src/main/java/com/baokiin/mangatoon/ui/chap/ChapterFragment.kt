@@ -42,6 +42,9 @@ class ChapterFragment :
         })
         viewmodel.dataChapter.observe(viewLifecycleOwner, Observer {
             it?.let {
+                for(i in 0..it.size-1){
+                    it[i].chapter_title = "${it.size-i-1} "+it[i].chapter_title
+                }
                 adapter.submitList(it)
             }
         })

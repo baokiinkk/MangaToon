@@ -62,7 +62,6 @@
                 android:layout_marginTop="10dp"
                 android:layout_weight="3"
                 android:gravity="center"
-                android:text="@{viewmodel.data.chapter_title}"
                 android:textColor="@color/text_color_white"
                 android:textSize="25sp" />
 
