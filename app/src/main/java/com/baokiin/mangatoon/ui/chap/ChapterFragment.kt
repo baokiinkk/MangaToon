@@ -20,6 +20,7 @@ class ChapterFragment :
     }
     val viewmodel:DetailViewModel by sharedViewModel()
     lateinit var detailManga: DetailManga
+
     override fun onCreateViews() {
         baseBinding.viewmodel =viewmodel
         val adapter = ItemChapterAdapter{ chap, i ->
@@ -32,7 +33,6 @@ class ChapterFragment :
             val fragment = DetailChapterFragment()
             fragment.resiveOnBackFromDetailChap(object :backtoChap{
                 override fun onClickBack() {
-                    Log.d("quocbao","aaaaaaaaaaaaaaaaaaa")
                     viewmodel.getChapFromFirestore()
                 }
 
@@ -43,12 +43,6 @@ class ChapterFragment :
                 .addToBackStack(ChapterFragment()::class.java.simpleName)
                 .commit()
         }
-        object : backtoChap{
-            override fun onClickBack() {
-                Log.d("quocbao","aaaaaaaaaaaaaaa")
-            }
-
-        }
         baseBinding.adapter = adapter
         viewmodel.getChapFromFirestore()
         viewmodel.dataChapter.observe(viewLifecycleOwner, Observer {
@@ -58,6 +52,7 @@ class ChapterFragment :
                     tmp[i].chapter_title = "${tmp.size-i-1} "+tmp[i].chapter_title
                 }
                 adapter.submitList(tmp)
+                adapter.notifyDataSetChanged()
             }
         })
     }

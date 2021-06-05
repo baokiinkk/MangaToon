@@ -1,7 +1,6 @@
 package com.baokiin.mangatoon.ui.detail
 
 import android.content.Intent
-import android.util.Log
 import androidx.lifecycle.Observer
 import com.baokiin.mangatoon.R
 import com.baokiin.mangatoon.databinding.FragmentDetailBinding
@@ -20,10 +19,10 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
     }
 
     private val viewModel: DetailViewModel by sharedViewModel()
+    private lateinit var adapterViewPager:ViewPageAdapter
     override fun onCreateViews() {
-
         val manga: Manga? = arguments?.getSerializable("endPoint") as Manga
-        val adapterViewPager = ViewPageAdapter(
+        adapterViewPager = ViewPageAdapter(
             mutableListOf(DescriptionFragment(), ChapterFragment()),
             requireActivity()
         )
@@ -38,7 +37,6 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
             adapter = adapterViewPager
             btnBack.setOnClickListener {
                 requireActivity().onBackPressed()
-                onDestroy()
             }
         }
         viewModel.apply {
@@ -59,5 +57,14 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
 
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.apply {
+            data.postValue(null)
+            dataChapter.postValue(null)
+            isAuth.postValue(null)
+            isManga.postValue(null)
+        }
+    }
 
 }

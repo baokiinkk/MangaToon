@@ -22,7 +22,7 @@ class PhoneLoginActivity : AppCompatActivity() {
     private lateinit var forceResend: PhoneAuthProvider.ForceResendingToken
     private lateinit var mVerficationId: String
     private lateinit var auth: FirebaseAuth
-    val authCurent = Firebase.auth
+    lateinit var authCurent:FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +31,7 @@ class PhoneLoginActivity : AppCompatActivity() {
     }
 
     private fun init() {
+        authCurent = Firebase.auth
         auth = FirebaseAuth.getInstance()
 
         instancePhoneSignIn()
@@ -89,25 +90,33 @@ class PhoneLoginActivity : AppCompatActivity() {
     private fun verifyPhoneNumberWithCode(verificationId: String?, code: String) {
         verificationId?.let {
             val credential = PhoneAuthProvider.getCredential(it, code)
-            signInWithPhoneAuthCredential(credential)
+            signInWithPhoneAuthCredential(credential){
+                if(it){
+                    Log.d("quocbao", "a: "+authCurent.currentUser?.displayName.toString())
+                    auth = authCurent
+                    Log.d("quocbao", "b: "+auth.currentUser?.displayName.toString())
+                    finish()
+                }
+            }
+
+
         }
 
 
     }
 
-    private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
+    private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential,check:(Boolean)->Unit) {
         auth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    auth = authCurent
-                    Log.d("quocbao", auth.currentUser.toString())
-                    finish()
+                     check(true)
                 } else {
                     // If sign in fails, display a message to the user.
                     Toast.makeText(
                         baseContext, "Authentication failed by code error.",
                         Toast.LENGTH_SHORT
                     ).show()
+                    check(false)
                 }
             }
     }

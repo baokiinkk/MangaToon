@@ -30,9 +30,12 @@ class DetailViewModel(val rep: Repository, val local: RepositoryLocal) : ViewMod
     val auth = Firebase.auth
     val db = Firebase.firestore
 
+    fun clearVM(){
+
+        onCleared()
+    }
     fun getChapFromFirestore(){
         if (auth.currentUser == null) {
-            Log.d("quocbao","aaaaaaaaaaaaaa")
             dataChapter.postValue(data.value?.chapter)
         }
         else {
