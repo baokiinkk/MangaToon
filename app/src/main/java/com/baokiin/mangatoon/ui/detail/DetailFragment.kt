@@ -1,6 +1,7 @@
 package com.baokiin.mangatoon.ui.detail
 
 import android.content.Intent
+import android.util.Log
 import androidx.lifecycle.Observer
 import com.baokiin.mangatoon.R
 import com.baokiin.mangatoon.databinding.FragmentDetailBinding
@@ -26,9 +27,9 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
             mutableListOf(DescriptionFragment(), ChapterFragment()),
             requireActivity()
         )
-
         manga?.let {
-            it.endpoint?.let { it1 -> viewModel.getData(it1) }
+            it.endpoint?.let { it1 ->
+                viewModel.getData(it1) }
             viewModel.isMangas(it.title)
         }
 
@@ -37,6 +38,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
             adapter = adapterViewPager
             btnBack.setOnClickListener {
                 requireActivity().onBackPressed()
+                onDestroy()
             }
         }
         viewModel.apply {
@@ -56,5 +58,6 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
         }
 
     }
+
 
 }

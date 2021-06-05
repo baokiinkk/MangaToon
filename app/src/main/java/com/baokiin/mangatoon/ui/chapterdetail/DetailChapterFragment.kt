@@ -17,6 +17,7 @@ class DetailChapterFragment :
     }
     var indexManga =-1
     val viewModel:DetailChapterViewModel by viewModel()
+    lateinit var onBack:backtoChap
     override fun onCreateViews() {
 
         var endpointIndex = arguments?.getInt("endpoint")
@@ -50,6 +51,7 @@ class DetailChapterFragment :
             viewmodel = viewModel
             adapter = adapters
             btnBack.setOnClickListener {
+                onBack.onClickBack()
                 requireActivity().onBackPressed()
             }
             btnBackChap.setOnClickListener {
@@ -63,11 +65,23 @@ class DetailChapterFragment :
         }
         viewModel.data.observe(viewLifecycleOwner, Observer {
             it?.let {
+                it.chapter_endpoint =
+                    it.chapter_endpoint?.length?.let { it1 ->
+                        it.chapter_endpoint?.substring(0,
+                            it1-1
+                        )
+                    }
+                detailManga.title?.let { it1 ->
+
+                    viewModel.unlock(it, it1)
+                }
                 adapters.submitList(it.chapter_image)
             }
         })
     }
-
+    fun resiveOnBackFromDetailChap(click:backtoChap){
+        onBack = click
+    }
     fun changeChap(detailManga:DetailManga,boolean: Boolean,view: View){
         if(boolean){
             indexManga--
@@ -81,4 +95,8 @@ class DetailChapterFragment :
         }
         detailManga.chapter.get(indexManga).chapter_endpoint?.let { viewModel.getData(it) }
     }
+}
+
+interface backtoChap{
+    fun onClickBack()
 }

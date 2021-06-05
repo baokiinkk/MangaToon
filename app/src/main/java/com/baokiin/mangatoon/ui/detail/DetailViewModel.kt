@@ -30,24 +30,13 @@ class DetailViewModel(val rep: Repository, val local: RepositoryLocal) : ViewMod
     val auth = Firebase.auth
     val db = Firebase.firestore
 
-    fun unlock(chap:Chapter){
-        auth.currentUser?.uid?.let {
-            data.value?.title?.let { it1 ->
-                chap.lock = true
-                chap.chapter_endpoint?.let { it2 ->
-                    db.collection(it).document(it1)
-                        .collection("chap")
-                        .document(it2)
-                        .set(chap)
-                }
-            }
-        }
-    }
-    fun getChapFromFirestore(dataChap:DetailManga){
+    fun getChapFromFirestore(){
         if (auth.currentUser == null) {
-            dataChapter.postValue(dataChap.chapter)
+            Log.d("quocbao","aaaaaaaaaaaaaa")
+            dataChapter.postValue(data.value?.chapter)
         }
         else {
+
             auth.currentUser?.uid?.let {
                 data.value?.title?.let { it1 ->
                     db.collection(it).document(it1)
@@ -59,13 +48,14 @@ class DetailViewModel(val rep: Repository, val local: RepositoryLocal) : ViewMod
                                     val gson = Gson()
                                     val jsonElement = gson.toJsonTree(it.data)
                                     val chap = gson.fromJson(jsonElement, Chapter::class.java)
-                                    dataChap.chapter.map {
-                                        if (it.chapter_title == chap.chapter_title)
+                                    data.value?.chapter?.map {
+                                        if (it.chapter_endpoint == chap.chapter_endpoint)
                                             it.lock = chap.lock
                                     }
 
                                 }
-                                dataChapter.postValue(dataChap.chapter)
+
+                                dataChapter.postValue(data.value?.chapter)
                             }
                         }
 
