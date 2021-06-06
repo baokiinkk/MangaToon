@@ -27,10 +27,18 @@ class TabBinding {
                     when (pos) {
                         0 -> {
                             tab.text = "Home"
-                            tab.setIcon(R.drawable.ic_account)
+                            tab.setIcon(R.drawable.ic_home)
                         }
                         1 -> {
                             tab.text = "Genre"
+                            tab.setIcon(R.drawable.ic_genre)
+                        }
+                        2->{
+                            tab.text = "Library"
+                            tab.setIcon(R.drawable.ic_library)
+                        }
+                        3->{
+                            tab.text = "Account"
                             tab.setIcon(R.drawable.ic_account)
                         }
                     }

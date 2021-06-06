@@ -13,4 +13,9 @@ class ViewPageAdapter(private var list: MutableList<Fragment>, fragment: Fragmen
     override fun createFragment(position: Int): Fragment {
         return list[position]
     }
+    fun removeFragment(){
+        list.forEach {
+            it.onDestroy()
+        }
+    }
 }

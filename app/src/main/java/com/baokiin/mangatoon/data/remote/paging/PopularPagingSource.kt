@@ -1,14 +1,13 @@
-package com.baokiin.mangatoon.data.paging
+package com.baokiin.mangatoon.data.remote.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.baokiin.mangatoon.data.api.ApiService
+import com.baokiin.mangatoon.data.remote.api.ApiService
 import com.baokiin.mangatoon.data.model.Manga
 import java.lang.Exception
 
-class ComicPagingSource(
-    private val service: ApiService,
-    private val query:String
+class PopularPagingSource(
+    private val service: ApiService
 ): PagingSource<Int, Manga>(){
 
 
@@ -22,7 +21,7 @@ class ComicPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Manga> {
         try {
             val nextPageNumber = params.key ?: 1
-            val response = service.getComic(query,nextPageNumber)
+            val response = service.getPopular(nextPageNumber)
             if (response.manga_list.size == 0) {
                 return LoadResult.Error(NoResultException())
             }
