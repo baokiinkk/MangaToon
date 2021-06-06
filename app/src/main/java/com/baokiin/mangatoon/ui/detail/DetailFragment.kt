@@ -10,6 +10,7 @@ import com.baokiin.mangatoon.data.model.Manga
 import com.baokiin.mangatoon.ui.activity.LoginActivity
 import com.baokiin.mangatoon.ui.chap.ChapterFragment
 import com.baokiin.mangatoon.ui.description.DescriptionFragment
+import com.baokiin.mangatoon.utils.Utils.ENDPOINT
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
@@ -21,7 +22,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
     private val viewModel: DetailViewModel by sharedViewModel()
     private lateinit var adapterViewPager:ViewPageAdapter
     override fun onCreateViews() {
-        val manga: Manga? = arguments?.getSerializable("endPoint") as Manga
+        val manga: Manga? = arguments?.getSerializable(ENDPOINT) as Manga
         adapterViewPager = ViewPageAdapter(
             mutableListOf(DescriptionFragment(), ChapterFragment()),
             requireActivity()

@@ -23,7 +23,7 @@ class LibraryFragment : BaseFragment<FragmentLibraryBinding>() {
     val viewModel: LibraryViewModel by viewModel()
     override fun onCreateViews() {
         baseBinding.viewmodel = viewModel
-        val adapter = ItemMangaAdapter { manga, i ->
+        val adapter = ItemMangaAdapter { manga ->
 
         }
         baseBinding.adapter = adapter

@@ -15,7 +15,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(){
     }
     val viewModel:SearchViewModel by viewModel()
     override fun onCreateViews() {
-        val adapterManga = ItemMangaAdapter{manga, i ->
+        val adapterManga = ItemMangaAdapter{manga ->
 
         }
         viewModel.search("a")

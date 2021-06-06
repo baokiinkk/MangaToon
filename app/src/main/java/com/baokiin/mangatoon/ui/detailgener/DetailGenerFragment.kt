@@ -11,6 +11,7 @@ import com.baokiin.mangatoon.base.BaseFragment
 import com.baokiin.mangatoon.adapter.ItemMangaPagingAdapter
 import com.baokiin.mangatoon.ui.detail.DetailFragment
 import com.baokiin.mangatoon.ui.home.HomeFragment
+import com.baokiin.mangatoon.utils.Utils.DATA
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -28,7 +29,7 @@ class DetailGenerFragment : BaseFragment<FragmentDetailGenerBinding>() {
     val viewModel: DetailGenerViewModel by viewModel()
     override fun onCreateViews() {
         baseBinding.viewmodel = viewModel
-        val data: Genre = arguments?.get("data") as Genre
+        val data: Genre = arguments?.get(DATA) as Genre
         data.endpoint?.let {
 
             viewModel.apply {
