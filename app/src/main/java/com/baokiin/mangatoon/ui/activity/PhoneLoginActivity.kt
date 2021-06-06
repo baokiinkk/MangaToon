@@ -1,28 +1,28 @@
 package com.baokiin.mangatoon.ui.activity
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.baokiin.mangatoon.R
-import com.baokiin.mangatoon.utils.Utils.SNS_RESULT_CODE
-import com.baokiin.mangatoon.utils.Utils.SNS_RESULT_DATA
+import com.facebook.AccessToken
 import com.google.firebase.FirebaseException
-import com.google.firebase.auth.*
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.PhoneAuthCredential
+import com.google.firebase.auth.PhoneAuthOptions
+import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_phone_login.*
 import kotlinx.android.synthetic.main.phone_digit_code.view.*
 import java.util.concurrent.TimeUnit
 
+
 class PhoneLoginActivity : AppCompatActivity() {
     private lateinit var phoneCallBack: PhoneAuthProvider.OnVerificationStateChangedCallbacks
     private lateinit var forceResend: PhoneAuthProvider.ForceResendingToken
     private lateinit var mVerficationId: String
     private lateinit var auth: FirebaseAuth
-    lateinit var authCurent:FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,11 +31,8 @@ class PhoneLoginActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        authCurent = Firebase.auth
-        auth = FirebaseAuth.getInstance()
-
         instancePhoneSignIn()
-
+        auth = Firebase.auth
         buttonGetCode.setOnClickListener {
             val phone = edit_phoneNumber.text.toString()
             if (phone.isEmpty() || phone.length != 9) {
@@ -90,33 +87,23 @@ class PhoneLoginActivity : AppCompatActivity() {
     private fun verifyPhoneNumberWithCode(verificationId: String?, code: String) {
         verificationId?.let {
             val credential = PhoneAuthProvider.getCredential(it, code)
-            signInWithPhoneAuthCredential(credential){
-                if(it){
-                    Log.d("quocbao", "a: "+authCurent.currentUser?.displayName.toString())
-                    auth = authCurent
-                    Log.d("quocbao", "b: "+auth.currentUser?.displayName.toString())
-                    finish()
-                }
-            }
-
+            signInWithPhoneAuthCredential(credential)
 
         }
 
 
     }
-
-    private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential,check:(Boolean)->Unit) {
-        auth.signInWithCredential(credential)
-            .addOnCompleteListener(this) { task ->
+    private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
+        auth.currentUser?.linkWithCredential(credential)
+            ?.addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                     check(true)
+                     finish()
                 } else {
                     // If sign in fails, display a message to the user.
                     Toast.makeText(
                         baseContext, "Authentication failed by code error.",
                         Toast.LENGTH_SHORT
                     ).show()
-                    check(false)
                 }
             }
     }
@@ -124,7 +111,7 @@ class PhoneLoginActivity : AppCompatActivity() {
     private fun instancePhoneSignIn() {
         phoneCallBack = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             override fun onVerificationCompleted(p0: PhoneAuthCredential) {
-                //signInWithPhoneAuthCredential(p0)
+                signInWithPhoneAuthCredential(p0)
                 Toast.makeText(this@PhoneLoginActivity, p0.smsCode, Toast.LENGTH_SHORT).show()
             }
 
