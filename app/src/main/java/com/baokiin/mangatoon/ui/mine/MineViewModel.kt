@@ -1,10 +1,7 @@
 package com.baokiin.mangatoon.ui.mine
 
-import android.view.View
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.baokiin.mangatoon.data.model.Manga
 import com.baokiin.mangatoon.data.repository.RepositoryLocal
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -18,7 +15,7 @@ class MineViewModel(val local: RepositoryLocal) : ViewModel() {
         viewModelScope.launch {
             auth.currentUser?.let {
                 val firebase = db.collection(it.uid)
-                val data = local.getDataManga()
+                val data = local.getDataMangaFavourite()
 
                 data.forEach {
                     local.deleteManga(it)

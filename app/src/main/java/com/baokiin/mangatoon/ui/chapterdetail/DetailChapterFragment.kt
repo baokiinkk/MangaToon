@@ -7,6 +7,7 @@ import com.baokiin.mangatoon.data.model.DetailManga
 import com.baokiin.mangatoon.databinding.FragmentDetailChapterBinding
 import com.baokiin.mangatoon.base.BaseFragment
 import com.baokiin.mangatoon.adapter.ItemDetailChapterAdapter
+import com.baokiin.mangatoon.data.model.Manga
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -23,9 +24,11 @@ class DetailChapterFragment :
         var endpointIndex = arguments?.getInt("endpoint")
 
         val detailManga = arguments?.getSerializable("detailManga") as DetailManga
+        val manga = arguments?.getSerializable("manga") as Manga?
         var clickItem = false
-        val adapters = ItemDetailChapterAdapter{chapImage, i ->
 
+        viewModel.insertRecents(manga)
+        val adapters = ItemDetailChapterAdapter{chapImage, i ->
             baseBinding.constraintLayout2.apply {
                 if(!clickItem){
                     transitionToEnd()

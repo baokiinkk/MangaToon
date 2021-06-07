@@ -15,8 +15,10 @@ interface AppDao {
     // querry mangalist
     @Query("select * from Manga")
     suspend fun getDataManga():MutableList<Manga>
-    @Query("select * from Manga where Manga.title=:id")
-    suspend fun isManga(id:String):Manga?
+    @Query("select * from Manga where Manga.title=:id and Manga.favourite = 1")
+    suspend fun isMangaFavourite(id:String):Manga?
+    @Update
+    suspend fun updateManga(manga: Manga)
 
 
 }

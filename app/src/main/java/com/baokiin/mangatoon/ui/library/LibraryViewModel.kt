@@ -1,5 +1,6 @@
 package com.baokiin.mangatoon.ui.library
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,7 +12,7 @@ class LibraryViewModel(val local:RepositoryLocal) :ViewModel(){
     val data: MutableLiveData<MutableList<Manga>?> = MutableLiveData(null)
     fun getData(){
         viewModelScope.launch {
-            data.postValue(local.getDataManga())
+            data.postValue(local.getDataMangaFavourite())
         }
     }
 }

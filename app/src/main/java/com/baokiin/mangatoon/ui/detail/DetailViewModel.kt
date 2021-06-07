@@ -1,6 +1,5 @@
 package com.baokiin.mangatoon.ui.detail
 
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.lifecycle.MutableLiveData
@@ -75,7 +74,7 @@ class DetailViewModel(val rep: Repository, val local: RepositoryLocal) : ViewMod
 
     fun isMangas(title: String) {
         viewModelScope.launch {
-            isManga.postValue(local.isManga(title))
+            isManga.postValue(local.isMangaFavourite(title))
         }
     }
 
@@ -90,6 +89,7 @@ class DetailViewModel(val rep: Repository, val local: RepositoryLocal) : ViewMod
                     setMinAndMaxProgress(0.0f, 0.5f)
                     viewModelScope.launch {
                         mangaLocal?.let {
+                            it.favourite = true
                             local.insertManga(it)
                         }
                     }
