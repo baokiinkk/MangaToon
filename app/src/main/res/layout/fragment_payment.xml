@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:clickable="true"
+    android:focusable="true"
+    tools:context=".ui.payment.PaymentFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:drawableStart="@drawable/ic_back"
+        app:layout_constraintBottom_toBottomOf="@+id/textView18"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView18" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/gilroy_bold"
+        android:text="Nạp xu"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/ln22"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="15dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/ln109"
+        app:layout_constraintEnd_toStartOf="@+id/ln45"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView18">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center_horizontal"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/gilroy_bold"
+            android:text="22 Xu"
+            android:textColor="@color/green_color"
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:drawableBottom="@drawable/ic_coin" />
+
+        <TextView
+            android:id="@+id/txt22"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/select_payment"
+            android:gravity="bottom|center_horizontal|start"
+            android:paddingStart="20dp"
+            android:paddingBottom="20dp"
+            android:text="22 $"
+            android:textSize="25sp" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/ln999"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="50dp"
+        android:onClick="onClick"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/cardView3"
+        app:layout_constraintEnd_toEndOf="@+id/ln299"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ln299">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center_horizontal"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/gilroy_bold"
+            android:text="999 Xu"
+            android:textColor="@color/green_color"
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:drawableBottom="@drawable/ic_coin" />
+
+        <TextView
+            android:id="@+id/txt999"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/select_payment"
+            android:gravity="bottom|center_horizontal|start"
+            android:paddingStart="20dp"
+            android:paddingBottom="20dp"
+            android:text="999 $"
+            android:textSize="25sp" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/ln299"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:onClick="onClick"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/ln999"
+        app:layout_constraintEnd_toStartOf="@+id/ln499"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ln109">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center_horizontal"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/gilroy_bold"
+            android:text="299 Xu"
+            android:textColor="@color/green_color"
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:drawableBottom="@drawable/ic_coin" />
+
+        <TextView
+            android:id="@+id/txt299"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/select_payment"
+            android:gravity="bottom|center_horizontal|start"
+            android:paddingStart="20dp"
+            android:paddingBottom="20dp"
+            android:text="299 $"
+            android:textSize="25sp" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/ln109"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:onClick="onClick"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/ln299"
+        app:layout_constraintEnd_toStartOf="@+id/ln199"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ln22">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center_horizontal"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/gilroy_bold"
+            android:text="109 Xu"
+            android:textColor="@color/green_color"
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:drawableBottom="@drawable/ic_coin" />
+
+        <TextView
+            android:id="@+id/txt109"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/select_payment"
+            android:gravity="bottom|center_horizontal|start"
+            android:paddingStart="20dp"
+            android:paddingBottom="20dp"
+            android:text="109 $"
+            android:textSize="25sp" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/ln499"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="15dp"
+        android:onClick="onClick"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/ln999"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ln299"
+        app:layout_constraintTop_toBottomOf="@+id/ln199">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center_horizontal"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/gilroy_bold"
+            android:text="499 Xu"
+            android:textColor="@color/green_color"
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:drawableBottom="@drawable/ic_coin" />
+
+        <TextView
+            android:id="@+id/txt499"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/select_payment"
+            android:gravity="bottom|center_horizontal|start"
+            android:paddingStart="20dp"
+            android:paddingBottom="20dp"
+            android:text="499 $"
+            android:textSize="25sp" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/ln199"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="30dp"
+        android:onClick="onClick"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/ln499"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ln109"
+        app:layout_constraintTop_toBottomOf="@+id/ln45">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center_horizontal"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/gilroy_bold"
+            android:text="199 Xu"
+            android:textColor="@color/green_color"
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:drawableBottom="@drawable/ic_coin" />
+
+        <TextView
+            android:id="@+id/txt199"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/select_payment"
+            android:gravity="bottom|center_horizontal|start"
+            android:paddingStart="20dp"
+            android:paddingBottom="20dp"
+            android:text="199 $"
+            android:textSize="25sp" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/ln45"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="30dp"
+        android:onClick="onClick"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/ln199"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ln22"
+        app:layout_constraintTop_toBottomOf="@+id/textView18">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center_horizontal"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/gilroy_bold"
+            android:text="45 Xu"
+            android:textColor="@color/green_color"
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:drawableBottom="@drawable/ic_coin" />
+
+        <TextView
+            android:id="@+id/txt45"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/select_payment"
+            android:gravity="bottom|center_horizontal|start"
+            android:paddingStart="20dp"
+            android:paddingBottom="20dp"
+            android:text="45 $"
+            android:textSize="25sp" />
+    </FrameLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView3"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="10dp"
+
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:text="Số tiền sẽ trả"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/txtGia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="30dp"
+            android:layout_marginBottom="5dp"
+            android:text="0$"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/btnNap"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:background="@color/green_color"
+            android:text="Nạp xu"
+            android:textAllCaps="false"
+            android:textColor="@color/text_color_white"
+            android:textSize="20sp" />
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

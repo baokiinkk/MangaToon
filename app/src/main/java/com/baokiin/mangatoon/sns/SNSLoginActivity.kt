@@ -8,7 +8,6 @@ import com.baokiin.mangatoon.R
 import com.baokiin.mangatoon.data.model.UserSNS
 import com.baokiin.mangatoon.ui.activity.PhoneLoginActivity
 import com.baokiin.mangatoon.utils.SNSLoginType
-import com.baokiin.mangatoon.utils.Utils.SNS_LOGIN_TYPE
 import com.baokiin.mangatoon.utils.Utils.SNS_REQUEST_CODE_GOOGLE
 import com.baokiin.mangatoon.utils.Utils.SNS_REQUEST_CODE_PHONE
 import com.baokiin.mangatoon.utils.Utils.SNS_RESULT_CODE
@@ -121,7 +120,7 @@ abstract class SNSLoginActivity : AppCompatActivity() {
     protected fun signInFb() {
         instanceFacebookSignIn()
         LoginManager.getInstance()
-            .logInWithReadPermissions(this, arrayListOf("public_profile", "user_friends"))
+            .logInWithReadPermissions(this, arrayListOf("public_profile"))
     }
 
     protected fun singInPhone() {

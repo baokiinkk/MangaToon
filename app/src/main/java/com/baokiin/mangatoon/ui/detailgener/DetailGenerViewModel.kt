@@ -10,7 +10,7 @@ import androidx.paging.liveData
 import com.baokiin.mangatoon.data.model.Manga
 import com.baokiin.mangatoon.data.repository.Repository
 
-class DetailGenerViewModel(val rep: Repository) : ViewModel() {
+class DetailGenerViewModel(private val rep: Repository) : ViewModel() {
     var data: LiveData<PagingData<Manga>> = MutableLiveData()
     var title:String? = ""
     fun getData(endPoint: String) {

@@ -9,7 +9,7 @@ import com.baokiin.mangatoon.data.model.Manga
 import com.baokiin.mangatoon.databinding.ItemMangaBinding
 
 
-class ItemMangaAdapter(private val onClick: (Manga, Int) -> Unit) :
+class ItemMangaAdapter(private val onClick: (Manga) -> Unit) :
     ListAdapter<Manga, ItemMangaAdapter.ViewHolder>(
         MangaDIff()
     ) {
@@ -25,11 +25,11 @@ class ItemMangaAdapter(private val onClick: (Manga, Int) -> Unit) :
             }
         }
 
-        fun bind(item: Manga, onClick: ((Manga, Int) -> Unit)? = null) {
+        fun bind(item: Manga, onClick: ((Manga) -> Unit)? = null) {
             binding.data = item
             itemView.setOnClickListener {
                 if (onClick != null) {
-                    onClick(item, bindingAdapterPosition)
+                    onClick(item)
                 }
             }
             binding.executePendingBindings()

@@ -9,7 +9,7 @@ import com.baokiin.mangatoon.data.model.Manga
 import com.baokiin.mangatoon.databinding.ItemRecommendedBinding
 
 
-class ItemRecommendedAdapter(private val onClick: (Manga, Int) -> Unit) :
+class ItemRecommendedAdapter(private val onClick: (Manga) -> Unit) :
     ListAdapter<Manga, ItemRecommendedAdapter.ViewHolder>(
         FruitLocalDIff()
     ) {
@@ -29,11 +29,11 @@ class ItemRecommendedAdapter(private val onClick: (Manga, Int) -> Unit) :
             }
         }
 
-        fun bind(item: Manga, onClick: ((Manga, Int) -> Unit)? = null) {
+        fun bind(item: Manga, onClick: ((Manga) -> Unit)? = null) {
             binding.data = item
             itemView.setOnClickListener {
                 if (onClick != null) {
-                    onClick(item, bindingAdapterPosition)
+                    onClick(item)
                 }
             }
             binding.executePendingBindings()
