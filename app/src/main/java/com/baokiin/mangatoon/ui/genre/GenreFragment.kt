@@ -1,6 +1,7 @@
 package com.baokiin.mangatoon.ui.genre
 
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.Observer
 import com.baokiin.mangatoon.R
 import com.baokiin.mangatoon.databinding.FragmentGenreBinding
@@ -33,8 +34,15 @@ class GenreFragment : BaseFragment<FragmentGenreBinding>(){
         viewModel.genres.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.submitList(it.list_genre)
+                baseBinding.contentShimmerGener.stopShimmer()
+                baseBinding.contentShimmerGener.visibility = View.GONE
             }
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        baseBinding.contentShimmerGener.startShimmer()
     }
 
 }
