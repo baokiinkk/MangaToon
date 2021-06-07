@@ -12,4 +12,13 @@
     <string name="hello_world">Hello Square World!</string>
     <string name="login_google">Login Google</string>
     <string name="login_facebook">Login Facebook</string>
+    <string name="search">Search</string>
+    <string name="nameApp">MangaToon</string>
+    <string name="todo">TODO</string>
+    <string name="popular">Popular</string>
+    <string name="see_all">See all</string>
+    <string name="genres">Genres</string>
+    <string name="manhua">Manhua</string>
+    <string name="manhwa">Manhwa</string>
+    <string name="find_genre">Find Genre</string>
 </resources>

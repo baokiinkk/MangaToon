@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="data"
+            type="com.baokiin.mangatoon.data.model.ChapImage" />
+    </data>
+
+    <ImageView
+        android:background="#fff"
+        android:layout_width="match_parent"
+        android:image="@{data.chapter_image_link}"
+        android:layout_height="wrap_content">
+
+    </ImageView>
+</layout>

@@ -10,7 +10,7 @@
             type="com.baokiin.mangatoon.ui.genre.GenreViewModel" />
         <variable
             name="adapterGener"
-            type="com.baokiin.mangatoon.ui.adapter.ItemGenreAdapter" />
+            type="com.baokiin.mangatoon.adapter.ItemGenreAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,12 +19,12 @@
         tools:context=".ui.genre.GenreFragment">
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/imgLogo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/gilroy_bold"
-            android:text="Find Genre"
+            android:text="@string/find_genre"
             android:textColor="#000"
             android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -40,32 +40,58 @@
             android:layout_marginEnd="30dp"
             android:adapter="@{adapterGener}"
             android:list="@{viewmodel.genres}"
+            android:queryHint="Search"
+            android:searchIcon="@drawable/ic_search"
             android:background="@drawable/background_btn_search"
-            android:drawableStart="@drawable/ic_search"
-            android:drawablePadding="10dp"
-            android:fontFamily="@font/gilroy_bold"
-            android:paddingStart="20dp"
-            android:hint="Search"
-            android:textColor="#7C7C7C"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycleViewGenreFragment"
+
+        <FrameLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:layout_marginBottom="10dp"
-            android:adapter_fragment="@{adapterGener}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnSearch"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            >
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycleViewGenreFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adapter_fragment="@{adapterGener}"
+                />
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/contentShimmerGener"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:shimmer_duration="1000"
+
+                >
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <include layout="@layout/templace_item_manga_search"/>
+                        <include layout="@layout/templace_item_manga_search"/>
+                        <include layout="@layout/templace_item_manga_search"/>
+                        <include layout="@layout/templace_item_manga_search"/>
+                    </LinearLayout>
+                </androidx.core.widget.NestedScrollView>
+            </com.facebook.shimmer.ShimmerFrameLayout>
+        </FrameLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

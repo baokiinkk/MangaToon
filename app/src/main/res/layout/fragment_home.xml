@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:bind="http://schemas.android.com/apk/res-auto">
-
     <data>
         <variable
             name="viewmodel"
             type="com.baokiin.mangatoon.ui.home.HomeViewModel" />
         <variable
             name="adapterRecommended"
-            type="com.baokiin.mangatoon.ui.adapter.ItemRecommendedAdapter" />
+            type="com.baokiin.mangatoon.adapter.ItemRecommendedAdapter" />
         <variable
             name="adapterPopular"
-            type="com.baokiin.mangatoon.ui.adapter.ItemMangaAdapter"/>
+            type="com.baokiin.mangatoon.adapter.ItemMangaAdapter"/>
         <variable
             name="adapteManhua"
-            type="com.baokiin.mangatoon.ui.adapter.ItemMangaAdapter"/>
+            type="com.baokiin.mangatoon.adapter.ItemMangaAdapter"/>
         <variable
             name="adapterManhwa"
-            type="com.baokiin.mangatoon.ui.adapter.ItemMangaAdapter"/>
+            type="com.baokiin.mangatoon.adapter.ItemMangaAdapter"/>
         <variable
             name="adapterGener"
-            type="com.baokiin.mangatoon.ui.adapter.ItemGenreHomeAdapter" />
+            type="com.baokiin.mangatoon.adapter.ItemGenreHomeAdapter" />
     </data>
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -35,7 +35,7 @@
       >
 
       <ImageView
-          android:id="@+id/textView4"
+          android:id="@+id/imgLogo"
           android:layout_width="100dp"
           android:layout_height="100dp"
           android:layout_marginTop="20dp"
@@ -43,7 +43,8 @@
           android:src="@drawable/logo"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toTopOf="parent" />
+          app:layout_constraintTop_toTopOf="parent"
+          android:contentDescription="@string/todo" />
 
       <TextView
           android:id="@+id/btnSearch"
@@ -55,14 +56,15 @@
           android:background="@drawable/background_btn_search"
           android:paddingVertical="15dp"
           android:paddingStart="20dp"
-          android:text="Search"
+          android:text="@string/search"
           android:textColor="#7C7C7C"
           android:fontFamily="@font/gilroy_bold"
           android:drawableStart="@drawable/ic_search"
           android:drawablePadding="10dp"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/textView10" />
+          app:layout_constraintTop_toBottomOf="@+id/txtTitle"
+          tools:ignore="RtlSymmetry" />
 
       <androidx.cardview.widget.CardView
           android:id="@+id/cardViewTitle"
@@ -87,7 +89,7 @@
               android:id="@+id/contentShimmerRecommended"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              app:shimmer_duration="800"
+              app:shimmer_duration="1000"
 
               >
                   <LinearLayout
@@ -105,6 +107,7 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_gravity="bottom"
+              app:tabIndicator="@drawable/selected_dot"
               app:tabBackground="@drawable/tab_selection"
               app:tabGravity="center"/>
       </androidx.cardview.widget.CardView>
@@ -152,17 +155,17 @@
           />
 
       <TextView
-          android:id="@+id/textView10"
+          android:id="@+id/txtTitle"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="MangaToon"
+          android:text="@string/nameApp"
           android:fontFamily="@font/gilroy_bold"
           android:textColor="#000"
           android:textSize="25sp"
           
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/textView4" />
+          app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
 
   </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

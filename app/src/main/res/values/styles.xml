@@ -10,6 +10,12 @@
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
+    <style name="TextTabLayoutAppearance" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
     <!-- Splash Screen theme. -->
 
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">

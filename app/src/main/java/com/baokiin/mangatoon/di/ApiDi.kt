@@ -1,6 +1,6 @@
 package com.baokiin.mangatoon.di
 
-import com.baokiin.mangatoon.data.api.ApiService
+import com.baokiin.mangatoon.data.remote.api.ApiService
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
