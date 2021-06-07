@@ -1,5 +1,6 @@
 package com.baokiin.mangatoon.adapter
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,8 +10,7 @@ import com.baokiin.mangatoon.data.model.Genre
 import com.baokiin.mangatoon.databinding.ItemGenreBinding
 import kotlinx.android.synthetic.main.item_genre_home.view.*
 
-
-class ItemGenreAdapter(private val onClick: (Genre, Int) -> Unit) :
+class ItemGenreAdapter(private val onClick: (Genre) -> Unit) :
     ListAdapter<Genre, ItemGenreAdapter.ViewHolder>(
         GenreDIff()
     ) {
@@ -26,7 +26,7 @@ class ItemGenreAdapter(private val onClick: (Genre, Int) -> Unit) :
             }
         }
 
-        fun bind(item: Genre, onClick: ((Genre, Int) -> Unit)? = null) {
+        fun bind(item: Genre, onClick: ((Genre) -> Unit)? = null) {
             binding.data = item
             itemView.cardViewItemGenre.setCardBackgroundColor(
                 when (bindingAdapterPosition % 4) {
@@ -39,7 +39,7 @@ class ItemGenreAdapter(private val onClick: (Genre, Int) -> Unit) :
             )
             itemView.setOnClickListener {
                 if (onClick != null) {
-                    onClick(item, bindingAdapterPosition)
+                    onClick(item)
                 }
             }
             binding.executePendingBindings()
@@ -57,10 +57,10 @@ class ItemGenreAdapter(private val onClick: (Genre, Int) -> Unit) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         getItem(position)?.let { holder.bind(it, onClick) }
     }
-
+    @SuppressLint("DefaultLocale")
     fun filter(newText: CharSequence?, list: MutableList<Genre>) {
-        newText?.let {
-            val words = it.split(" ").toMutableList()
+        newText?.let { text ->
+            val words = text.split(" ").toMutableList()
             var output = ""
             for (word in words) {
                 output += word.capitalize() + " "
