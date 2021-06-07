@@ -1,7 +1,6 @@
 package com.baokiin.mangatoon.ui.detailgener
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import com.baokiin.mangatoon.R
@@ -12,6 +11,7 @@ import com.baokiin.mangatoon.adapter.ItemMangaPagingAdapter
 import com.baokiin.mangatoon.ui.detail.DetailFragment
 import com.baokiin.mangatoon.ui.home.HomeFragment
 import com.baokiin.mangatoon.utils.Utils.DATA
+import com.baokiin.mangatoon.utils.Utils.ENDPOINT
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -26,12 +26,27 @@ class DetailGenerFragment : BaseFragment<FragmentDetailGenerBinding>() {
         super.onResume()
         baseBinding.contentShimmerDetailGener.startShimmer()
     }
+
     val viewModel: DetailGenerViewModel by viewModel()
     override fun onCreateViews() {
-        baseBinding.viewmodel = viewModel
+        val itemMangaPagingAdapter = ItemMangaPagingAdapter { manga ->
+            val bundle = Bundle()
+            bundle.putSerializable(ENDPOINT, manga)
+            val fragment = DetailFragment()
+            fragment.arguments = bundle
+            requireActivity().supportFragmentManager.beginTransaction()
+                .setCustomAnimations(
+                    R.anim.slide_in_right,
+                    R.anim.slide_out_left,
+                    android.R.anim.fade_in,
+                    android.R.anim.slide_out_right
+                )
+                .add(R.id.containerFragment, fragment)
+                .addToBackStack(HomeFragment::class.java.simpleName)
+                .commit()
+        }
         val data: Genre = arguments?.get(DATA) as Genre
         data.endpoint?.let {
-
             viewModel.apply {
                 if (it == "popular")
                     getDataPopular()
@@ -42,25 +57,17 @@ class DetailGenerFragment : BaseFragment<FragmentDetailGenerBinding>() {
                 title = data.genre_name
             }
         }
-
-        baseBinding.btnBack.setOnClickListener {
-            requireActivity().onBackPressed()
+        baseBinding.apply {
+            viewmodel = viewModel
+            adapter = itemMangaPagingAdapter
+            btnBack.setOnClickListener {
+                requireActivity().onBackPressed()
+            }
         }
-        val adapter = ItemMangaPagingAdapter { manga, i ->
-            val bundle = Bundle()
-            bundle.putString("endPoint", manga.endpoint)
-            val fragment = DetailFragment()
-            fragment.arguments = bundle
-            requireActivity().supportFragmentManager.beginTransaction()
-                .add(R.id.containerFragment, fragment)
-                .addToBackStack(HomeFragment::class.java.simpleName)
-                .commit()
-        }
-        baseBinding.adapter = adapter
         viewModel.data.observe(viewLifecycleOwner, Observer {
             it?.let {
                 GlobalScope.launch {
-                    adapter.submitData(it)
+                    itemMangaPagingAdapter.submitData(it)
                 }
                 baseBinding.contentShimmerDetailGener.stopShimmer()
                 baseBinding.contentShimmerDetailGener.visibility = View.GONE
