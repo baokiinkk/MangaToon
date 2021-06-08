@@ -10,5 +10,6 @@ interface RepositoryLocal{
    suspend fun getDataManga():MutableList<Manga>
    suspend fun insertManga(manga:Manga):Boolean
    suspend fun deleteManga(manga:Manga):Boolean
-   suspend fun isManga(title:String):Boolean
+   suspend fun updateManga(manga: Manga)
+   suspend fun isMangaFavourite(title:String):Boolean
 }

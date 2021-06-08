@@ -24,14 +24,16 @@ class RepositoryLocalImpl(val dao: AppDao) : RepositoryLocal {
             false
         }
 
-    override suspend fun isManga(title: String): Boolean =
+    override suspend fun updateManga(manga: Manga) =
+        dao.updateManga(manga)
+
+    override suspend fun isMangaFavourite(title: String): Boolean =
         try {
-            if (dao.isManga(title) != null)
+            if (dao.isMangaFavourite(title) != null)
                 true
             else
                 false
         } catch (e: Exception) {
             false
         }
-
 }

@@ -11,7 +11,7 @@ import com.baokiin.mangatoon.databinding.ItemGenreHomeBinding
 import kotlinx.android.synthetic.main.item_genre_home.view.*
 
 
-class ItemGenreHomeAdapter(private val onClick: (Genre, Int) -> Unit) :
+class ItemGenreHomeAdapter(private val onClick: (Genre) -> Unit) :
     ListAdapter<Genre, ItemGenreHomeAdapter.ViewHolder>(
         GenreDIff()
     ) {
@@ -27,7 +27,7 @@ class ItemGenreHomeAdapter(private val onClick: (Genre, Int) -> Unit) :
             }
         }
 
-        fun bind(item: Genre, onClick: ((Genre, Int) -> Unit)? = null) {
+        fun bind(item: Genre, onClick: ((Genre) -> Unit)? = null) {
             binding.data = item
             itemView.cardViewItemGenre.setCardBackgroundColor(
                 when (bindingAdapterPosition % 4) {
@@ -40,7 +40,7 @@ class ItemGenreHomeAdapter(private val onClick: (Genre, Int) -> Unit) :
             )
             itemView.setOnClickListener {
                 if (onClick != null) {
-                    onClick(item, bindingAdapterPosition)
+                    onClick(item)
                 }
             }
             binding.executePendingBindings()

@@ -7,9 +7,9 @@ import com.baokiin.mangatoon.data.model.Manga
 import com.baokiin.mangatoon.data.repository.RepositoryLocal
 import kotlinx.coroutines.launch
 
-class LibraryViewModel(val local:RepositoryLocal) :ViewModel(){
+class LibraryViewModel(val local: RepositoryLocal) : ViewModel() {
     val data: MutableLiveData<MutableList<Manga>?> = MutableLiveData(null)
-    fun getData(){
+    fun getData() {
         viewModelScope.launch {
             data.postValue(local.getDataManga())
         }

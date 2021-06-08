@@ -1,11 +1,13 @@
 package com.baokiin.mangatoon.binding
 
-import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import androidx.lifecycle.MutableLiveData
 import androidx.viewpager2.widget.ViewPager2
 import com.baokiin.mangatoon.R
+import com.baokiin.mangatoon.adapter.ItemMangaAdapter
 import com.baokiin.mangatoon.adapter.ItemRecommendedAdapter
 import com.baokiin.mangatoon.adapter.ViewPageAdapter
+import com.baokiin.mangatoon.data.model.Manga
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.Dispatchers
@@ -78,12 +80,35 @@ class TabBinding {
                     if (index < adapter.itemCount - 1)
                         index++
                     else
-                        index = 0;
+                        index = 0
                     view.setCurrentItem(index, true)
                 }
 
             }
         }
+        @BindingAdapter( "android:adapter","android:dataManga")
+        @JvmStatic
+        fun tabLayoutLibrary(view:TabLayout, adapter: ItemMangaAdapter,data: MutableLiveData<MutableList<Manga>?>) {
+            view.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+                override fun onTabReselected(tab: TabLayout.Tab?) {}
+                override fun onTabUnselected(tab: TabLayout.Tab?) {}
+
+                override fun onTabSelected(tab: TabLayout.Tab?) {
+                    val tmp  =data.value?.filter {
+                        when(tab?.position){
+                            0-> it.recents == true
+                            1-> it.favourite == true
+                            else -> {it.recents == true}
+                        }
+                    }?.toMutableList()
+                    adapter.submitList(tmp)
+                    adapter.notifyDataSetChanged()
+                }
+
+            })
+        }
 
     }
+
+
 }

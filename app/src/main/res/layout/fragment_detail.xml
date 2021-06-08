@@ -140,6 +140,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:tabGravity="fill"
                 app:tabMode="fixed"
+                app:tabIndicatorFullWidth="false"
                 app:tabSelectedTextColor="@color/green_color"
                 app:tabTextAppearance="@style/TextTabLayoutAppearance">
 

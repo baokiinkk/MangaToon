@@ -24,5 +24,5 @@ val blankViewmodelDi: Module = module {
     viewModel { LibraryViewModel(get()) }
     viewModel { MineViewModel(get()) }
     viewModel { LoginViewModel(get()) }
-    viewModel { DetailChapterViewModel(get()) }
+    viewModel { DetailChapterViewModel(get(),get()) }
 }

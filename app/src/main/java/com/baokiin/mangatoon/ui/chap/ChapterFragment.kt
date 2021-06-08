@@ -30,6 +30,7 @@ class ChapterFragment :
                 bundle.putInt("endpoint",index)
             }
             bundle.putSerializable("detailManga",viewmodel.data.value)
+            bundle.putSerializable("manga",viewmodel.mangaLocal)
             val fragment = DetailChapterFragment()
             fragment.resiveOnBackFromDetailChap(object :backtoChap{
                 override fun onClickBack() {

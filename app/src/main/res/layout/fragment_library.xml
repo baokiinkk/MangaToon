@@ -5,12 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewmodel"
             type="com.baokiin.mangatoon.ui.library.LibraryViewModel" />
+
         <variable
             name="adapter"
-            type="com.baokiin.mangatoon.adapter.ItemMangaAdapter"/>
+            type="com.baokiin.mangatoon.adapter.ItemMangaAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,35 +21,20 @@
         android:background="#fff"
         tools:context=".ui.detailgener.DetailGenerFragment">
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:orientation="vertical"
+            android:fontFamily="@font/gilroy_bold"
+            android:text="@string/library"
+            android:textColor="#000"
+            android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/btnBack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginStart="20dp"
-                android:drawableStart="@drawable/ic_back"
-                android:gravity="start" />
-
-
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/btnSearch"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/background_btn_search"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginVertical="10dp"
-                android:gravity="end" />
-        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="0dp"
@@ -61,8 +48,35 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/tabLayout2" />
 
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:adapter="@{adapter}"
+            android:dataManga="@{viewmodel.data}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTitle"
+            app:tabGravity="fill"
+            app:tabIndicatorFullWidth="false"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/green_color"
+            app:tabTextAppearance="@style/TextTabLayoutAppearance">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/recents" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/favourite" />
+
+        </com.google.android.material.tabs.TabLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
