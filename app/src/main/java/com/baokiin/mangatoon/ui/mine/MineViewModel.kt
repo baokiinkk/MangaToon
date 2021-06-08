@@ -15,7 +15,7 @@ class MineViewModel(val local: RepositoryLocal) : ViewModel() {
         viewModelScope.launch {
             auth.currentUser?.let {
                 val firebase = db.collection(it.uid)
-                val data = local.getDataMangaFavourite()
+                val data = local.getDataManga()
 
                 data.forEach {
                     local.deleteManga(it)

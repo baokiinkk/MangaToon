@@ -22,4 +22,6 @@
     <string name="manhwa">Manhwa</string>
     <string name="find_genre">Find Genre</string>
     <string name="library">Library</string>
+    <string name="recents">Recents</string>
+    <string name="favourite">Favourite</string>
 </resources>

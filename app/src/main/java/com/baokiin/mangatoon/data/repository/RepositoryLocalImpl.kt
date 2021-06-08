@@ -4,7 +4,7 @@ import com.baokiin.mangatoon.data.local.AppDao
 import com.baokiin.mangatoon.data.model.Manga
 
 class RepositoryLocalImpl(val dao: AppDao) : RepositoryLocal {
-    override suspend fun getDataMangaFavourite(): MutableList<Manga> =
+    override suspend fun getDataManga(): MutableList<Manga> =
         dao.getDataManga()
 
     override suspend fun insertManga(manga: Manga): Boolean =

@@ -1,6 +1,5 @@
 package com.baokiin.mangatoon.binding
 
-import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 import androidx.viewpager2.widget.ViewPager2
@@ -81,7 +80,7 @@ class TabBinding {
                     if (index < adapter.itemCount - 1)
                         index++
                     else
-                        index = 0;
+                        index = 0
                     view.setCurrentItem(index, true)
                 }
 

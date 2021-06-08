@@ -91,6 +91,7 @@ class DetailViewModel(val rep: Repository, val local: RepositoryLocal) : ViewMod
                         mangaLocal?.let {
                             it.favourite = true
                             local.insertManga(it)
+                            local.updateManga(it)
                         }
                     }
                 } else {

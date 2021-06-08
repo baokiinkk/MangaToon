@@ -7,7 +7,7 @@ import com.baokiin.mangatoon.data.remote.paging.PopularPagingSource
 
 
 interface RepositoryLocal{
-   suspend fun getDataMangaFavourite():MutableList<Manga>
+   suspend fun getDataManga():MutableList<Manga>
    suspend fun insertManga(manga:Manga):Boolean
    suspend fun deleteManga(manga:Manga):Boolean
    suspend fun updateManga(manga: Manga)
