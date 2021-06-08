@@ -13,6 +13,7 @@ object Utils {
     const val USER = "user"
 
     const val ENDPOINT = "endPoint"
+    const val COIN = "coin"
 
     const val SNS_REQUEST_CODE_GOOGLE = 887
 

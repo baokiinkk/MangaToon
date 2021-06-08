@@ -1,17 +1,19 @@
 package com.baokiin.mangatoon.ui.activity
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.baokiin.mangatoon.R
-import com.facebook.AccessToken
+import com.baokiin.mangatoon.utils.Utils.COIN
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_phone_login.*
 import kotlinx.android.synthetic.main.phone_digit_code.view.*
@@ -23,10 +25,12 @@ class PhoneLoginActivity : AppCompatActivity() {
     private lateinit var forceResend: PhoneAuthProvider.ForceResendingToken
     private lateinit var mVerficationId: String
     private lateinit var auth: FirebaseAuth
+    var gia = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_phone_login)
+        gia = intent.getLongExtra(COIN,0)
         init()
     }
 
@@ -94,24 +98,35 @@ class PhoneLoginActivity : AppCompatActivity() {
 
     }
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
-        auth.currentUser?.linkWithCredential(credential)
-            ?.addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                     finish()
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Toast.makeText(
-                        baseContext, "Authentication failed by code error.",
-                        Toast.LENGTH_SHORT
-                    ).show()
+        auth.currentUser?.let { user->
+            user.linkWithCredential(credential)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val db = Firebase.firestore
+                        db.collection(user.uid).document("Coin").get()
+                            .addOnSuccessListener {
+                                val giaOld = it["coin"] as Long
+                                db.collection(user.uid).document("Coin")
+                                    .update("coin" , gia+giaOld)
+
+                            }
+                        user.updatePhoneNumber(credential)
+                        user.unlink(credential.provider)
+                        finish()
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Toast.makeText(
+                            baseContext, "Authentication failed by code error.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
-            }
+        }
     }
 
     private fun instancePhoneSignIn() {
         phoneCallBack = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             override fun onVerificationCompleted(p0: PhoneAuthCredential) {
-                signInWithPhoneAuthCredential(p0)
                 Toast.makeText(this@PhoneLoginActivity, p0.smsCode, Toast.LENGTH_SHORT).show()
             }
 

@@ -1,6 +1,7 @@
 package com.baokiin.mangatoon.binding
 
 import android.annotation.SuppressLint
+import android.net.Uri
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
@@ -13,6 +14,7 @@ import coil.load
 import com.airbnb.lottie.LottieAnimationView
 import com.baokiin.mangatoon.R
 import com.baokiin.mangatoon.adapter.ItemChapterAdapter
+import com.google.firebase.auth.FirebaseUser
 import org.w3c.dom.Text
 
 class UtilsBinding{
@@ -41,6 +43,18 @@ class UtilsBinding{
 
             }
         }
+        @BindingAdapter("android:image_auth")
+        @JvmStatic
+        fun loadImageChap(view: ImageView, image: Uri?) {
+            view.setClipToOutline(true);
+            image?.let {
+                view.load(it) {
+                    size(1000, 2600)
+                    placeholder(R.drawable.ic_launcher_background)
+                }
+
+            }
+        }
 
         @BindingAdapter("android:text_custom")
         @JvmStatic
@@ -55,6 +69,12 @@ class UtilsBinding{
             val tmp = text.split("-")
             val tmp2 =tmp[tmp.size - 2] + " " + tmp[tmp.size - 1]
             view.text = tmp2
+        }
+
+        @BindingAdapter("android:text_auth")
+        @JvmStatic
+        fun textAuth(view: TextView, auth:FirebaseUser?) {
+           view.text = auth?.email?:auth?.phoneNumber?:""
         }
     }
 }

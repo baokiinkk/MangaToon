@@ -73,6 +73,7 @@ class LoginActivity : SNSLoginActivity() {
 
     private fun updateUI(user: UserSNS?) {
        viewModel.getDataFromFirestore(auth.currentUser)
+        viewModel.createAuth(auth.currentUser)
         finish()
 
     }

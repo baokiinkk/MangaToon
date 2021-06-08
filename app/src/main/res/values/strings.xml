@@ -24,4 +24,10 @@
     <string name="library">Library</string>
     <string name="recents">Recents</string>
     <string name="favourite">Favourite</string>
+    <string name="xu">Xu</string>
+    <string name="n_p_xu">Nạp xu</string>
+    <string name="history">History</string>
+    <string name="help">Help</string>
+    <string name="about">About</string>
+    <string name="log_out">Log out</string>
 </resources>

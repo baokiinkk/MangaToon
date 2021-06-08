@@ -1,5 +1,6 @@
 package com.baokiin.mangatoon.ui.activity
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.baokiin.mangatoon.data.model.Manga
 import com.baokiin.mangatoon.data.repository.RepositoryLocal
@@ -19,13 +20,26 @@ class LoginViewModel(val rep:RepositoryLocal) :ViewModel(){
                 .addOnSuccessListener { doc ->
                     GlobalScope.launch(Dispatchers.IO) {
                         doc.documents.forEach {
-                            val gson = Gson()
-                            val jsonElement = gson.toJsonTree(it.data)
-                            val data = gson.fromJson(jsonElement, Manga::class.java)
-                            rep.insertManga(data)
+                            if(it.get("coin") == null) {
+                                val gson = Gson()
+                                val jsonElement = gson.toJsonTree(it.data)
+                                val data = gson.fromJson(jsonElement, Manga::class.java)
+                                rep.insertManga(data)
+                            }
                         }
                     }
 
+                }
+        }
+    }
+
+    fun createAuth(auth: FirebaseUser?){
+        auth?.let { user->
+            db.collection(user.uid).document("Coin").get()
+                .addOnSuccessListener {
+                    if(it.get("coin") == null){
+                        db.collection(user.uid).document("Coin").set(mapOf("coin" to 50))
+                    }
                 }
         }
     }
