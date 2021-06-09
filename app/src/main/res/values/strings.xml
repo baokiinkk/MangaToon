@@ -30,4 +30,6 @@
     <string name="help">Help</string>
     <string name="about">About</string>
     <string name="log_out">Log out</string>
+    <string name="payment_text">By placing an order you agree to our \n
+        <font color="#000">Terms</font> And <font color="#000"> Conditions </font> </string>
 </resources>
