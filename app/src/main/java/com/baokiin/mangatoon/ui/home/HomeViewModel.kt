@@ -8,22 +8,23 @@ import com.baokiin.mangatoon.data.model.MangaList
 import com.baokiin.mangatoon.data.repository.Repository
 import kotlinx.coroutines.launch
 
-class HomeViewModel(val re:Repository) :ViewModel(){
+class HomeViewModel(val repository:Repository) :ViewModel(){
     val recommended:MutableLiveData<MangaList?> = MutableLiveData(null)
     val popular:MutableLiveData<MangaList?> = MutableLiveData(null)
     val genres:MutableLiveData<GenresList?> = MutableLiveData(null)
     val manHua:MutableLiveData<MangaList?> = MutableLiveData(null)
     val manhwa :MutableLiveData<MangaList?> = MutableLiveData(null)
+
     fun getRecommended(){
         viewModelScope.launch {
-            re.getRecommended()?.let {
+            repository.getRecommended()?.let {
                 recommended.postValue(it)
             }
         }
     }
     fun getPopular(page:Int){
         viewModelScope.launch {
-            re.getPopular(page)?.let {
+            repository.getPopular(page)?.let {
                 popular.postValue(it)
             }
         }
@@ -31,14 +32,14 @@ class HomeViewModel(val re:Repository) :ViewModel(){
 
     fun getManhua(page:Int){
         viewModelScope.launch {
-            re.getComic("manhua",page)?.let {
+            repository.getComic("manhua",page)?.let {
                 manHua.postValue(it)
             }
         }
     }
     fun getManhwa(page:Int){
         viewModelScope.launch {
-            re.getComic("manhwa",page)?.let {
+            repository.getComic("manhwa",page)?.let {
                 manhwa.postValue(it)
             }
         }
@@ -46,7 +47,7 @@ class HomeViewModel(val re:Repository) :ViewModel(){
 
     fun getGenres(){
         viewModelScope.launch {
-            re.getGenres()?.let {
+            repository.getGenres()?.let {
                 genres.postValue(it)
             }
         }

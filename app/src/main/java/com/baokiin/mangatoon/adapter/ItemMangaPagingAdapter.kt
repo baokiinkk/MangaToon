@@ -8,7 +8,7 @@ import com.baokiin.mangatoon.data.model.Manga
 import com.baokiin.mangatoon.databinding.ItemDetailGenreBinding
 
 
-class ItemMangaPagingAdapter(private val onClick: (Manga, Int) -> Unit) :
+class ItemMangaPagingAdapter(private val onClick: (Manga) -> Unit) :
     PagingDataAdapter<Manga, ItemMangaPagingAdapter.ViewHolder>(
         MangaDIff()
     ) {
@@ -28,11 +28,11 @@ class ItemMangaPagingAdapter(private val onClick: (Manga, Int) -> Unit) :
             }
         }
 
-        fun bind(item: Manga, onClick: ((Manga, Int) -> Unit)? = null) {
+        fun bind(item: Manga, onClick: ((Manga) -> Unit)? = null) {
             binding.data = item
             itemView.setOnClickListener {
                 if (onClick != null) {
-                    onClick(item, bindingAdapterPosition)
+                    onClick(item)
                 }
             }
             binding.executePendingBindings()

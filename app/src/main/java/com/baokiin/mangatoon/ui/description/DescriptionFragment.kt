@@ -2,6 +2,7 @@ package com.baokiin.mangatoon.ui.description
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.Observer
 import com.baokiin.mangatoon.R
 import com.baokiin.mangatoon.databinding.FragmentDescriptionBinding
@@ -13,6 +14,7 @@ import com.baokiin.mangatoon.ui.chapterdetail.DetailChapterFragment
 import com.baokiin.mangatoon.ui.detail.DetailFragment
 import com.baokiin.mangatoon.ui.detail.DetailViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DescriptionFragment : BaseFragment<FragmentDescriptionBinding>() {
     override fun getLayoutRes(): Int {
@@ -20,6 +22,7 @@ class DescriptionFragment : BaseFragment<FragmentDescriptionBinding>() {
     }
 
     val viewModel: DetailViewModel by sharedViewModel()
+
     override fun onCreateViews() {
         val adapterDes = ItemGenreDescriptionAdapter { genre, i ->
 

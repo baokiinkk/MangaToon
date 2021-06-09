@@ -12,4 +12,22 @@
     <string name="hello_world">Hello Square World!</string>
     <string name="login_google">Login Google</string>
     <string name="login_facebook">Login Facebook</string>
+    <string name="search">Search</string>
+    <string name="nameApp">MangaToon</string>
+    <string name="todo">TODO</string>
+    <string name="popular">Popular</string>
+    <string name="see_all">See all</string>
+    <string name="genres">Genres</string>
+    <string name="manhua">Manhua</string>
+    <string name="manhwa">Manhwa</string>
+    <string name="find_genre">Find Genre</string>
+    <string name="library">Library</string>
+    <string name="recents">Recents</string>
+    <string name="favourite">Favourite</string>
+    <string name="xu">Xu</string>
+    <string name="n_p_xu">Nạp xu</string>
+    <string name="history">History</string>
+    <string name="help">Help</string>
+    <string name="about">About</string>
+    <string name="log_out">Log out</string>
 </resources>

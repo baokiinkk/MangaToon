@@ -1,36 +1,43 @@
 package com.baokiin.mangatoon.ui.activity
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.baokiin.mangatoon.R
-import com.baokiin.mangatoon.utils.Utils.SNS_RESULT_CODE
-import com.baokiin.mangatoon.utils.Utils.SNS_RESULT_DATA
+import com.baokiin.mangatoon.utils.Utils.COIN
 import com.google.firebase.FirebaseException
-import com.google.firebase.auth.*
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.PhoneAuthCredential
+import com.google.firebase.auth.PhoneAuthOptions
+import com.google.firebase.auth.PhoneAuthProvider
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_phone_login.*
 import kotlinx.android.synthetic.main.phone_digit_code.view.*
 import java.util.concurrent.TimeUnit
+
 
 class PhoneLoginActivity : AppCompatActivity() {
     private lateinit var phoneCallBack: PhoneAuthProvider.OnVerificationStateChangedCallbacks
     private lateinit var forceResend: PhoneAuthProvider.ForceResendingToken
     private lateinit var mVerficationId: String
     private lateinit var auth: FirebaseAuth
+    var gia = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_phone_login)
+        gia = intent.getLongExtra(COIN,0)
         init()
     }
 
+
     private fun init() {
-        auth = FirebaseAuth.getInstance()
-
         instancePhoneSignIn()
-
+        auth = Firebase.auth
         buttonGetCode.setOnClickListener {
             val phone = edit_phoneNumber.text.toString()
             if (phone.isEmpty() || phone.length != 9) {
@@ -86,34 +93,41 @@ class PhoneLoginActivity : AppCompatActivity() {
         verificationId?.let {
             val credential = PhoneAuthProvider.getCredential(it, code)
             signInWithPhoneAuthCredential(credential)
+
         }
 
 
     }
-
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
-        auth.signInWithCredential(credential)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    val intent = Intent()
-                    intent.putExtra(SNS_RESULT_DATA, auth.currentUser)
-                    setResult(SNS_RESULT_CODE, intent)
-                    finish()
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Toast.makeText(
-                        baseContext, "Authentication failed by code error.",
-                        Toast.LENGTH_SHORT
-                    ).show()
+        auth.currentUser?.let { user->
+            user.linkWithCredential(credential)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val db = Firebase.firestore
+                        db.collection(user.uid).document("Coin").get()
+                            .addOnSuccessListener {
+                                val giaOld = it["coin"] as Long
+                                db.collection(user.uid).document("Coin")
+                                    .update("coin" , gia+giaOld)
+
+                            }
+                        user.updatePhoneNumber(credential)
+                        user.unlink(credential.provider)
+                        finish()
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Toast.makeText(
+                            baseContext, "Authentication failed by code error.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
-            }
+        }
     }
 
     private fun instancePhoneSignIn() {
         phoneCallBack = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             override fun onVerificationCompleted(p0: PhoneAuthCredential) {
-                //signInWithPhoneAuthCredential(p0)
                 Toast.makeText(this@PhoneLoginActivity, p0.smsCode, Toast.LENGTH_SHORT).show()
             }
 

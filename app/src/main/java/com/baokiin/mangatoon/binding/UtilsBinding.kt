@@ -1,6 +1,7 @@
 package com.baokiin.mangatoon.binding
 
 import android.annotation.SuppressLint
+import android.net.Uri
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
@@ -13,10 +14,11 @@ import coil.load
 import com.airbnb.lottie.LottieAnimationView
 import com.baokiin.mangatoon.R
 import com.baokiin.mangatoon.adapter.ItemChapterAdapter
+import com.google.firebase.auth.FirebaseUser
 import org.w3c.dom.Text
 
 class UtilsBinding{
-    companion object{
+    companion object {
         @BindingAdapter("android:profileImage")
         @JvmStatic
         fun loadImage(view: ImageView, image: String?) {
@@ -24,7 +26,6 @@ class UtilsBinding{
             image?.let {
                 view.load(it.replace("w=225", "w=500")) {
                     placeholder(R.drawable.templace_backround)
-
                 }
 
             }
@@ -36,19 +37,44 @@ class UtilsBinding{
             view.setClipToOutline(true);
             image?.let {
                 view.load(it) {
-                    size(1000,2600)
+                    size(1000, 2600)
                     placeholder(R.drawable.ic_launcher_background)
                 }
 
             }
         }
+        @BindingAdapter("android:image_auth")
+        @JvmStatic
+        fun loadImageChap(view: ImageView, image: Uri?) {
+            view.setClipToOutline(true);
+            image?.let {
+                view.load(it) {
+                    size(1000, 2600)
+                    placeholder(R.drawable.ic_launcher_background)
+                }
+
+            }
+        }
+
         @BindingAdapter("android:text_custom")
         @JvmStatic
-        fun textView(view: TextView, text:String) {
+        fun textView(view: TextView, text: String) {
             val tmp = text.split(" ")
-            val tmp2 = tmp[tmp.size-2]+" "+tmp[tmp.size-1]
+            val tmp2 =tmp[0]+". "+ tmp[tmp.size - 2] + " " + tmp[tmp.size - 1]
+            view.text = tmp2
+        }
+        @BindingAdapter("android:text_custom_endpoint")
+        @JvmStatic
+        fun text(view: TextView, text: String) {
+            val tmp = text.split("-")
+            val tmp2 =tmp[tmp.size - 2] + " " + tmp[tmp.size - 1]
             view.text = tmp2
         }
 
+        @BindingAdapter("android:text_auth")
+        @JvmStatic
+        fun textAuth(view: TextView, auth:FirebaseUser?) {
+           view.text = auth?.email?:auth?.phoneNumber?:""
+        }
     }
 }
