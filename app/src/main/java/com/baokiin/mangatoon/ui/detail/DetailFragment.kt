@@ -13,14 +13,13 @@ import com.baokiin.mangatoon.ui.description.DescriptionFragment
 import com.baokiin.mangatoon.utils.Utils.ENDPOINT
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
-
 class DetailFragment : BaseFragment<FragmentDetailBinding>() {
     override fun getLayoutRes(): Int {
         return R.layout.fragment_detail
     }
 
     private val viewModel: DetailViewModel by sharedViewModel()
-    private lateinit var adapterViewPager:ViewPageAdapter
+    private lateinit var adapterViewPager: ViewPageAdapter
     override fun onCreateViews() {
         val manga: Manga? = arguments?.getSerializable(ENDPOINT) as Manga
         adapterViewPager = ViewPageAdapter(
@@ -29,7 +28,8 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
         )
         manga?.let {
             it.endpoint?.let { it1 ->
-                viewModel.getData(it1) }
+                viewModel.getData(it1)
+            }
             viewModel.isMangas(it.title)
         }
 

@@ -1,16 +1,14 @@
 package com.baokiin.mangatoon.adapter
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.baokiin.mangatoon.data.model.Genre
 import com.baokiin.mangatoon.databinding.ItemGenreDescriptionBinding
-import kotlinx.android.synthetic.main.item_genre_home.view.*
 
 
-class ItemGenreDescriptionAdapter(private val onClick: (Genre, Int) -> Unit) :
+class ItemGenreDescriptionAdapter :
     ListAdapter<Genre, ItemGenreDescriptionAdapter.ViewHolder>(
         GenreDIff()
     ) {
@@ -30,13 +28,8 @@ class ItemGenreDescriptionAdapter(private val onClick: (Genre, Int) -> Unit) :
             }
         }
 
-        fun bind(item: Genre, onClick: ((Genre, Int) -> Unit)? = null) {
+        fun bind(item: Genre) {
             binding.data = item
-            itemView.setOnClickListener {
-                if (onClick != null) {
-                    onClick(item, bindingAdapterPosition)
-                }
-            }
             binding.executePendingBindings()
 
         }
@@ -50,6 +43,6 @@ class ItemGenreDescriptionAdapter(private val onClick: (Genre, Int) -> Unit) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        getItem(position)?.let { holder.bind(it, onClick) }
+        getItem(position)?.let { holder.bind(it) }
     }
 }

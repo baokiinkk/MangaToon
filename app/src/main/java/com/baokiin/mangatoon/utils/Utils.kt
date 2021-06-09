@@ -14,6 +14,8 @@ object Utils {
 
     const val ENDPOINT = "endPoint"
     const val COIN = "coin"
+    const val DETAILMANGA="detailManga"
+    const val MANGA="manga"
 
     const val SNS_REQUEST_CODE_GOOGLE = 887
 

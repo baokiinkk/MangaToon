@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
 
         <variable
@@ -35,7 +34,8 @@
                 android:src="@drawable/templace_backround"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
 
 
             <androidx.constraintlayout.utils.widget.ImageFilterView
@@ -135,16 +135,6 @@
                 app:tabTextColor="@color/text_color_white"
                 app:tabSelectedTextColor="@color/green_color"
                 app:tabTextAppearance="@style/TextTabLayoutAppearance">
-
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Monday" />
-
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Tuesday" />
 
 
             </com.google.android.material.tabs.TabLayout>

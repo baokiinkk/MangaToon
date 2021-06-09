@@ -12,7 +12,7 @@ import com.baokiin.mangatoon.data.model.Genre
 import com.baokiin.mangatoon.databinding.ItemChapterBinding
 
 
-class ItemChapterAdapter(private val onClick: (Chapter, Int) -> Unit) :
+class ItemChapterAdapter(private val onClick: (Chapter) -> Unit) :
     ListAdapter<Chapter, ItemChapterAdapter.ViewHolder>(
         ChapDIff()
     ) {
@@ -28,12 +28,12 @@ class ItemChapterAdapter(private val onClick: (Chapter, Int) -> Unit) :
             }
         }
 
-        fun bind(item: Chapter, onClick: ((Chapter, Int) -> Unit)? = null) {
+        fun bind(item: Chapter, onClick: ((Chapter) -> Unit)? = null) {
             binding.data = item
             binding.txtLock.setBackgroundResource(if(item.lock) R.drawable.ic_ok else R.drawable.ic_lock)
             itemView.setOnClickListener {
                 if (onClick != null) {
-                    onClick(item, bindingAdapterPosition)
+                    onClick(item)
                 }
             }
             binding.executePendingBindings()
@@ -49,7 +49,7 @@ class ItemChapterAdapter(private val onClick: (Chapter, Int) -> Unit) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        getItem(position)?.let { holder.bind(it, onClick) }
+        getItem(position)?.let { holder.bind(it,onClick) }
     }
 
     fun sort(boolean: Boolean,rv:RecyclerView) {
