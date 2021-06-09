@@ -11,6 +11,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.integerResource
 import androidx.databinding.BindingAdapter
 import coil.load
+import coil.transform.BlurTransformation
 import com.airbnb.lottie.LottieAnimationView
 import com.baokiin.mangatoon.R
 import com.baokiin.mangatoon.adapter.ItemChapterAdapter
@@ -30,7 +31,18 @@ class UtilsBinding{
 
             }
         }
+        @BindingAdapter("android:DetailImage")
+        @JvmStatic
+        fun loadDetailImage(view: ImageView, image: String?) {
+            view.setClipToOutline(true);
+            image?.let {
+                view.load(it.replace("w=225", "w=500")) {
+                    placeholder(R.drawable.templace_backround)
+                    transformations(BlurTransformation(view.context,20f))
+                }
 
+            }
+        }
         @BindingAdapter("android:image")
         @JvmStatic
         fun loadImageChap(view: ImageView, image: String?) {

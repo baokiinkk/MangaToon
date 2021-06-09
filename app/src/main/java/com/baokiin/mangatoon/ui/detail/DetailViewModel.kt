@@ -110,7 +110,7 @@ class DetailViewModel(val rep: Repository, val local: RepositoryLocal) : ViewMod
     fun select(view: View, view2: TextView, adapter: ItemChapterAdapter, rv: RecyclerView) {
         val text = (view as TextView).text.toString()[0]
         view.setTextColor(android.graphics.Color.parseColor("#53B175"))
-        view2.setTextColor(android.graphics.Color.parseColor("#959393"))
+        view2.setTextColor(android.graphics.Color.parseColor("#FFFFFFFF"))
         adapter.sort(text == 'P', rv)
     }
 }

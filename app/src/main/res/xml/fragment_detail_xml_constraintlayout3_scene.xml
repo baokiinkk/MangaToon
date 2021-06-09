@@ -17,12 +17,18 @@
 
         <Constraint
             android:id="@+id/textView8"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            motion:layout_constraintStart_toStartOf="parent"
-            motion:layout_constraintBottom_toTopOf="@+id/textView"
-            android:layout_marginBottom="20dp">
+            motion:layout_constraintStart_toEndOf="@id/cardView4"
+            android:layout_marginStart="24dp"
+            motion:layout_constraintTop_toTopOf="@id/cardView4"
+            motion:layout_constraintVertical_bias="0.278"
+            motion:layout_constraintBottom_toBottomOf="@id/cardView4"
+            android:layout_marginLeft="24dp"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintHorizontal_bias="0.0"
+            android:layout_marginRight="30dp"
+            android:layout_marginEnd="30dp">
             <CustomAttribute
                 motion:attributeName="maxLines"
                 motion:customIntegerValue="5" />
@@ -32,30 +38,22 @@
             motion:layout_constraintEnd_toEndOf="parent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            motion:layout_constraintBottom_toBottomOf="@+id/imageView2"
-            motion:layout_constraintStart_toStartOf="parent" >
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@id/imageView2"
+            motion:layout_constraintHorizontal_bias="0.0">
             <CustomAttribute
                 motion:attributeName="backgroundColor"
-                motion:customColorValue="@color/text_color_white" />
+                motion:customColorValue="#000" />
         </Constraint>
         <Constraint
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            motion:layout_constraintBottom_toTopOf="@+id/tabLayoutDetailFragment"
-            android:layout_marginStart="20dp"
-            motion:layout_constraintStart_toStartOf="parent"
-            android:visibility="visible" />
-        <Constraint
-            android:id="@+id/textV"
-            motion:layout_constraintStart_toEndOf="@id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            motion:layout_constraintBottom_toTopOf="@+id/tabLayoutDetailFragment"
-            android:layout_marginStart="10dp"
-            android:visibility="visible" />
+            motion:layout_constraintStart_toStartOf="@id/textView8"
+            android:visibility="visible"
+            motion:layout_constraintTop_toBottomOf="@+id/textView8"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="5dp" />
         <Constraint
             android:id="@+id/btnHeart"
             motion:layout_constraintEnd_toEndOf="parent"
@@ -68,13 +66,29 @@
             android:id="@+id/view"
             motion:layout_constraintEnd_toEndOf="parent"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="350dp"
             motion:layout_constraintTop_toTopOf="parent"
-            motion:layout_constraintStart_toStartOf="parent">
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintHorizontal_bias="1.0">
             <CustomAttribute
                 motion:attributeName="crossfade"
                 motion:customFloatValue="0" />
         </Constraint>
+        <Constraint
+            android:id="@+id/cardView4"
+            android:layout_width="150dp"
+            android:layout_height="250dp"
+            motion:layout_constraintBottom_toTopOf="@+id/tabLayoutDetailFragment"
+            android:layout_marginStart="20dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:visibility="visible" />
+        <Constraint
+            android:layout_height="wrap_content"
+            motion:layout_constraintStart_toStartOf="@id/textView"
+            android:layout_width="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/textView"
+            android:id="@+id/txtAuth"
+            android:layout_marginTop="8dp" />
 
 
     </ConstraintSet>
@@ -102,7 +116,7 @@
             motion:layout_constraintStart_toStartOf="parent" >
             <CustomAttribute
                 motion:attributeName="backgroundColor"
-                motion:customColorValue="@color/text_color_white" />
+                motion:customColorValue="#000" />
         </Constraint>
         <Constraint
             android:layout_height="wrap_content"
@@ -134,15 +148,6 @@
             motion:layout_constraintStart_toStartOf="parent"
             android:visibility="gone" />
         <Constraint
-            android:id="@+id/textV"
-            motion:layout_constraintStart_toEndOf="@id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            motion:layout_constraintBottom_toTopOf="@+id/tabLayoutDetailFragment"
-            android:layout_marginStart="10dp"
-            android:visibility="gone" />
-        <Constraint
             android:id="@+id/btnHeart"
             motion:layout_constraintEnd_toEndOf="parent"
             android:layout_width="80dp"
@@ -161,6 +166,14 @@
                 motion:attributeName="crossfade"
                 motion:customFloatValue="1" />
         </Constraint>
+        <Constraint
+            android:id="@+id/cardView4"
+            android:layout_width="150dp"
+            android:layout_height="250dp"
+            motion:layout_constraintBottom_toTopOf="@+id/tabLayoutDetailFragment"
+            android:layout_marginStart="20dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:visibility="gone" />
 
     </ConstraintSet>
 

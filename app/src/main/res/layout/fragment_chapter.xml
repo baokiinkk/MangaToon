@@ -16,7 +16,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F3F2F2"
+        android:background="#000"
         tools:context=".ui.chap.ChapterFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,7 +24,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="@color/text_color_white"
+            android:background="#000"
             android:layout_marginVertical="1dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +39,8 @@
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/gilroy_medium"
                 android:text="@{viewmodel.data.chapter.size()+` chapters`}"
-                android:textSize="20sp"
+                android:textSize="25sp"
+                android:textColor="@color/text_color_white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -73,6 +74,7 @@
                 android:onClick="@{(v)->viewmodel.select(v,txtGiam,adapter,recycleViewChap)}"
                 android:fontFamily="@font/gilroy_medium"
                 android:textSize="20sp"
+                android:textColor="@color/text_color_white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/view3"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -86,8 +88,16 @@
                 app:layout_constraintBottom_toBottomOf="@+id/txtGiam"
                 app:layout_constraintEnd_toStartOf="@+id/txtGiam"
                 app:layout_constraintTop_toTopOf="@+id/txtGiam" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <View
+                android:id="@+id/viewTmp"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="#F3F2F2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleViewChap"

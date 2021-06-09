@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@drawable/background_name_manga"
+        android:background="@drawable/background_gener_des"
         >
 
         <TextView
@@ -25,7 +25,7 @@
             android:fontFamily="@font/gilroy_medium"
             android:textSize="15sp"
             android:paddingHorizontal="10dp"
-            android:textColor="#CAC7C7"
+            android:textColor="@color/text_color_white"
              />
 
     </FrameLayout>
