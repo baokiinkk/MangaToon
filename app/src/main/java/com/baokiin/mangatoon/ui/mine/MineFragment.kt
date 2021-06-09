@@ -2,6 +2,7 @@ package com.baokiin.mangatoon.ui.mine
 
 import android.content.Intent
 import android.view.View
+import androidx.lifecycle.Observer
 import com.baokiin.mangatoon.R
 import com.baokiin.mangatoon.base.BaseFragment
 import com.baokiin.mangatoon.databinding.FragmentMineBinding
@@ -51,13 +52,14 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
                     .commit()
             }
         }
+        viewModel.auth.observe(viewLifecycleOwner, Observer {
+            showView()
+        })
     }
-
 
     override fun onResume() {
         super.onResume()
         viewModel.auth.postValue(Firebase.auth)
-        showView()
     }
 
     private fun showView() {
@@ -66,7 +68,7 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
 //                val profileUpdates = UserProfileChangeRequest.Builder()
 //                    .setDisplayName("baokiin").build()
 //                it.updateProfile(profileUpdates)
-                viewModel.getCoinUser()
+                viewModel.getCoinUser(it)
                 layoutMine.visibility = View.GONE
                 txtDangXuat.visibility = View.VISIBLE
             }

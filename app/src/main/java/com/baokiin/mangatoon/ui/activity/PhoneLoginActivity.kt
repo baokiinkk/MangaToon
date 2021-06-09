@@ -34,6 +34,7 @@ class PhoneLoginActivity : AppCompatActivity() {
         init()
     }
 
+
     private fun init() {
         instancePhoneSignIn()
         auth = Firebase.auth
