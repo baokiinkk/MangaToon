@@ -19,6 +19,7 @@ class PhoneLoginActivity : AppCompatActivity() {
     private lateinit var forceResend: PhoneAuthProvider.ForceResendingToken
     private lateinit var mVerficationId: String
     private lateinit var auth: FirebaseAuth
+    var checkCode = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,22 +33,24 @@ class PhoneLoginActivity : AppCompatActivity() {
         instancePhoneSignIn()
 
         buttonGetCode.setOnClickListener {
-            val phone = edit_phoneNumber.text.toString()
-            if (phone.isEmpty() || phone.length != 9) {
-                Toast.makeText(
-                    this@PhoneLoginActivity,
-                    "Please enter phone number without 0",
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else {
-                startPhoneNumberVerification("+84$phone")
+            if(!checkCode) {
+                val phone = edit_phoneNumber.text.toString()
+                if (phone.isEmpty() || phone.length != 9) {
+                    Toast.makeText(
+                        this@PhoneLoginActivity,
+                        "Please enter phone number without 0",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    startPhoneNumberVerification("+84$phone")
+                }
+            }
+            else{
+                val code = phone_layout.edit_code.text.toString()
+                verifyPhoneNumberWithCode(mVerficationId, code)
             }
         }
         phone_layout.apply {
-            buttonOK.setOnClickListener {
-                val code = edit_code.text.toString()
-                verifyPhoneNumberWithCode(mVerficationId, code)
-            }
             buttonResend.setOnClickListener {
                 val phone = edit_phoneNumber.text.toString()
                 resendVerificationCode(phone, forceResend)
@@ -131,6 +134,7 @@ class PhoneLoginActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
                 //hide phone show code
+                checkCode = true
                 phone_layout.visibility = View.VISIBLE
                 layout_phone.visibility = View.GONE
 
