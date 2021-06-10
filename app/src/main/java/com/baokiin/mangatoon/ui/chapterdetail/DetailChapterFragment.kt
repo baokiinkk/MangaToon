@@ -1,5 +1,6 @@
 package com.baokiin.mangatoon.ui.chapterdetail
 
+import android.app.AlertDialog
 import android.view.View
 import androidx.lifecycle.Observer
 import com.baokiin.mangatoon.R
@@ -7,6 +8,7 @@ import com.baokiin.mangatoon.data.model.DetailManga
 import com.baokiin.mangatoon.databinding.FragmentDetailChapterBinding
 import com.baokiin.mangatoon.base.BaseFragment
 import com.baokiin.mangatoon.adapter.ItemDetailChapterAdapter
+import com.baokiin.mangatoon.data.model.Chapter
 import com.baokiin.mangatoon.data.model.Manga
 import com.baokiin.mangatoon.utils.Utils.DETAILMANGA
 import com.baokiin.mangatoon.utils.Utils.ENDPOINT
@@ -23,6 +25,13 @@ class DetailChapterFragment :
     private var indexManga = -1
     val viewModel: DetailChapterViewModel by viewModel()
     private lateinit var onBack: BacktoChap
+
+    override fun onResume() {
+        super.onResume()
+        if(viewModel.auth.currentUser == null){
+            dialogPayment(titleLog = "Login failed!",mess = "The chaper needs 20$ to unlock, please login!")
+        }
+    }
     override fun onCreateViews() {
 
         var endpointIndex = arguments?.getInt(ENDPOINT)
@@ -32,7 +41,7 @@ class DetailChapterFragment :
         var clickItem = false
 
         viewModel.insertRecents(manga)
-        val adapters = ItemDetailChapterAdapter { chapImage, i ->
+        val adapters = ItemDetailChapterAdapter { _, _ ->
             baseBinding.constraintLayout2.apply {
                 clickItem = if (!clickItem) {
                     transitionToEnd()
@@ -41,7 +50,6 @@ class DetailChapterFragment :
                     transitionToStart()
                     false
                 }
-
             }
         }
         if (endpointIndex != null) {
@@ -72,23 +80,67 @@ class DetailChapterFragment :
         viewModel.data.observe(viewLifecycleOwner, Observer {
             it?.let {
                 it.chapter_endpoint =
-                    it.chapter_endpoint?.length?.let { it1 ->
+                    it.chapter_endpoint?.length?.let { size ->
                         it.chapter_endpoint?.substring(
                             0,
-                            it1 - 1
+                            size - 1
                         )
                     }
-                detailManga.title?.let { it1 ->
-
-                    viewModel.unlock(it, it1)
+                detailManga.title?.let { title ->
+                    viewModel.isLockFromFireBase(it.chapter_endpoint, title)
                 }
                 adapters.submitList(it.chapter_image)
+            }
+        })
+        viewModel.isUnlock.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                val mess: String
+                val titleLog: String
+                if (it) {
+                    mess = "The episode needs 20$ to unlock"
+                    titleLog = "Unlock"
+                } else {
+                    mess = "Account balance is not enough, please add more money!"
+                    titleLog = "Payment failed!"
+                }
+                detailManga.title?.let { it1 ->
+                    dialogPayment(
+                        viewModel.data.value,
+                        it1,
+                        titleLog,
+                        mess
+                    )
+                }
+                viewModel.isUnlock.postValue(null)
             }
         })
     }
 
     fun resiveOnBackFromDetailChap(click: BacktoChap) {
         onBack = click
+    }
+
+    private fun dialogPayment(chapter: Chapter?=null, title: String?=null, titleLog: String, mess: String) {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.apply {
+            setTitle(titleLog).setMessage(mess)
+            setCancelable(true)
+            setIcon(R.drawable.ic_lock)
+            setCancelable(false)
+
+            if (mess == "The episode needs 20\$ to unlock")
+                setPositiveButton("OK") { dialog, _ ->
+                    if (title != null) {
+                        viewModel.unlock(chapter, title)
+                    }
+                    dialog.cancel()
+                }
+            setNegativeButton("CANCEL") { dialog, _ ->
+                dialog.cancel()
+                requireActivity().onBackPressed()
+            }
+            create().show()
+        }
     }
 
     private fun changeChap(detailManga: DetailManga, boolean: Boolean, view: View) {

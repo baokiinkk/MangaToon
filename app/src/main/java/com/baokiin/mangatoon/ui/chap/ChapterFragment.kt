@@ -6,6 +6,7 @@ import com.baokiin.mangatoon.R
 import com.baokiin.mangatoon.databinding.FragmentChapterBinding
 import com.baokiin.mangatoon.base.BaseFragment
 import com.baokiin.mangatoon.adapter.ItemChapterAdapter
+import com.baokiin.mangatoon.data.model.Chapter
 import com.baokiin.mangatoon.ui.chapterdetail.DetailChapterFragment
 import com.baokiin.mangatoon.ui.chapterdetail.BacktoChap
 import com.baokiin.mangatoon.ui.detail.DetailViewModel
@@ -20,6 +21,7 @@ class ChapterFragment :
         return R.layout.fragment_chapter
     }
     val viewmodel:DetailViewModel by sharedViewModel()
+    lateinit var listChapter:MutableList<Chapter>
     override fun onCreateViews() {
         baseBinding.viewmodel =viewmodel
         val adapter = ItemChapterAdapter{ chap->
@@ -52,6 +54,7 @@ class ChapterFragment :
                     tmp[i].chapter_title = "${tmp.size-i-1} "+tmp[i].chapter_title
                 }
                 adapter.submitList(tmp)
+                listChapter = tmp
                 adapter.notifyDataSetChanged()
             }
         })
