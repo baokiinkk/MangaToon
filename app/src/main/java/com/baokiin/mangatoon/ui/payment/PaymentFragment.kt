@@ -65,7 +65,5 @@ class PaymentFragment : Fragment(), View.OnClickListener {
             dialog.setContentView(viewDialog)
             dialog.show()
         }
-
-
     }
 }

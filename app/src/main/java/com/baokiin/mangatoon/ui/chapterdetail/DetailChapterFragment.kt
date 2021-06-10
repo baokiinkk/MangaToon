@@ -1,9 +1,12 @@
 package com.baokiin.mangatoon.ui.chapterdetail
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.view.View
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import com.baokiin.mangatoon.R
+import com.baokiin.mangatoon.adapter.ItemChapterAdapter
 import com.baokiin.mangatoon.data.model.DetailManga
 import com.baokiin.mangatoon.databinding.FragmentDetailChapterBinding
 import com.baokiin.mangatoon.base.BaseFragment
@@ -13,6 +16,8 @@ import com.baokiin.mangatoon.data.model.Manga
 import com.baokiin.mangatoon.utils.Utils.DETAILMANGA
 import com.baokiin.mangatoon.utils.Utils.ENDPOINT
 import com.baokiin.mangatoon.utils.Utils.MANGA
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlinx.android.synthetic.main.chapter_dialog.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -25,7 +30,7 @@ class DetailChapterFragment :
     private var indexManga = -1
     val viewModel: DetailChapterViewModel by viewModel()
     private lateinit var onBack: BacktoChap
-
+    lateinit var adapterChapTer: ItemChapterAdapter
     override fun onResume() {
         super.onResume()
         if (viewModel.auth.currentUser == null) {
@@ -43,8 +48,10 @@ class DetailChapterFragment :
         val detailManga = arguments?.getSerializable(DETAILMANGA) as DetailManga
         val manga = arguments?.getSerializable(MANGA) as Manga?
         var clickItem = false
-
         viewModel.insertRecents(manga)
+        adapterChapTer = ItemChapterAdapter {chapter ->
+            chapter.chapter_endpoint?.let { viewModel.getData(it) }
+        }
         val adapters = ItemDetailChapterAdapter { _, _ ->
             baseBinding.constraintLayout2.apply {
                 clickItem = if (!clickItem) {
@@ -81,7 +88,7 @@ class DetailChapterFragment :
                 btnBackChap.visibility = View.VISIBLE
             }
             txtShowChap.setOnClickListener {
-
+                showDiaLogBottom(detailManga.chapter)
             }
         }
         viewModel.data.observe(viewLifecycleOwner, Observer {
@@ -169,6 +176,20 @@ class DetailChapterFragment :
                 view.visibility = View.GONE
         }
         detailManga.chapter[indexManga].chapter_endpoint?.let { viewModel.getData(it) }
+    }
+
+    @SuppressLint("InflateParams")
+    fun showDiaLogBottom(data:MutableList<Chapter>) {
+        val sheetDialog = context?.let { BottomSheetDialog(it, R.style.SheetDialog) }
+        val viewDialog = layoutInflater.inflate(R.layout.chapter_dialog, null)
+        sheetDialog?.let { dialog ->
+            viewDialog.recyclerViewChapterDialog.adapter = adapterChapTer
+            viewDialog.recyclerViewChapterDialog.layoutManager = GridLayoutManager(context, 1, GridLayoutManager.VERTICAL, false)
+            adapterChapTer.submitList(data)
+            dialog.setContentView(viewDialog)
+            dialog.show()
+        }
+
     }
 }
 
