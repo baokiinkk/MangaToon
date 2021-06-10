@@ -1,6 +1,7 @@
 package com.baokiin.mangatoon.ui.detail
 
 import android.content.Intent
+import android.view.View
 import androidx.lifecycle.Observer
 import com.baokiin.mangatoon.R
 import com.baokiin.mangatoon.databinding.FragmentDetailBinding
@@ -54,10 +55,20 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>() {
                     isAuth.postValue(null)
                 }
             })
+            data.observe(viewLifecycleOwner, Observer {
+                it?.let {
+                    baseBinding.shimmerDetail.visibility = View.GONE
+                    baseBinding.shimmerDetail.stopShimmer()
+                }
+            })
         }
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        baseBinding.shimmerDetail.startShimmer()
+    }
     override fun onDestroy() {
         super.onDestroy()
         viewModel.apply {

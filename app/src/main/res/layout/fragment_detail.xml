@@ -15,159 +15,172 @@
 
 
     </data>
-
-        <androidx.constraintlayout.motion.widget.MotionLayout
-            android:id="@+id/constraintLayout3"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#000"
-            android:clickable="true"
-            android:focusable="true"
-            app:layoutDescription="@xml/fragment_detail_xml_constraintlayout3_scene">
-
-            <ImageView
-                android:id="@+id/imageView2"
+            >
+            <androidx.constraintlayout.motion.widget.MotionLayout
+                android:id="@+id/constraintLayout3"
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
-                android:DetailImage="@{viewmodel.data.thumb}"
-                android:scaleType="fitXY"
-                android:src="@drawable/templace_backround"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="ContentDescription" />
-
-
-            <androidx.constraintlayout.utils.widget.ImageFilterView
-                android:id="@+id/view"
-                android:layout_width="match_parent"
-                android:layout_height="350dp"
-                android:src="@drawable/background_image_detail"
-                app:altSrc="@drawable/background_image_while"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/btnBack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:drawableStart="@drawable/ic_back_white"
-                android:gravity="start"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/gilroy_medium"
-                android:text="@{viewmodel.data.type}"
-                android:textColor="#E8E6E6"
-                android:textSize="20dp"
-                app:layout_constraintStart_toStartOf="@+id/textView8"
-                app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/btnHeart"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginEnd="15dp"
-                android:onClick="@{(v)->viewmodel.onClickLottie(v)}"
-                app:layout_constraintBottom_toTopOf="@+id/tabLayoutDetailFragment"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:lottie_loop="false"
-                app:lottie_rawRes="@raw/heart"
-                app:lottie_speed="1.5" />
-
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
-                android:fontFamily="@font/gilroy_bold"
-                android:maxWidth="350dp"
-                android:text="@{viewmodel.data.title}"
-                android:textColor="#fff"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="@+id/cardView4"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/cardView4"
-                app:layout_constraintTop_toTopOf="@+id/cardView4"
-                app:layout_constraintVertical_bias="0.32" />
-
-            <TextView
-                android:id="@+id/txtAuth"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:drawableStart="@drawable/ic_account"
-                android:drawablePadding="10dp"
-                android:drawableTint="#fff"
-                android:gravity="center"
-                android:text="@{viewmodel.data.author}"
-                android:textColor="@color/text_color_white"
-                android:textSize="20dp"
-                app:layout_constraintStart_toStartOf="@id/textView"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
-            <View
-                android:id="@+id/viewTmp"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                app:layout_constraintTop_toBottomOf="@id/tabLayoutDetailFragment"
-                android:background="#F3F2F2"
-                />
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabLayoutDetailFragment"
-                android:layout_width="0dp"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2"
-                app:tabGravity="fill"
-                app:tabIndicatorFullWidth="false"
-                app:tabMode="fixed"
-                app:tabTextColor="@color/text_color_white"
-                app:tabSelectedTextColor="@color/green_color"
-                app:tabTextAppearance="@style/TextTabLayoutAppearance">
-
-
-            </com.google.android.material.tabs.TabLayout>
-
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/viewPagerDetailFragment"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:adapterDetail="@{adapter}"
-                android:tabLayoutId="@{tabLayoutDetailFragment}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tabLayoutDetailFragment"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView4"
-                android:layout_width="150dp"
-                android:layout_height="250dp"
-                android:layout_marginStart="20dp"
-                app:cardCornerRadius="15dp"
-                app:layout_constraintBottom_toTopOf="@+id/tabLayoutDetailFragment"
-                app:layout_constraintStart_toStartOf="parent">
+                android:layout_height="match_parent"
+                android:background="#000"
+                android:clickable="true"
+                android:focusable="true"
+                app:layoutDescription="@xml/fragment_detail_xml_constraintlayout3_scene">
 
                 <ImageView
+                    android:id="@+id/imageView2"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:profileImage="@{viewmodel.data.thumb}"
-                    android:scaleType="centerCrop" />
-            </androidx.cardview.widget.CardView>
+                    android:layout_height="350dp"
+                    android:DetailImage="@{viewmodel.data.thumb}"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/templace_backround"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ContentDescription" />
 
-        </androidx.constraintlayout.motion.widget.MotionLayout>
+
+                <androidx.constraintlayout.utils.widget.ImageFilterView
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp"
+                    android:src="@drawable/background_image_detail"
+                    app:altSrc="@drawable/background_image_while"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/btnBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:drawableStart="@drawable/ic_back_white"
+                    android:gravity="start"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/gilroy_medium"
+                    android:text="@{viewmodel.data.type}"
+                    android:textColor="#E8E6E6"
+                    android:textSize="20dp"
+                    app:layout_constraintStart_toStartOf="@+id/textView8"
+                    app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/btnHeart"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginEnd="15dp"
+                    android:onClick="@{(v)->viewmodel.onClickLottie(v)}"
+                    app:layout_constraintBottom_toTopOf="@+id/tabLayoutDetailFragment"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:lottie_loop="false"
+                    app:lottie_rawRes="@raw/heart"
+                    app:lottie_speed="1.5" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:fontFamily="@font/gilroy_bold"
+                    android:maxWidth="350dp"
+                    android:text="@{viewmodel.data.title}"
+                    android:textColor="#fff"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/cardView4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/cardView4"
+                    app:layout_constraintTop_toTopOf="@+id/cardView4"
+                    app:layout_constraintVertical_bias="0.32" />
+
+                <TextView
+                    android:id="@+id/txtAuth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:drawableStart="@drawable/ic_account"
+                    android:drawablePadding="10dp"
+                    android:drawableTint="#fff"
+                    android:gravity="center"
+                    android:text="@{viewmodel.data.author}"
+                    android:textColor="@color/text_color_white"
+                    android:textSize="20dp"
+                    app:layout_constraintStart_toStartOf="@id/textView"
+                    app:layout_constraintTop_toBottomOf="@+id/textView" />
+                <View
+                    android:id="@+id/viewTmp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    app:layout_constraintTop_toBottomOf="@id/tabLayoutDetailFragment"
+                    android:background="#F3F2F2"
+                    />
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabLayoutDetailFragment"
+                    android:layout_width="0dp"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView2"
+                    app:tabGravity="fill"
+                    app:tabIndicatorFullWidth="false"
+                    app:tabMode="fixed"
+                    app:tabTextColor="@color/text_color_white"
+                    app:tabSelectedTextColor="@color/green_color"
+                    app:tabTextAppearance="@style/TextTabLayoutAppearance">
+
+
+                </com.google.android.material.tabs.TabLayout>
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewPagerDetailFragment"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:adapterDetail="@{adapter}"
+                    android:tabLayoutId="@{tabLayoutDetailFragment}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tabLayoutDetailFragment"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView4"
+                    android:layout_width="150dp"
+                    android:layout_height="250dp"
+                    android:layout_marginStart="20dp"
+                    app:cardCornerRadius="15dp"
+                    app:layout_constraintBottom_toTopOf="@+id/tabLayoutDetailFragment"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:profileImage="@{viewmodel.data.thumb}"
+                        android:scaleType="centerCrop" />
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.motion.widget.MotionLayout>
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmerDetail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:shimmer_duration="1000"
+                >
+                <include layout="@layout/templace_item_commended"/>
+            </com.facebook.shimmer.ShimmerFrameLayout>
+        </FrameLayout>
 
 
 
