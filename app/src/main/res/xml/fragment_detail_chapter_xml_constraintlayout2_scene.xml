@@ -21,6 +21,16 @@
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintHorizontal_bias="1.0"
             motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            motion:layout_constraintVertical_bias="1.0"
+            android:layout_height="match_parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintHorizontal_bias="0.0"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:id="@+id/recyclerView" />
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">

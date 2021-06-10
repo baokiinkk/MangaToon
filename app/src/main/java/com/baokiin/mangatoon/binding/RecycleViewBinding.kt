@@ -9,9 +9,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
-import coil.transform.BlurTransformation
-import com.baokiin.mangatoon.R
 import com.baokiin.mangatoon.data.model.GenresList
 import com.baokiin.mangatoon.adapter.*
 
@@ -109,18 +106,32 @@ class RecycleViewBinding {
                 }
             linearSmoothScroller.targetPosition = adapter.itemCount
             recyclerView.layoutManager?.startSmoothScroll(linearSmoothScroller)
+
         }
 
 
-        @BindingAdapter("android:adapter_detail_chapter")
+        @BindingAdapter("android:adapter_detail_chapter","android:seekbar")
         @JvmStatic
-        fun recycleViewDetailChap(view: RecyclerView, adapter: ItemDetailChapterAdapter) {
+        fun recycleViewDetailChap(view: RecyclerView, adapter: ItemDetailChapterAdapter, seekBar: SeekBar) {
             view.adapter = adapter
             view.layoutManager = LinearLayoutManager(
                 view.context,
                 LinearLayoutManager.VERTICAL, false
             )
+            view.addOnScrollListener(object :RecyclerView.OnScrollListener(){
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    super.onScrollStateChanged(recyclerView, newState)
+                    if (newState == RecyclerView.SCROLL_STATE_DRAGGING || newState == RecyclerView.SCROLL_STATE_IDLE) {
+                        val position = view.getCurrentPosition()
+                        seekBar.progress = position
+                    }
 
+                }
+            })
+
+        }
+        fun RecyclerView.getCurrentPosition() : Int {
+            return (this.layoutManager as LinearLayoutManager?)!!.findFirstVisibleItemPosition()
         }
 
         @BindingAdapter("android:adapter")
@@ -159,6 +170,6 @@ class RecycleViewBinding {
         }
 
 
-
     }
+
 }

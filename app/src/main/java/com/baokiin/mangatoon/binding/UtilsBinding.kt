@@ -5,16 +5,21 @@ import android.net.Uri
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
+import android.widget.SeekBar
 import android.widget.TextView
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.integerResource
 import androidx.databinding.BindingAdapter
+import androidx.lifecycle.MutableLiveData
+import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.BlurTransformation
 import com.airbnb.lottie.LottieAnimationView
 import com.baokiin.mangatoon.R
 import com.baokiin.mangatoon.adapter.ItemChapterAdapter
+import com.baokiin.mangatoon.data.model.Chapter
 import com.google.firebase.auth.FirebaseUser
 import org.w3c.dom.Text
 
@@ -49,7 +54,6 @@ class UtilsBinding{
             view.setClipToOutline(true);
             image?.let {
                 view.load(it) {
-                    size(1000, 2600)
                     placeholder(R.drawable.ic_launcher_background)
                 }
 
@@ -77,16 +81,45 @@ class UtilsBinding{
         }
         @BindingAdapter("android:text_custom_endpoint")
         @JvmStatic
-        fun text(view: TextView, text: String) {
-            val tmp = text.split("-")
-            val tmp2 =tmp[tmp.size - 2] + " " + tmp[tmp.size - 1]
-            view.text = tmp2
+        fun text(view: TextView, text: String?) {
+            text?.let {
+                val tmp = it.split("-")
+                val tmp2 =tmp[tmp.size - 2] + " " + tmp[tmp.size - 1]
+                view.text = tmp2.substring(0,tmp2.length-1)
+            }
+
         }
 
         @BindingAdapter("android:text_auth")
         @JvmStatic
         fun textAuth(view: TextView, auth:FirebaseUser?) {
            view.text = auth?.email?:auth?.phoneNumber?:""
+        }
+
+        @BindingAdapter("android:recycleView","android:textView","android:dataChapter","android:textPos")
+        @JvmStatic
+        fun process(view: SeekBar, recyclerView: RecyclerView,textView: TextView,data: MutableLiveData<Chapter?>,textPos:TextView) {
+            data.value?.chapter_image?.size?.let {
+                view.max = it
+                textView.text = it.toString()
+            }
+            view.setOnSeekBarChangeListener(object :SeekBar.OnSeekBarChangeListener{
+                override fun onProgressChanged(
+                    seekBar: SeekBar?,
+                    progress: Int,
+                    fromUser: Boolean
+                ) {
+                    recyclerView.smoothScrollToPosition(progress)
+                    textPos.text = (progress+1).toString()
+                }
+
+                override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                }
+
+                override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                }
+
+            })
         }
     }
 }
