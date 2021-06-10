@@ -1,7 +1,6 @@
 package com.baokiin.mangatoon.ui.activity
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -25,7 +24,7 @@ class PhoneLoginActivity : AppCompatActivity() {
     private lateinit var forceResend: PhoneAuthProvider.ForceResendingToken
     private lateinit var mVerficationId: String
     private lateinit var auth: FirebaseAuth
-    var gia = 0L
+    private var gia = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,8 +32,6 @@ class PhoneLoginActivity : AppCompatActivity() {
         gia = intent.getLongExtra(COIN,0)
         init()
     }
-
-
     private fun init() {
         instancePhoneSignIn()
         auth = Firebase.auth
