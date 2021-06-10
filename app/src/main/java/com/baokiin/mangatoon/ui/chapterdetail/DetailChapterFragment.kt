@@ -28,10 +28,14 @@ class DetailChapterFragment :
 
     override fun onResume() {
         super.onResume()
-        if(viewModel.auth.currentUser == null){
-            dialogPayment(titleLog = "Login failed!",mess = "The chaper needs 20$ to unlock, please login!")
+        if (viewModel.auth.currentUser == null) {
+            dialogPayment(
+                titleLog = "Login failed!",
+                mess = "The chaper needs 20$ to unlock, please login!"
+            )
         }
     }
+
     override fun onCreateViews() {
 
         var endpointIndex = arguments?.getInt(ENDPOINT)
@@ -76,9 +80,15 @@ class DetailChapterFragment :
                 changeChap(detailManga, true, it)
                 btnBackChap.visibility = View.VISIBLE
             }
+            txtShowChap.setOnClickListener {
+
+            }
         }
         viewModel.data.observe(viewLifecycleOwner, Observer {
             it?.let {
+                baseBinding.txtPosition.text = "0"
+                baseBinding.txtSize.text = it.chapter_image?.size.toString()
+                baseBinding.seekbar.progress = 0
                 it.chapter_endpoint =
                     it.chapter_endpoint?.length?.let { size ->
                         it.chapter_endpoint?.substring(
@@ -120,7 +130,12 @@ class DetailChapterFragment :
         onBack = click
     }
 
-    private fun dialogPayment(chapter: Chapter?=null, title: String?=null, titleLog: String, mess: String) {
+    private fun dialogPayment(
+        chapter: Chapter? = null,
+        title: String? = null,
+        titleLog: String,
+        mess: String
+    ) {
         val builder = AlertDialog.Builder(requireContext())
         builder.apply {
             setTitle(titleLog).setMessage(mess)
